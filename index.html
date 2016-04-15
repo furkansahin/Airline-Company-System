@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+
+	<title> AirLine Corp </title>
+	
+	
+	<!-- CSS Files -->
+	<link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	
+	<!-- JS Files - Jquery Bootstrap -->
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+	
+	<!-- Datetime pickler -->
+	<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+	<script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+	<link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+	
+	<!-- Collapsing header with scroll down -->
+	
+	<script type="text/javascript">
+		$(document).on("scroll",function(){
+			if($(document).scrollTop()>100){ 
+				$("header").removeClass("large").addClass("small");
+				}
+			else{
+				$("header").removeClass("small").addClass("large");
+				}
+			});
+	</script>
+	
+</head>
+<body>
+	<div class = "wrapper">
+					
+		<header class="large">
+				<ul>
+					<li><a href="#" data-toggle="modal" data-target="#basicModal" >Log In</a></li>
+					<li><a href="register.html">Register</a></li>
+				</ul>
+		</header>
+				
+		<div id = "breaksection2" style ="height:150px">
+				
+		</div>
+		<div id = "breaksection2">
+				<a name="linked">
+				<div id="linked">
+				</div>
+			</a>
+		</div>
+		
+		<!-- Search and right adv -->
+		<div class="row">
+		
+			
+			<div class="col-sm-6">
+					
+				<!-- Start of tabs -->
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#home">Round Trip</a></li>
+					<li><a data-toggle="tab" href="#menu1">One Way</a></li>
+				</ul>
+				<div class="tab-content">
+					<h3>Please Choose</h3>
+					
+					<!-- First tab -->
+					<div id="home" class="tab-pane fade in active">
+						<!-- To and from row -->
+						<div class="row">
+						
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="sel1">To:</label>
+									<select class="form-control" id="sel1">
+									<option>Ankara ESB</option>
+									<option>İstanbul</option>
+									<option>Münih</option>
+									<option>Kars</option>
+									 </select>
+								</div>
+							</div>
+							
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="sel2">From:</label>
+									<select class="form-control" id="sel2">
+									<option>İstanbul</option>
+									<option>Ankara ESB</option>
+									<option>Münih</option>
+									<option>Kars</option>
+									</select>
+								</div>
+							</div>	  
+						</div>
+							
+						<!-- Row of dates -->
+						<div class="row">
+						
+							<div class='col-md-6'>
+								<label for="datetimepicker6">Departure Date:</label>
+								<div class="form-group">
+									<div class='input-group date' id='datetimepicker6'>
+										<input type='text' class="form-control" />
+										<span class="input-group-addon">
+										<span class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+								</div>
+							</div>
+							
+							<div class='col-md-6'>
+								<label for="datetimepicker7">Return Date:</label>
+								<div class="form-group">
+									<div class='input-group date' id='datetimepicker7'>
+										<input type='text' class="form-control" />
+										<span class="input-group-addon">
+										<span class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+								</div>
+							</div>
+							
+							<script type="text/javascript">
+									$(function () {
+										$('#datetimepicker6').datetimepicker();
+										$('#datetimepicker7').datetimepicker({
+											useCurrent: false //Important! See issue #1075
+										});
+										$("#datetimepicker6").on("dp.change", function (e) {
+											$('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+										});
+										$("#datetimepicker7").on("dp.change", function (e) {
+											$('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+										});
+									});
+							</script>			
+						</div>
+						<div class="row">
+							<div class="col-md-4 col-md-offset-4">
+								<label for="formClass" > Class </label>
+									<select class="form-control" id="formClass">
+										<option>Economy</option>
+										<option>Business</option>
+								</select> 
+							</div>						
+						</div>
+						<br/>
+						<div class="row">
+							<div class="col-md-10 col-md-offset-1">
+								<a href="searchflights.html" class="btn btn-lg btn-primary btn-block" >Search</a>
+							</div>	
+						</div>		
+					</div>	<!-- End of first tab -->
+					
+					<!-- Second tab -->
+					<div id="menu1" class="tab-pane fade">
+						<!-- To and from row -->
+						<div class="row">
+						
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="sel1">To:</label>
+									<select class="form-control" id="sel1">
+									<option>Ankara ESB</option>
+									<option>İstanbul</option>
+									<option>Münih</option>
+									<option>Kars</option>
+									 </select>
+								</div>
+							</div>
+							
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="sel2">From:</label>
+									<select class="form-control" id="sel2">
+									<option>İstanbul</option>
+									<option>Ankara ESB</option>
+									<option>Münih</option>
+									<option>Kars</option>
+									</select>
+								</div>
+							</div>	  
+						</div>
+							
+						<!-- Row of dates -->
+						<div class="row">
+						
+							<div class='col-md-6'>
+								<label for="datetimepicker6">Departure Date:</label>
+								<div class="form-group">
+									<div class='input-group date' id='datetimepicker6'>
+										<input type='text' class="form-control" />
+										<span class="input-group-addon">
+										<span class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+								</div>
+							</div>
+							
+							<div class='col-md-6'>
+								<label for="datetimepicker7">Return Date:</label>
+								<div class="form-group">
+									<div class='input-group date' id='datetimepicker7'>
+										<input type='text' class="form-control" disabled />
+										<span class="input-group-addon">
+										<span class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+								</div>
+							</div>
+							
+							<script type="text/javascript">
+									$(function () {
+										$('#datetimepicker6').datetimepicker();
+										$('#datetimepicker7').datetimepicker({
+											useCurrent: false //Important! See issue #1075
+										});
+										$("#datetimepicker6").on("dp.change", function (e) {
+											$('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+										});
+										$("#datetimepicker7").on("dp.change", function (e) {
+											$('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+										});
+									});
+							</script>			
+						</div>
+						<div class="row">
+							<div class="col-md-4 col-md-offset-4">
+								<label for="formClass" > Class </label>
+									<select class="form-control" id="formClass">
+										<option>Economy</option>
+										<option>Business</option>
+								</select> 
+							</div>						
+						</div>
+						<br/>
+						<div class="row">
+							<div class="col-md-10 col-md-offset-1">
+								<a href="searchflights.html" class="btn btn-lg btn-primary btn-block" >Search</a>
+							</div>	
+						</div>		
+					</div>
+				</div>	
+			</div>
+		
+			<!-- Right ad -->
+			<div class='col-md-6'>
+			
+				<img src= "img/sample1.jpg" class="img-responsive">
+			
+			</div>
+			
+		</div> <!-- End of first row -->
+		
+		<div id = "breaksection2">
+				
+		</div>
+		
+		<!-- Second row for ads -->
+		<div class = "row">
+			<div class='col-md-6'>
+			
+				<img src= "img/sample2.jpg" class="img-responsive">
+			
+			</div>
+
+			<div class='col-md-6'>
+			
+				<img src= "img/sample2.jpg" class="img-responsive">
+			
+			</div>
+		</div>
+		
+		<div id = "breaksection">
+				
+		</div>
+		<div id = "breaksection">
+				
+		</div>
+		<div id = "breaksection">
+				
+		</div>
+
+	</div><!-- End of wrapper -->
+	
+	
+	<!-- Modal for login -->
+	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		 <div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">User Login</h4>
+				</div>
+				<div class="modal-body">
+
+					<form class="form-signin">
+					<label for="inputEmail" class="sr-only">Email address</label>
+					<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+					<label for="inputPassword" class="sr-only">Password</label>
+					<input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" value="remember-me"> Remember me
+					  </label>
+					</div>
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button><!-- 
+					<a href="manager/index.html" class="btn btn-lg btn-primary btn-block" >Manager</a>
+					<a href="salesperson/index.html" class="btn btn-lg btn-primary btn-block" >Salesperson</a>
+					<a href="customer/index.html" class="btn btn-lg btn-primary btn-block" >Customer</a> -->
+				  </form>
+
+				</div> <!-- /container -->
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+
+	<title> Customer Page </title>
+	
+	
+	<!-- CSS Files -->
+	<link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	
+	<!-- JS Files - Jquery Bootstrap -->
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+
+	
+
+</head>
+
+<body>
+	
+	<div class = "wrapper">
+		
+		<header class="small">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="reservations.html">Reservations</a></li>
+					<li><a class="active" href="myprofile.html">My Profile</a></li>
+					<li><a href="../index.html">Log Out</a></li>
+				</ul>
+		</header>		
+		
+		<div id = "breaksection2" style="height:50px;">
+		</div>
+		
+		<div class="row">
+			
+			<div class="col-md-10 col-md-offset-1">
+				<div class="panel panel-success">
+					<div class="panel-heading"> 25 Flights are found within 2 days before and after from your selection </button></div>
+					<div class="panel-body">
+						<h3> OUTBOUND </h3>
+						<table class="table table-sm">
+							 <thead class="thead-inverse">
+								<tr>
+									<th>25.01.2000: XXXX</th>
+									<th>26.01.2000: XXXX</th>
+									<th><u>27.01.2000: XXXX</u></th>
+									<th>28.01.2000: XXXX</th>
+									<th>29.01.2000: XXXX</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1.099</td>
+									<td class="table-warning">999</td>
+									<td>1.099</td>
+									<td>-----</td>
+									<td>1.199</td>
+								</tr>
+								<tr>
+									<td><input type="radio" name="optradio" data-toggle="collapse" data-target="#t1"></td>
+									<td><input type="radio" name="optradio" data-toggle="collapse" data-target="#t1"></td>
+									<td><input type="radio" name="optradio" data-toggle="collapse" data-target="#t1"></td>
+									<td><input type="radio" name="optradio" disabled></td>
+									<td><input type="radio" name="optradio" data-toggle="collapse" data-target="#t1"></td>
+								</tr>
+							</tbody>
+						</table>
+						<div id="t1" class="collapse">
+							<h3> INBOUND </h3>
+							<table class="table table-sm">
+								 <thead class="thead-inverse">
+									<tr>
+										<th>25.05.2000: XXXX</th>
+										<th>26.05.2000: XXXX</th>
+										<th><u>27.05.2000: XXXX</u></th>
+										<th>28.05.2000: XXXX</th>
+										<th>29.05.2000: XXXX</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1.199</td>
+										<td>--------</td>
+										<td>1.099</td>
+										<td class="table-warning">999</td>
+										<td>1.199</td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="optradio" data-toggle="collapse" data-target="#t2"></td>
+										<td><input type="radio" name="optradio" data-toggle="collapse" data-target="#t2"></td>
+										<td><input type="radio" name="optradio" data-toggle="collapse" data-target="#t2"></td>
+										<td><input type="radio" name="optradio" disabled></td>
+										<td><input type="radio" name="optradio" data-toggle="collapse" data-target="#t2"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="t2" class="collapse">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<div class="panel panel-success">
+						<div class="panel-heading"> Choose action </button></div>
+						<div class="panel-body">
+							<div class="col-md-6">
+								<a href="reservations.html" class="btn btn-lg btn-warning btn-block" > Reserve Selection</a>
+							</div>
+							<div class="col-md-6">
+								<a href="reservations.html" class="btn btn-lg btn-success btn-block" > Purchase Selection</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>			
+</body>
+</html>

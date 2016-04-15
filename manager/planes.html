@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="countdown.js"></script>
+	
+	<link href='https://fonts.googleapis.com/css?family=New+Rocker' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="jquery.bootstrap-touchspin.js"></script>
+	<!-- ... -->
+	  <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+	  <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+	  <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+	  <link rel="stylesheet" type="text/css" href="manager_style.css">
+	<title> Manager </title>
+</head>
+<body>
+	
+	<div class = "wrapper">
+		<header>
+		
+			<ul>
+				<li>Welcome Manager</li>
+				<li><button type="button" class="btn btn-primary">LOG OUT</button></li>
+			</ul>
+	
+		</header>		
+		
+		<div id = "breaksection2">
+		</div>
+		<div class="row">
+			<div class="col-sm-2">
+			
+				<nav class="navbar navbar-default" role="navigation">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#"><b>Airline Corp</b></a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse navbar-ex1-collapse">
+						<ul class="nav navbar-nav">
+							<li><a href="index.html">Flights</a></li>
+							<li><a href="routes.html">Routes</a></li>
+							<li><a href="crews.html">Crews</a></li>
+							<li><a href="airports.html">Airports</a></li>	
+							<li><a href="customers.html">Customers</a></li>
+							<li><a href="flights.html">Flight Information</a></li>
+							<li class="active"><a href="planes.html">Planes</a></li>
+						</ul>
+					 </div><!-- /.navbar-collapse -->
+				</nav>
+			</div>
+			
+			<div class="col-sm-10">
+				
+					<h2>PLANES</h2>
+					<h3><button class="btn btn-lg btn-primary " data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-plus"></i>Add Plane </button></h2>
+					
+					<div id="demo" class="collapse">
+					<form class="form-signin">
+						<label for="formname" >Name </label>
+						<input type="text" id="formname" class="form-control" placeholder="withoutspaces,eng chars only" required="">
+						
+						<label for="formtype" >Type </label>
+							  <select class="form-control" id="formtype">
+								<option>Airbus A330</option>
+								<option>Airbus A330</option>
+								<option>Airbus A330</option>
+								<option>Airbus A330</option>
+						</select> 
+						
+						<label for="formyear" >Year </label>
+						<input type="text" id="formyear" class="form-control" placeholder="withoutspaces,eng chars only" required="">
+						<br/>
+						<button class="btn btn-lg" type="submit">Add</button>
+					</form>	
+					</div>
+					<br/>          
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Year</th>
+								<th>Type</th>
+								<th>Capacity (E,B)</th>
+								<th>Max Flight Time</th>
+								<th>Storage Capacity</th>
+								<th>Status</th>
+								<th>Send to Repair / Return</th>
+								<th>Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Bayırgülü</td>
+								<td>2009</td>
+								<td>Airbus A330</td>
+								<td>200,30</td>
+								<td>500</td>
+								<td>30tons</td>
+								<td>On Service</td>
+								<td><button type="button" class="glyphicon glyphicon-wrench"></button></td>
+								<td><button type="button" class="glyphicon glyphicon-trash"></button></td>
+							</tr>
+							
+							<tr>
+								<td>Bayırgülü</td>
+								<td>2009</td>
+								<td>Airbus A330</td>
+								<td>200,30</td>
+								<td>500</td>
+								<td>30tons</td>
+								<td>Out for Repair</td>
+								<td><button type="button" class="glyphicon glyphicon-ok"></button></td>
+								<td><button type="button" class="glyphicon glyphicon-trash"></button></td>
+							</tr>
+							<tr>
+								<td>Bayırgülü</td>
+								<td>2009</td>
+								<td>Airbus A330</td>
+								<td>200,30</td>
+								<td>500</td>
+								<td>30tons</td>
+								<td>Out for Repair</td>
+								<td><button type="button" class="glyphicon glyphicon-ok"></button></td>
+								<td><button type="button" class="glyphicon glyphicon-trash"></button></td>
+							</tr>
+							<tr>
+								<td>Bayırgülü</td>
+								<td>2009</td>
+								<td>Airbus A330</td>
+								<td>200,30</td>
+								<td>500</td>
+								<td>30tons</td>
+								<td>On Service</td>
+								<td><button type="button" class="glyphicon glyphicon-wrench"></button></td>
+								<td><button type="button" class="glyphicon glyphicon-trash"></button></td>
+							</tr>
+							<tr>
+								<td>Bayırgülü</td>
+								<td>2009</td>
+								<td>Airbus A330</td>
+								<td>200,30</td>
+								<td>500</td>
+								<td>30tons</td>
+								<td>On Service</td>
+								<td><button type="button" class="glyphicon glyphicon-wrench"></button></td>
+								<td><button type="button" class="glyphicon glyphicon-trash"></button></td>
+							</tr>
+							
+						</tbody>
+					</table>
+				
+			</div>
+			
+		</div>
+	</div>
+</body>
+</html>

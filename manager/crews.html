@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="countdown.js"></script>
+	
+	<link href='https://fonts.googleapis.com/css?family=New+Rocker' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="jquery.bootstrap-touchspin.js"></script>
+	<!-- ... -->
+	  <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+	  <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+	  <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+	  <link rel="stylesheet" type="text/css" href="manager_style.css">
+	<title> Manager </title>
+</head>
+<body>
+	
+	<div class = "wrapper">
+		<header>
+		
+			<ul>
+				<li>Welcome Manager</li>
+				<li><button type="button" class="btn btn-primary">LOG OUT</button></li>
+			</ul>
+	
+		</header>		
+		
+		<div id = "breaksection2">
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+			
+				<nav class="navbar navbar-default" role="navigation">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#"><b>Airline Corp</b></a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse navbar-ex1-collapse">
+						<ul class="nav navbar-nav">
+							<li><a href="index.html">Flights</a></li>
+							<li><a href="routes.html">Routes</a></li>
+							<li class="active"><a href="crews.html">Crews</a></li>
+							<li><a href="airports.html">Airports</a></li>	
+							<li><a href="customers.html">Customers</a></li>
+							<li><a href="flights.html">Flight Information</a></li>
+							<li><a href="planes.html">Planes</a></li>
+						</ul>
+					 </div><!-- /.navbar-collapse -->
+				</nav>
+			</div>
+			
+			<div class="col-sm-8">
+				
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#pilots">Pilots</a></li>
+					<li><a data-toggle="tab" href="#atts">Flight attendants</a></li>
+				</ul>
+
+				<div class="tab-content">
+									
+					<div id="pilots" class="tab-pane fade in active">
+						
+						<h3>Pilots</h3>
+						<h3><button class="btn btn-lg btn-primary " data-toggle="collapse" data-target="#demo3"><i class="glyphicon glyphicon-plus"></i> Add a pilot </button></h2>
+							
+						<div id="demo3" class="collapse">
+							<form class="form-signin">
+							
+							<label for="pilotid"> StaffId </label>
+							<input type="text" id="pilotid" class="form-control" placeholder="1111111" required="">
+							
+							<label for="pilotname"> Name </label>
+							<input type="text" id="pilotname" class="form-control" placeholder="Sample Pilot" required="">
+							
+							<label for="pilotsalary"> Salary </label>
+							<input type="text" id="pilotsalary" class="form-control" placeholder="4000$" required="">
+							
+							<label for="pilotsalary"> Birthdate </label>
+							<input type="date" id="pilotsalary" class="form-control" placeholder="XX/XX/XXXX" required="">
+							
+							<label for="pilotgender"> Gender </label>
+							<input type="text" id="pilotgender" class="form-control" placeholder="Male/Female" required="">
+							
+							<label for="pilotphone"> Phone </label>
+							<input type="text" id="pilotphone" class="form-control" placeholder="+90XXXXXXXXXX" required="">
+							
+							<label for="pilotlicense"> LicanseNo </label>
+							<input type="text" id="pilotlicense" class="form-control" placeholder="XXXXXXXXX" required="">
+							
+							<label for="pilotrank"> Rank </label>
+							<input type="text" id="pilotrank" class="form-control" placeholder="XXX" required="">
+							
+							<label for="pilotrank"> Maximum Flight Distance </label>
+							<input type="text" id="pilotrank" class="form-control" placeholder="XX.XXX" required="">
+
+							
+							<br/>
+							<button class="btn btn-lg" type="submit">Add</button>
+							</form>	
+						</div>
+						<br/>          
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>StaffID</th>
+									<th>Name</th>
+									<th>Salary</th>
+									<th>BirthDate</th>
+									<th>Gender</th>
+									<th>Phone</th>
+									<th>LicanseNo</th>
+									<th>Rank</th>
+									<th>Maximum Flight Distance</th>
+									<th>Edit</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Mehmet Sahin</td>
+									<td>4000$</td>
+									<td>10/01/1994</td>
+									<td>Male</td>
+									<td>+9045441345</td>
+									<td>A1654721</td>
+									<td>Master</td>
+									<td>10.000</td>
+									<td><button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#editModal3"></button></td>
+									<td><button type="button" class="glyphicon glyphicon-trash"></button></td>
+								</tr>
+								
+								<tr>
+									<td>1</td>
+									<td>Mehmet Sahin</td>
+									<td>4000$</td>
+									<td>10/01/1994</td>
+									<td>Male</td>
+									<td>+9045441345</td>
+									<td>A1654721</td>
+									<td>Master</td>
+									<td>10.000</td>
+									<td><button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#editModal3"></button></td>
+									<td><button type="button" class="glyphicon glyphicon-trash"></button></td>
+								</tr>
+								
+								<tr>
+									<td>1</td>
+									<td>Mehmet Sahin</td>
+									<td>4000$</td>
+									<td>10/01/1994</td>
+									<td>Male</td>
+									<td>+9045441345</td>
+									<td>A1654721</td>
+									<td>Master</td>
+									<td>10.000</td>
+									<td><button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#editModal3"></button></td>
+									<td><button type="button" class="glyphicon glyphicon-trash"></button></td>
+								</tr>
+								
+							</tbody>
+						</table>
+					
+					
+					
+					</div>
+					
+					
+					<div id="atts" class="tab-pane fade">
+						<h3>Attendants</h3>
+						<h3><button class="btn btn-lg btn-primary " data-toggle="collapse" data-target="#demo4"><i class="glyphicon glyphicon-plus"></i> Add an attendant </button></h2>
+							
+						<div id="demo4" class="collapse">
+							<form class="form-signin">
+							
+							<label for="attendantid"> StaffId </label>
+							<input type="text" id="attendantid" class="form-control" placeholder="1111111" required="">
+							
+							<label for="attendantname"> Name </label>
+							<input type="text" id="attendantname" class="form-control" placeholder="Sample Attendant" required="">
+							
+							<label for="attendantsalary"> Salary </label>
+							<input type="text" id="attendantsalary" class="form-control" placeholder="4000$" required="">
+							
+							<label for="attendantsalary"> Birthdate </label>
+							<input type="date" id="attendantsalary" class="form-control" placeholder="XX/XX/XXXX" required="">
+							
+							<label for="attendantgender"> Gender </label>
+							<input type="text" id="attendantgender" class="form-control" placeholder="Male/Female" required="">
+							
+							<label for="attendantphone"> Phone </label>
+							<input type="text" id="attendantphone" class="form-control" placeholder="+90XXXXXXXXXX" required="">
+							
+							<label for="attendantlicense"> LicanseNo </label>
+							<input type="text" id="attendantlicense" class="form-control" placeholder="XXXXXXXXX" required="">
+							
+							<label for="attendantrank"> Rank </label>
+							<input type="text" id="attendantrank" class="form-control" placeholder="XXX" required="">
+							
+							<label for="attendantrank"> Serving Class</label>
+							<input type="text" id="attendantrank" class="form-control" placeholder="Economy/Business/First" required="">
+
+							
+							<br/>
+							<button class="btn btn-lg" type="submit">Add</button>
+							</form>	
+						</div>
+						<br/>          
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>StaffID</th>
+									<th>Name</th>
+									<th>Salary</th>
+									<th>BirthDate</th>
+									<th>Gender</th>
+									<th>Phone</th>
+									<th>LicanseNo</th>
+									<th>Rank</th>
+									<td>Economy</td>
+									<th>Edit</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Berceste Dincer</td>
+									<td>3000$</td>
+									<td>10/01/1994</td>
+									<td>Female</td>
+									<td>+9045441345</td>
+									<td>A1654721</td>
+									<td>Master</td>
+									<td>Economy</td>
+									<td><button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#editModal4"></button></td>
+									<td><button type="button" class="glyphicon glyphicon-trash"></button></td>
+								</tr>
+								
+								<tr>
+									<td>1</td>
+									<td>Berceste Dincer</td>
+									<td>3000$</td>
+									<td>10/01/1994</td>
+									<td>Female</td>
+									<td>+9045441345</td>
+									<td>A1654721</td>
+									<td>Master</td>
+									<td>Economy</td>
+									<td><button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#editModal4"></button></td>
+									<td><button type="button" class="glyphicon glyphicon-trash"></button></td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>Berceste Dincer</td>
+									<td>3000$</td>
+									<td>10/01/1994</td>
+									<td>Female</td>
+									<td>+9045441345</td>
+									<td>A1654721</td>
+									<td>Master</td>
+									<td>10.000</td>
+									<td><button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#editModal4"></button></td>
+									<td><button type="button" class="glyphicon glyphicon-trash"></button></td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+					
+				
+			</div>
+			
+		</div>
+	</div>
+	<!-- Modal1 -->
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		 <div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Edit Pilot Crew</h4>
+				</div>
+				<div class="modal-body">
+
+					<form class="form-signin">
+								<label for="formCid" > CrewID </label>
+								<input type="text" id="formflno" class="form-control" placeholder="ACXXX" required="">
+								
+								<label for="formp1" > Captain </label>
+								<select class="form-control" id="formp1">
+									<option>Pilot1</option>
+									<option>Pilot1</option>
+									<option>Pilot1</option>
+									<option>Pilot1</option>
+								</select> 
+								
+								<label for="formp2" > 2nd Pilot </label>
+								<select class="form-control" id="formp2">
+									<option>Pilot1</option>
+									<option>Pilot1</option>
+									<option>Pilot1</option>
+									<option>Pilot1</option>
+								</select> 
+								
+								<label for="formp3" > 3nd Pilot</label>
+								<select class="form-control" id="formp3">
+									<option>Pilot1</option>
+									<option>Pilot1</option>
+									<option>Pilot1</option>
+									<option>Pilot1</option>
+								</select>								
+								<br/>
+								<button class="btn btn-lg" type="submit">Add</button>
+							</form>	
+
+				</div> <!-- /container -->
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal2 -->
+	<div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		 <div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Edit Attandents Crew</h4>
+				</div>
+				<div class="modal-body">
+
+					<form class="form-signin">
+								<label for="formCid" > CrewID </label>
+								<input type="text" id="formflno" class="form-control" placeholder="ACXXX" required="">
+								
+								<label for="formc1" > Cabin Chief </label>
+								<select class="form-control" id="formc1">
+									<option>C1</option>
+									<option>C2</option>
+									<option>C3</option>
+									<option>C4</option>
+								</select> 
+								
+								<label for="formc2" > Flight attendant </label>
+								<select class="form-control" id="formc2">
+									<option>C1</option>
+									<option>C2</option>
+									<option>C3</option>
+									<option>C4</option>
+								</select> 
+								
+								<label for="formc3" > Flight attendant </label>
+								<select class="form-control" id="formc3">
+									<option>C1</option>
+									<option>C2</option>
+									<option>C3</option>
+									<option>C4</option>
+								</select> 								
+								<br/>
+								<button class="btn btn-lg" type="submit">Add</button>
+							</form>	
+
+				</div> <!-- /container -->
+			</div>
+		</div>
+	</div>
+	<!-- Modal3 -->
+	<div class="modal fade" id="editModal3" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		 <div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Edit Attandents Crew</h4>
+				</div>
+				<div class="modal-body">
+
+					<form class="form-signin">
+								<label for="pilotid"> StaffId </label>
+							<input type="text" id="pilotid" class="form-control" placeholder="1111111" required="">
+							
+							<label for="pilotname"> Name </label>
+							<input type="text" id="pilotname" class="form-control" placeholder="Sample Pilot" required="">
+							
+							<label for="pilotsalary"> Salary </label>
+							<input type="text" id="pilotsalary" class="form-control" placeholder="4000$" required="">
+							
+							<label for="pilotsalary"> Birthdate </label>
+							<input type="date" id="pilotsalary" class="form-control" placeholder="XX/XX/XXXX" required="">
+							
+							<label for="pilotgender"> Gender </label>
+							<input type="text" id="pilotgender" class="form-control" placeholder="Male/Female" required="">
+							
+							<label for="pilotphone"> Phone </label>
+							<input type="text" id="pilotphone" class="form-control" placeholder="+90XXXXXXXXXX" required="">
+							
+							<label for="pilotlicense"> LicanseNo </label>
+							<input type="text" id="pilotlicense" class="form-control" placeholder="XXXXXXXXX" required="">
+							
+							<label for="pilotrank"> Rank </label>
+							<input type="text" id="pilotrank" class="form-control" placeholder="XXX" required="">
+							
+							<label for="pilotrank"> Maximum Flight Distance </label>
+							<input type="text" id="pilotrank" class="form-control" placeholder="XX.XXX" required="">	
+								<br/>
+								<button class="btn btn-lg" type="submit">Add</button>
+							</form>	
+
+				</div> <!-- /container -->
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal4 -->
+	<div class="modal fade" id="editModal4" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		 <div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Edit Attandents Crew</h4>
+				</div>
+				<div class="modal-body">
+
+					<form class="form-signin">
+							
+							<label for="attendantid"> StaffId </label>
+							<input type="text" id="attendantid" class="form-control" placeholder="1111111" required="">
+							
+							<label for="attendantname"> Name </label>
+							<input type="text" id="attendantname" class="form-control" placeholder="Sample Attendant" required="">
+							
+							<label for="attendantsalary"> Salary </label>
+							<input type="text" id="attendantsalary" class="form-control" placeholder="4000$" required="">
+							
+							<label for="attendantsalary"> Birthdate </label>
+							<input type="date" id="attendantsalary" class="form-control" placeholder="XX/XX/XXXX" required="">
+							
+							<label for="attendantgender"> Gender </label>
+							<input type="text" id="attendantgender" class="form-control" placeholder="Male/Female" required="">
+							
+							<label for="attendantphone"> Phone </label>
+							<input type="text" id="attendantphone" class="form-control" placeholder="+90XXXXXXXXXX" required="">
+							
+							<label for="attendantlicense"> LicanseNo </label>
+							<input type="text" id="attendantlicense" class="form-control" placeholder="XXXXXXXXX" required="">
+							
+							<label for="attendantrank"> Rank </label>
+							<input type="text" id="attendantrank" class="form-control" placeholder="XXX" required="">
+							
+							<label for="attendantrank"> Serving Class</label>
+							<input type="text" id="attendantrank" class="form-control" placeholder="Economy/Business" required="">
+							
+							
+							<br/>
+							<button class="btn btn-lg" type="submit">Add</button>
+							</form>	
+
+				</div> <!-- /container -->
+			</div>
+		</div>
+	</div>
+</body>
+</html>

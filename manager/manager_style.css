@@ -1,0 +1,158 @@
+/* Importing Amaranth Font for menu text */
+		@import url(http://fonts.googleapis.com/css?family=Amaranth);
+
+	
+
+/* Basic layout */
+body{
+	background-color: #fff;
+}
+.wrapper{
+	width:1024px;
+	margin: 0 auto 0 auto;
+}
+
+
+
+.contain{
+	float:left;
+}
+#twos{
+	float:left;
+}
+img.logo{
+	float: left;
+}
+
+
+
+
+
+header{
+	width: 900px;
+	height: 50px;
+	top: 0;
+	margin: 0 auto;
+	padding: 0 5px 0 5px;
+	
+	position: fixed;
+	
+
+
+	
+	background-color: #fff;
+	background-image: url('img/logo3.png');
+	background-size: 242px 203px;
+	background-repeat: no-repeat;
+	background-position: left;
+
+
+
+	border-bottom: 3px solid #227107;
+	z-index : 20;
+}
+
+header a{
+	color: #000000;
+	text-decoration: none;
+	font-family: 'Amaranth', sans-serif;
+	text-transform: uppercase;
+}
+
+
+
+header img{ 
+	overflow: hidden;
+	width: %100; 
+	height: 70px; 
+	margin-top: -10px; 
+}
+
+header ul	{
+	float:right;
+	margin: 0 auto 0 auto;
+	color: #000;
+	font-size : 20px;
+	text-align: center;
+	padding: 15px 0 10px 0;
+	list-style-type: none;
+	float: right;
+}
+
+header li	{
+	float:left;
+	
+
+	padding: 0 15px 0 15px;
+	display: inline;
+	display: inline;
+	float: left;
+}
+
+.bs-sidebar .nav > .active > ul {
+    display: block;
+    margin-bottom: 8px;
+}
+@media (min-width: 768px) {
+  .navbar-collapse {
+    height: auto;
+    border-top: 0;
+    box-shadow: none;
+    max-height: none;
+    padding-left:0;
+    padding-right:0;
+  }
+  .navbar-collapse.collapse {
+    display: block !important;
+    width: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+  }
+  .navbar-collapse.in {
+    overflow-x: visible;
+  }
+
+.navbar
+{
+	max-width:300px;
+	margin-right: 0;
+	margin-left: 0;
+}	
+
+.navbar-nav,
+.navbar-nav > li,
+.navbar-left,
+.navbar-right,
+.navbar-header
+{float:none !important;}
+
+.navbar-right .dropdown-menu {left:0;right:auto;}
+
+.navbar-collapse .navbar-nav.navbar-right:last-child {
+    margin-right: 0;
+}
+}
+#breaksection{
+	height: 300px;
+}
+#breaksection2{
+	height: 100px;
+}
+
+.table td {
+   text-align: center;   
+}
+.table th {
+   text-align: center;   
+}
+
+.not-active {
+   pointer-events: none;
+   cursor: default;
+   background-color: #aaaaaa;
+}
+
+.panel-heading button
+{
+	margin-left: 10px;
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="countdown.js"></script>
+	
+	<link href='https://fonts.googleapis.com/css?family=New+Rocker' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="jquery.bootstrap-touchspin.js"></script>
+	<!-- ... -->
+	  <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+	  <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+	  <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+	  <link rel="stylesheet" type="text/css" href="sales_style.css">
+	<title> SalesPerson </title>
+</head>
+<body>
+	
+	<div class = "wrapper">
+		<header>
+		
+			<ul>
+				<li>Welcome Salesperson</li>
+				<li><button type="button" class="btn btn-primary">LOG OUT</button></li>
+			</ul>
+	
+		</header>		
+		
+		<div id = "breaksection2">
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+			
+				<nav class="navbar navbar-default" role="navigation">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#"><b>Airline Corp</b></a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse navbar-ex1-collapse">
+						<ul class="nav navbar-nav">
+							<li><a href="index.html">Flights</a></li>
+							<li><a href="routes.html"class="not-active">Routes</a></li>
+							<li><a href="crews.html"class="not-active">Crews</a></li>
+							<li><a href="airports.html"class="not-active">Airports</a></li>	
+							<li><a href="customers.html">Customers</a></li>
+							<li class="active"><a href="flights.html">Flight Information</a></li>
+							<li><a href="planes.html" class="not-active">Planes</a></li>
+						</ul>
+					 </div><!-- /.navbar-collapse -->
+				</nav>
+			</div>
+			
+			<div class="col-sm-8">
+					<h2>Search Flights with time</h2>
+					<input type="text" id="formflight" class="form-control" placeholder="AC2312" required="">
+					<input type="datetime" id="formtime" class="form-control" placeholder="XX:XX XX/XX/XXXX" required="">
+					<br/>
+					
+					<img src="../img/flightmap.jpg" class="img-responsive">
+					<h3>Status of Flight: <span class="label label-success"> On Time </span></h3>
+					<h3>Reserved / Sold / Total Tickets: <span class="label label-warning">  40 </span>  -/   
+																	<span class="label label-success">  20 </span>   -/ 
+																	<span class="label label-info">  20 </span></h3>
+					<h3>Current Reservations for Flight AC2312</h3>
+					
+					<a href="reservations.html" class="btn btn-default"> More details</a>
+					<br/>          
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Seat</th>
+								<th>Ticket NO</th>
+								<th>Surname</th>
+								<th>Name</th>
+								<th>Meal</th>
+								<th>ExtraLuggage</th>
+								<th>Reserved/Sold</th>
+								<th>Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1A</td>
+								<td>4521897</td>
+								<td>Demir</td>
+								<td>Oguz</td>
+								<td>Beef</td>
+								<td>0</td>
+								<td>Sold</td>
+								<td><button type="button" class="glyphicon glyphicon-remove"></button></td>
+							</tr>
+							
+							<tr>
+								<td>1A</td>
+								<td>4521897</td>
+								<td>Demir</td>
+								<td>Oguz</td>
+								<td>Beef</td>
+								<td>0</td>
+								<td>Sold</td>
+								<td><button type="button" class="glyphicon glyphicon-remove"></button></td>
+							</tr>
+							<tr>
+								<td>1A</td>
+								<td>4521897</td>
+								<td>Demir</td>
+								<td>Oguz</td>
+								<td>Beef</td>
+								<td>0</td>
+								<td>Sold</td>
+								<td><button type="button" class="glyphicon glyphicon-remove"></button></td>
+							</tr>
+							<tr>
+								<td>1A</td>
+								<td>4521897</td>
+								<td>Demir</td>
+								<td>Oguz</td>
+								<td>Beef</td>
+								<td>0</td>
+								<td>Sold</td>
+								<td><button type="button" class="glyphicon glyphicon-remove"></button></td>
+							</tr>
+							
+						
+							
+						</tbody>
+					</table>
+				
+			</div>
+			
+		</div>
+	</div>
+</body>
+</html>
