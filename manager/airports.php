@@ -63,6 +63,24 @@
 				});
 				</script>";		
 			header('Refresh: 2; URL=airports.php');
+		}
+		if($_GET['function'] == 5 )
+		{
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#createSuccess').modal('show');
+				});
+				</script>";		
+			header('Refresh: 2; URL=airports.php');
+		}
+		if($_GET['function'] == 6  )
+		{
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#createFail').modal('show');
+				});
+				</script>";		
+			header('Refresh: 2; URL=airports.php');
 		}			
 	}
 	
@@ -119,21 +137,58 @@
 					<h3><button class="btn btn-lg btn-primary " data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-plus"></i>Add Airport </button></h2>
 					
 					<div id="demo" class="collapse">
-					<form class="form-signin">
-						<label for="formflno" >Code </label>
-						<input type="text" id="formflno" class="form-control" placeholder="withoutspaces,eng chars only" required="">
+					<form class="form-signin" action='airports_add.php' method='POST'>
+						<label for="aircode" >Code </label>
+						<input type="text" name='aircode' id='aircode' class="form-control" placeholder="3 Characters Abbreviation" required="">
 						
-						<label for="formfrom" >City </label>
-						<input type="text" id="formfrom" class="form-control" placeholder="eng chars only" required="">
+						<label for="aircity" >City </label>
+						<select name='aircity' id='aircity'  class="form-control" placeholder="Please Select">
+							<option value="" selected disabled>Please select</option>
+							<?PHP
+					
+								$servername = "localhost";
+								$user = "root";
+								$pass = "mfs12";
+								$dbname = "airline";
+								
+								$con = mysqli_connect($servername, $user, $pass, $dbname);
+		
+								if (mysqli_connect_errno())
+								{
+									echo "Failed to connect to MySQL: " . mysqli_connect_error();
+								}
+								
+								$sql = "SELECT * FROM city";
+								$result = mysqli_query($con,$sql);
+								
+								$html = "";
+								if($result)
+								{
+									if ($result->num_rows > 0) 
+									{
+										// output data of each row
+										while($row = $result->fetch_assoc()) {
+											$html = $html 	.	"<option>"
+															.	$row["city_name"]
+															.	"</option>";
+										}
+									} else {
+										echo "";
+									}
+								}
+								echo $html;
+							?>
+						</select>
+						<!-- <input type="text" name='aircity' id='aircity'  class="form-control" placeholder="eng chars only" required=""> -->
 						
-						<label for="formcapacity" >Airport Capacity </label>
-						<input type="text" id="formcapacity" class="form-control" placeholder="10" required="">
+						<label for="aircapacity" >Airport Capacity </label>
+						<input type="text" name='aircapacity' id='aircapacity' class="form-control" placeholder="Capacity of Airport" required="">
 						
-						<label for="formadress" >Address </label>
-						<input type="text" id="formadress" class="form-control" placeholder="10" required="">
+						<label for="airaddr" >Address </label>
+						<input type="text" name='airaddr' id='airaddr' class="form-control" placeholder="Address of Airport" required="">
 						
 						<br/>
-						<button class="btn btn-lg" type="submit">Add</button>
+						<input type='submit' name='Submit' value='Submit' class='btn btn-primary'/>
 					</form>	
 					</div>
 					<br/>          
@@ -236,21 +291,20 @@
 							}
 						}
 						$html = "<label for='aircode' >Code </label>
-						<input type='text' name='aircode' id='aircode' class='form-control' value='$id' required=''>
+						<input type='text' name='aircode' id='aircode' class='form-control' value='$id' required='' readonly='readonly'>
 						
 						<label for='aircity' >City </label>
-						<input type='text' name='aircity' id='aircity' class='form-control' value='$city' required=''>
+						<input type='text' name='aircity' id='aircity' class='form-control' value='$city' required='' readonly='readonly'>
 						
 						<label for='airaddr' >AddressAirport </label>
 						<input type='text' name='airaddr' id='airaddr' class='form-control' value='$address' required=''>
 						
 						<label for='aircity' > Capacity </label>
-						<input type='text' name='aircity' id='aircity'class='form-control' value='$capacity' required=''>";
+						<input type='text' name='aircapacity' id='aircapacity'class='form-control' value='$capacity' required=''>";
 						echo $html;
 					?>	
 						<br/>
 						<button class="btn btn-default" data-dismiss="modal">Close</button>
-						<button class="btn btn-lg" name='Submit' value='Submit' type="submit">Save Changes</button>
 						<input type='submit' name='Submit' value='Submit' class='btn btn-primary'/>
 					</form>	
 					
@@ -270,6 +324,27 @@
 		</div>
 	</div>
 	
+	<!-- Airport Create -->
+	<div class="modal fade" id="createSuccess" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		 <div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-body">
+					<p>Airport is added. </p>
+				</div> <!-- /content -->
+			</div>
+		</div>
+	</div>
+	
+	<!-- Airport Create -->
+	<div class="modal fade" id="createFail" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		 <div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-body">
+					<p>Airport cannot be added, there may be duplication or missing data in dependent tables.</p>
+				</div> <!-- /content -->
+			</div>
+		</div>
+	</div>
 	<!-- Airport Delete -->
 	<div class="modal fade" id="deleteSuccess" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		 <div class="modal-dialog modal-sm">

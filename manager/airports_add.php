@@ -20,12 +20,15 @@
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-		$sql = "UPDATE airport SET address='$address', airport_capacity = $capacity WHERE airport_id='$id'"; 
+		$sql = "INSERT INTO airport VALUES('$id', $capacity, '$address', '$city')"; 
 		$result = mysqli_query($con,$sql);
 		
 		$con->close();
 		
-		header('Refresh: 2; URL=airports.php?function=2');
+		if($result)
+			header('Refresh: 2; URL=airports.php?function=5');
+		else
+			header('Refresh: 2; URL=airports.php?function=6');
 	}
 
 ?>
