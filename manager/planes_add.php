@@ -1,7 +1,12 @@
 <?PHP
 
-	if(isset($_GET['id']))
+	if(isset ($_POST ['Submit']))
 	{
+
+		$name = $_POST['formname'];
+		$type = $_POST['formtype'];
+		$availability = $_POST['formavailability'];
+
 		$servername = "127.0.0.1";
 		$user = "root";
 		$pass = "mfs12";
@@ -14,18 +19,16 @@
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-		$id = $_GET['id'];
-
-
-		$sql = "DELETE FROM airport WHERE airport_id='$id'";
+        $num = (int)$availability;
+		$sql = "INSERT INTO plane VALUES('$name', $num, '$type');";
 		$result = mysqli_query($con,$sql);
-
 
 		$con->close();
 
 		if($result)
-			header('Refresh: 2; URL=airports.php?function=3');
+			header('Refresh: 2; URL=planes.php?function=5');
 		else
-			header('Refresh: 2; URL=airports.php?function=4');
+			header('Refresh: 2; URL=planes.php?function=6');
 	}
+
 ?>

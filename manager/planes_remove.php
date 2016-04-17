@@ -1,5 +1,4 @@
 <?PHP
-
 	if(isset($_GET['id']))
 	{
 		$servername = "127.0.0.1";
@@ -16,16 +15,14 @@
 
 		$id = $_GET['id'];
 
-
-		$sql = "DELETE FROM airport WHERE airport_id='$id'";
+		$sql = "DELETE FROM plane WHERE plane_name='$id'";
 		$result = mysqli_query($con,$sql);
 
-
-		$con->close();
+//		$con->close();
 
 		if($result)
-			header('Refresh: 2; URL=airports.php?function=3');
+			header('Refresh: 2; URL=planes.php?function=3');
 		else
-			header('Refresh: 2; URL=airports.php?function=4');
+			header('Refresh: 2; URL=planes.php?function=4');
 	}
 ?>

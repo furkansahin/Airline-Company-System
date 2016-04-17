@@ -1,13 +1,12 @@
 <?PHP  
-
 	if(isset ($_POST ['Submit']))
 	{
-		
+
 		$id = $_POST['aircode'];
 		$city = $_POST['aircity'];
 		$address = $_POST['airaddr'];
 		$capacity = $_POST['aircapacity'];
-		
+
 		$servername = "localhost";
 		$user = "root";
 		$pass = "mfs12";
@@ -20,11 +19,11 @@
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-		$sql = "UPDATE airport SET address='$address', airport_capacity = $capacity WHERE airport_id='$id'"; 
+		$sql = "UPDATE airport SET address='$address', airport_capacity = $capacity WHERE airport_id='$id'";
 		$result = mysqli_query($con,$sql);
-		
+
 		$con->close();
-		
+
 		header('Refresh: 2; URL=airports.php?function=2');
 	}
 
