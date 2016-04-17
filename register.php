@@ -1,63 +1,27 @@
-<?php
-	define('DB_SERVER', 'localhost'); //name of server
-   define('DB_USERNAME', 'root'); //username
-   define('DB_PASSWORD', 'mfs12'); //password 
-   define('DB_DATABASE', 'airline'); //connection
-
-   $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
-
- 	if (isset($_POST['Button'])) {
-      
-      		$username = mysqli_real_escape_string($db,$_POST['username']);
-      		$name = mysqli_real_escape_string($db,$_POST['name']);
-      		$password = mysqli_real_escape_string($db,$_POST['password']);
-      		$password2 = mysqli_real_escape_string($db,$_POST['password2']);
-      		$birth = mysqli_real_escape_string($db,$_POST['birth']);
-      		$passport = mysqli_real_escape_string($db,$_POST['passport']);
-
-      		if($username == "") {
-				$message = "You did not enter your user name!";
-				echo "<script type='text/javascript'>alert('$message');</script>";
-	        }else if($name == "") {
-				$message = "You did not enter your name!";
-				echo "<script type='text/javascript'>alert('$message');</script>";
-	        }else if($password == "") {
-				$message = "You did not enter your password!";
-				echo "<script type='text/javascript'>alert('$message');</script>";
-	        }else if($password2 == "") {
-				$message = "You should enter your password again!";
-				echo "<script type='text/javascript'>alert('$message');</script>";
-	        }else if($password2 != $password ) {
-				$message = "Please check your password entries again!";
-				echo "<script type='text/javascript'>alert('$message');</script>";
-	        }else{
-	        	$sql = "select user_name from customer where user_name = '$username';";
-				$result = mysqli_query($db,$sql);
-				if($result->num_rows != 0 ) {
-		        	$message = "This user name is currently used by another customer. Please select another user name!";
-					echo "<script type='text/javascript'>alert('$message');</script>";
-	       		 }
-	       		else{
-	        	
-		        	$sql = "select user_name from customer;";
-					$result = mysqli_query($db,$sql);
-		        	$sql = "INSERT INTO customer VALUES ( '$username', '$password', '$name', '$birth', NULL, '$passport', 0, 500 );";
-					$result2 = mysqli_query($db,$sql);
-					$sql = "select user_name from customer;";
-					$result2 = mysqli_query($db,$sql);
-					if( $result2->num_rows > $result->num_rows ){
-						$message = "You are registered to the system";
-						echo "<script type='text/javascript'>alert('$message');</script>";
-						header( 'Location: index.html' ) ;
-					}
-				
-	        	}
-	        
-				
-			}
-	        
-	        
-   }
+<?PHP
+	
+	if(isset($_GET['function']))
+	{		
+		if($_GET['function'] == 1 )
+		{
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#addSuccess').modal('show');
+				});
+				</script>";
+				header('Refresh: 2; URL=index.html');
+			
+		}
+		if($_GET['function'] == 2 )
+		{
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#addFail').modal('show');
+				});
+				</script>";	
+				header('Refresh: 2; URL=register.php');
+		}			
+	}
 	
 ?>
 
@@ -101,32 +65,53 @@
 			<div class="col-sm-6">
 		
 		
-					<form method= "post" class="form-signin">
+					<form class="form-signin" action='register_add.php' method='POST'>
+
 						<label for="formuname" >UserName </label>
-						<input type="text" id="formuname" class="form-control" name = "username" placeholder="Username">
+						<input type="text" name = "username" id="formuname" class="form-control" placeholder="Username" required="">
 						
 						<label for="formupass" >Name </label>
-						<input type="text" id="formupass" class="form-control" name = "name" placeholder = "Your Name" >
+						<input type="text" name = "name" id="formupass" class="form-control" placeholder= "Your Name" required="">
 						
 						<label for="formrepas1" >Password </label>
-						<input type="password" id="formrepas1" class="form-control" name = "password" placeholder="New Password" >
+						<input type="password" name = "psw" id="formrepas1" class="form-control" placeholder="New Password" required="">
 						
 						<label for="formrepas2" >Repeat Password </label>
-						<input type="password" id="formrepas2" class="form-control" name = "password2" placeholder="New Password" >
+						<input type="password" name = "psw2" id="formrepas2" class="form-control" placeholder="New Password" required="" >
 						
 						
 						<label for="formbirth" >Birthdate </label>
-						<input type="date" id="formbirth" class="form-control" name = "birth" placeholder ="1111-11-11" required="">
+						<input type="date" name = "bdate" id="formbirth" class="form-control" placeholder ="1111-11-11" required="">
 						
 						<label for="formpassport" >Passport Number </label>
-						<input type="text" id="formpassport" class="form-control" name = "passport" placeholder ="A0000000" required="">
+						<input type="text" name = "passport" id="formpassport" class="form-control" placeholder ="A0000000" required="">
 						
 						<br/>
-
-						<button class="btn btn-lg" name= "Button" type="submit">Register</button>	  
+						<input type='submit' name='Submit' value='Submit' onclick="submitform()" class='btn btn-primary'/> 
 					</form>	
 			</div>
 		</div>
-	</div>	
+	</div>
+	<div class="modal fade" id="addSuccess" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		 <div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-body">
+					<p> Account is added. </p>
+				</div> <!-- /content -->
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="addFail" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="false">
+		 <div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-body">
+					<p> Account cannot be created, there may be duplication or missing data in dependent tables. </p>
+				</div> <!-- /content -->
+			</div>
+		</div>
+	</div>
+	
+	
+
 </body>
 </html>
