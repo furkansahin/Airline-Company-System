@@ -1,8 +1,8 @@
 <?PHP
-
+	
 	if(isset($_GET['id']))
 	{
-		$servername = "127.0.0.1";
+		$servername = "localhost";
 		$user = "root";
 		$pass = "mfs12";
 		$dbname = "airline";
@@ -17,12 +17,12 @@
 		$id = $_GET['id'];
 
 
-		$sql = "DELETE FROM airport WHERE airport_id='$id'";
+		$sql = "DELETE FROM airport WHERE airport_id='$id'"; 
 		$result = mysqli_query($con,$sql);
 
-
+		
 		$con->close();
-
+		
 		if($result)
 			header('Refresh: 2; URL=airports.php?function=3');
 		else

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="countdown.js"></script>
-
+	
 	<link href='https://fonts.googleapis.com/css?family=New+Rocker' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -26,16 +26,16 @@
 
 <!-- Openning modal on delete application -->
 <?PHP
-
+	
 	if(isset($_GET['function']))
-	{
+	{		
 		if($_GET['function'] == 1 )
 		{
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
 				$('#editModal').modal('show');
 				});
-				</script>";
+				</script>";		
 		}
 		if($_GET['function'] == 2 )
 		{
@@ -43,7 +43,7 @@
 				$(document).ready(function(){
 				$('#editSuccess').modal('show');
 				});
-				</script>";
+				</script>";		
 			header('Refresh: 2; URL=airports.php');
 		}
 		if($_GET['function'] == 3 )
@@ -52,16 +52,16 @@
 				$(document).ready(function(){
 				$('#deleteSuccess').modal('show');
 				});
-				</script>";
+				</script>";		
 			header('Refresh: 2; URL=airports.php');
-		}
+		}	
 		if($_GET['function'] == 4 )
 		{
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
 				$('#deleteFail').modal('show');
 				});
-				</script>";
+				</script>";		
 			header('Refresh: 2; URL=airports.php');
 		}
 		if($_GET['function'] == 5 )
@@ -70,7 +70,7 @@
 				$(document).ready(function(){
 				$('#createSuccess').modal('show');
 				});
-				</script>";
+				</script>";		
 			header('Refresh: 2; URL=airports.php');
 		}
 		if($_GET['function'] == 6  )
@@ -79,31 +79,31 @@
 				$(document).ready(function(){
 				$('#createFail').modal('show');
 				});
-				</script>";
+				</script>";		
 			header('Refresh: 2; URL=airports.php');
-		}
+		}			
 	}
-
+	
 ?>
 
 
 <body>
-
+	
 	<div class = "wrapper">
 		<header>
-
+		
 			<ul>
 				<li>Welcome Manager</li>
 				<li><button type="button" class="btn btn-primary">LOG OUT</button></li>
 			</ul>
-
-		</header>
-
+	
+		</header>		
+		
 		<div id = "breaksection2">
 		</div>
 		<div class="row">
 			<div class="col-sm-2">
-
+			
 				<nav class="navbar navbar-default" role="navigation">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
@@ -122,7 +122,7 @@
 							<li><a href="index.html">Flights</a></li>
 							<li><a href="routes.html">Routes</a></li>
 							<li><a href="crews.html">Crews</a></li>
-							<li class="active"><a href="airports.php">Airports</a></li>
+							<li class="active"><a href="airports.php">Airports</a></li>	
 							<li><a href="customers.html">Customers</a></li>
 							<li><a href="flights.html">Flight Information</a></li>
 							<li><a href="planes.html">Planes</a></li>
@@ -130,41 +130,41 @@
 					 </div><!-- /.navbar-collapse -->
 				</nav>
 			</div>
-
+			
 			<div class="col-sm-10">
-
+				
 					<h2>AIRPORTS</h2>
 					<h3><button class="btn btn-lg btn-primary " data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-plus"></i>Add Airport </button></h2>
-
+					
 					<div id="demo" class="collapse">
 					<form class="form-signin" action='airports_add.php' method='POST'>
 						<label for="aircode" >Code </label>
 						<input type="text" name='aircode' id='aircode' class="form-control" placeholder="3 Characters Abbreviation" required="">
-
+						
 						<label for="aircity" >City </label>
 						<select name='aircity' id='aircity'  class="form-control" placeholder="Please Select">
 							<option value="" selected disabled>Please select</option>
 							<?PHP
-
+					
 								$servername = "localhost";
 								$user = "root";
 								$pass = "mfs12";
 								$dbname = "airline";
-
+								
 								$con = mysqli_connect($servername, $user, $pass, $dbname);
-
+		
 								if (mysqli_connect_errno())
 								{
 									echo "Failed to connect to MySQL: " . mysqli_connect_error();
 								}
-
+								
 								$sql = "SELECT * FROM city";
 								$result = mysqli_query($con,$sql);
-
+								
 								$html = "";
 								if($result)
 								{
-									if ($result->num_rows > 0)
+									if ($result->num_rows > 0) 
 									{
 										// output data of each row
 										while($row = $result->fetch_assoc()) {
@@ -180,20 +180,20 @@
 							?>
 						</select>
 						<!-- <input type="text" name='aircity' id='aircity'  class="form-control" placeholder="eng chars only" required=""> -->
-
+						
 						<label for="aircapacity" >Airport Capacity </label>
 						<input type="text" name='aircapacity' id='aircapacity' class="form-control" placeholder="Capacity of Airport" required="">
-
+						
 						<label for="airaddr" >Address </label>
 						<input type="text" name='airaddr' id='airaddr' class="form-control" placeholder="Address of Airport" required="">
-
+						
 						<br/>
 						<input type='submit' name='Submit' value='Submit' class='btn btn-primary'/>
-					</form>
+					</form>	
 					</div>
-					<br/>
+					<br/>          
 					<table class="table table-striped">
-
+						
 						<thead>
 							<tr>
 								<th>Airport Code</th>
@@ -206,26 +206,26 @@
 						</thead>
 						<tbody>
 						<?PHP
-
-							$servername = "127.0.0.1";
+					
+							$servername = "localhost";
 							$user = "root";
 							$pass = "mfs12";
 							$dbname = "airline";
-
+							
 							$con = mysqli_connect($servername, $user, $pass, $dbname);
-
+	
 							if (mysqli_connect_errno())
 							{
 								echo "Failed to connect to MySQL: " . mysqli_connect_error();
 							}
-
+							
 							$sql = "SELECT * FROM airport";
 							$result = mysqli_query($con,$sql);
-
+							
 							$html = "";
 							if($result)
 							{
-								if ($result->num_rows > 0)
+								if ($result->num_rows > 0) 
 								{
 									// output data of each row
 									while($row = $result->fetch_assoc()) {
@@ -245,15 +245,15 @@
 							}
 							echo $html;
 						?>
-
+		
 						</tbody>
 					</table>
-
+				
 			</div>
-
+			
 		</div>
 	</div>
-
+	
 	<!-- Modal Edit -->
 	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		 <div class="modal-dialog modal-sm">
@@ -271,48 +271,48 @@
 						$user = "root";
 						$pass = "mfs12";
 						$dbname = "airline";
-
+						
 						$con = mysqli_connect($servername, $user, $pass, $dbname);
 
 						if (mysqli_connect_errno())
 						{
 							echo "Failed to connect to MySQL: " . mysqli_connect_error();
 						}
-
+						
 						$sql = "SELECT * FROM airport WHERE '$id' = airport_id";
 						$result = mysqli_query($con,$sql);
-
-						if ($result->num_rows > 0)
+						
+						if ($result->num_rows > 0) 
 						{
-							while($row = $result->fetch_assoc()) {
+							while($row = $result->fetch_assoc()) {									
 											$city =		$row['city_name'];
 											$address =	$row['address'];
-											$capacity =	$row['airport_capacity'];
+											$capacity =	$row['airport_capacity'];										
 							}
 						}
 						$html = "<label for='aircode' >Code </label>
 						<input type='text' name='aircode' id='aircode' class='form-control' value='$id' required='' readonly='readonly'>
-
+						
 						<label for='aircity' >City </label>
 						<input type='text' name='aircity' id='aircity' class='form-control' value='$city' required='' readonly='readonly'>
-
+						
 						<label for='airaddr' >AddressAirport </label>
 						<input type='text' name='airaddr' id='airaddr' class='form-control' value='$address' required=''>
-
+						
 						<label for='aircity' > Capacity </label>
 						<input type='text' name='aircapacity' id='aircapacity'class='form-control' value='$capacity' required=''>";
 						echo $html;
-					?>
+					?>	
 						<br/>
 						<button class="btn btn-default" data-dismiss="modal">Close</button>
 						<input type='submit' name='Submit' value='Submit' class='btn btn-primary'/>
-					</form>
-
+					</form>	
+					
 				</div> <!-- /container -->
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- Airport Delete -->
 	<div class="modal fade" id="editSuccess" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		 <div class="modal-dialog modal-sm">
@@ -323,7 +323,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- Airport Create -->
 	<div class="modal fade" id="createSuccess" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		 <div class="modal-dialog modal-sm">
@@ -334,7 +334,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- Airport Create -->
 	<div class="modal fade" id="createFail" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		 <div class="modal-dialog modal-sm">
@@ -355,7 +355,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- Modal1 -->
 	<div class="modal fade" id="deleteFail" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		 <div class="modal-dialog modal-sm">
@@ -366,6 +366,6 @@
 			</div>
 		</div>
 	</div>
-
+	
 </body>
 </html>
