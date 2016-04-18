@@ -37,374 +37,217 @@
 
         <?PHP
             $name = $_GET['user_name'];
-            echo "<h1> Info of User $name</h1>"
+            echo "<h1> Info of User $name</h1>
+					<div class=\"row\">";
+
+			$servername = "127.0.0.1";
+			$user = "root";
+			$pass = "mfs12";
+			$dbname = "airline";
+
+			$con = mysqli_connect($servername, $user, $pass, $dbname);
+
+			if (mysqli_connect_errno())
+			{
+				echo "Failed to connect to MySQL: " . mysqli_connect_error();
+			}
+
+
+			$sql = "SELECT * FROM ticket NATURAL JOIN route NATURAL JOIN flight WHERE user_name='".$name."';";
+
+			$tickets = mysqli_query($con, $sql);
+
+
+			$sql = "SELECT * FROM reservation NATURAL JOIN route NATURAL JOIN flight WHERE user_name='".$name."';";
+
+			$reservations = mysqli_query($con, $sql);
+
+			$count = 1;
+			$html = "";
+			if($reservations)
+			{
+				if (mysqli_num_rows($reservations) > 0)
+				{
+					$temp = $reservations;
+					$temp2 = $tickets;
+					// output data of each row
+					while($row = mysqli_fetch_array($temp, MYSQL_ASSOC)) {
+
+						$today = date("Y-m-d");
+
+						if (strtotime($row['date']) > strtotime($today))
+						{
+							$html = $html 	.	"<div class=\"panel panel-success\">"
+											.	"<div class=\"panel-heading\">Reserved Flight"
+											.	"<a href='reservation_remove.php?type=r&user_name=".$name."&id=".$row['reservation_no']
+											.	"' class=\"glyphicon glyphicon-trash pull-right\">RETURN</a>"
+											.	"</div>";
+
+						}
+						if (strtotime($row['date']) == strtotime($today)){
+							$html = $html	.	"<div class=\"panel panel-danger\">"
+											.	"<div class=\"panel-heading\">Reserved Flight"
+											.	"<a href='reservation_remove.php?user_name=".$name."&type=r&id=".$row['reservation_no']
+											.	"' class=\"glyphicon glyphicon-trash pull-right\">CANCEL</a></div";
+						}
+						if (strtotime($row['date']) < strtotime($today)){
+							$html = $html	.	"<div class=\"panel panel-default\">"
+											.	"<div class=\"panel-heading\">Past Flight</div>";
+						}
+
+						$html = $html	.	"<div class=\"panel-body\"><table class=\"table\">"
+										.	"	<thead>
+													<tr>
+														<td> From </td>
+														<td> To</td>
+														<td> Total Duration </td>
+														<td> Departure Time</td>
+														<td> Date</td>
+														<td> Class </td>
+													</tr>
+												</thead>
+												<tr>
+													<td>"
+										.				$row['departs']
+										.			"</td>"
+										.			"<td>"
+										.				$row['arrives']
+										.			"</td>"
+										.			"<td>"
+										.				$row['flight_duration']
+										.			"</td>"
+										.			"<td>"
+										.				$row['departure_time']
+										.			"</td>"
+										.			"<td>"
+										.				$row['date']
+										.			"</td>"
+										.			"<td>"
+										.				$row['class']
+										.			"</td></tr></table>";
+						$html = $html	.	"<button class=\"btn btn-default\" data-toggle=\"collapse\" data-target=\"#f$count\"> Details </button>";
+						$html = $html 	.	"<div id=\"f$count\" class=\"collapse\">
+												<table class=\"table\">
+													<thead>
+														<tr>
+															<td> Flight No </td>
+															<td> Ticket No </td>
+															<td> From </td>
+															<td> To</td>
+															<td> Duration </td>
+															<td> Departure Time</td>
+															<td> Date </td>
+															<td> Meal</td>
+															<td> Class </td>
+														</tr>
+													</thead>
+													<tr>";
+						$html = $html	.	"<td>"	.	$row['flight_id']		.	"</td>"
+										.	"<td>"	.	$row['ticket_no']	.	"</td>"
+										.	"<td>"	.	$row['departs']			.	"</td>"
+										.	"<td>"	.	$row['arrives']			.	"</td>"
+										.	"<td>"	.	$row['flight_duration']	.	"</td>"
+										.	"<td>"	.	$row['departure_time']	.	"</td>"
+										.	"<td>"	.	$row['date']			.	"</td>"
+										.	"<td>"	.	$row['meals']			.	"</td>"
+										.	"<td>"	.	$row['class']			.	"</td>"
+										.	"</tr></table></div></div></div>";
+
+
+
+						$count++;
+					}
+
+				}
+			}
+			if ($tickets){
+				if (mysqli_num_rows($tickets) > 0){
+					$temp2 = $tickets;
+
+					while($row =  mysqli_fetch_array($temp2, MYSQL_ASSOC)) {
+						$today = date("Y-m-d");
+
+						if (strtotime($row['date']) > strtotime($today))
+						{
+							$html = $html 	.	"<div class=\"panel panel-success\">"
+											.	"<div class=\"panel-heading\">Bought Flight"
+											.	"<a href='reservation_remove.php?type=t&user_name=".$name."&id=".$row['ticket_no']
+											.	"' class=\"glyphicon glyphicon-trash pull-right\">RETURN</a></div>";
+
+						}
+						if (strtotime($row['date']) == strtotime($today)){
+							$html = $html	.	"<div class=\"panel panel-danger\">"
+											.	"<div class=\"panel-heading\">Bought Flight"
+											.	"<a href='reservation_remove.php?type=t&user_name=".$name."&id=".$row['ticket_no']
+											.	"' class=\"glyphicon glyphicon-trash pull-right\">CANCEL</a></div>";
+						}
+						if (strtotime($row['date']) < strtotime($today)){
+							$html = $html	.	"<div class=\"panel panel-default\">"
+											.	"<div class=\"panel-heading\">Past Flight</div>";
+						}
+
+						$html = $html	.	"<div class=\"panel-body\"><table class=\"table\">"
+										.	"	<thead>
+													<tr>
+														<td> From </td>
+														<td> To</td>
+														<td> Total Duration </td>
+														<td> Departure Time</td>
+														<td> Date </td>
+														<td> Class </td>
+													</tr>
+												</thead>
+												<tr>
+													<td>"
+										.				$row['departs']
+										.			"</td>"
+										.			"<td>"
+										.				$row['arrives']
+										.			"</td>"
+										.			"<td>"
+										.				$row['flight_duration']
+										.			"</td>"
+										.			"<td>"
+										.				$row['departure_time']
+										.			"</td>"
+										.			"<td>"
+										.				$row['date']
+										.			"</td>"
+										.			"<td>"
+										.				$row['class']
+										.			"</td></tr></table>";
+						$html = $html	.	"<button class=\"btn btn-default\" data-toggle=\"collapse\" data-target=\"#f$count\"> Details </button>";
+						$html = $html 	.	"<div id=\"f$count\" class=\"collapse\">
+												<table class=\"table\">
+													<thead>
+														<tr>
+															<td> Flight No </td>
+															<td> Ticket No </td>
+															<td> From </td>
+															<td> To</td>
+															<td> Duration </td>
+															<td> Departure Time</td>
+															<td> Date </td>
+															<td> Meal</td>
+															<td> Class </td>
+														</tr>
+													</thead>
+													<tr>";
+						$html = $html	.	"<td>"	.	$row['flight_id']		.	"</td>"
+										.	"<td>"	.	$row['reservation_no']	.	"</td>"
+										.	"<td>"	.	$row['departs']			.	"</td>"
+										.	"<td>"	.	$row['arrives']			.	"</td>"
+										.	"<td>"	.	$row['flight_duration']	.	"</td>"
+										.	"<td>"	.	$row['departure_time']	.	"</td>"
+										.	"<td>"	.	$row['date']			.	"</td>"
+										.	"<td>"	.	$row['meals']			.	"</td>"
+										.	"<td>"	.	$row['class']			.	"</td>"
+										.	"</tr></table></div></div></div>";
+						$count++;
+					}
+				}
+			}
+
+			$html = $html	.	"</div></div></body></html>";
+			echo $html;
         ?>
-
-		<div class="row">
-			<!-- First ticket -->
-			<div class="panel panel-success">
-				<div class="panel-heading">Bought Flight - X days X hrs left to flight
-					<button type ="button" class="btn btn-danger pull-right btn-xs" >RETURN</button>
-
-				</div>
-				<div class="panel-body">
-
-					<table class="table">
-						<thead>
-							<tr>
-								<td> From </td>
-								<td> To</td>
-								<td> Total Duration </td>
-								<td> Departure Time</td>
-								<td> Arrival Time</td>
-								<td> Luggage </td>
-								<td> Class </td>
-							</tr>
-						</thead>
-						<tr>
-							<td> Ankara(ESB) </td>
-							<td> Munich(MUC)</td>
-							<td> 4 hrs 32 mins</td>
-							<td> 11/11/1111 : 88:88</td>
-							<td> 11/11/1111 : 88:88</td>
-							<td> No extra luggage</td>
-							<td> Economy </td>
-						</tr>
-					</table>
-
-							<button class="btn btn-default" data-toggle="collapse" data-target="#f1"> Details </button>
-
-							<div id="f1" class="collapse">
-								<table class="table">
-									<thead>
-										<tr>
-											<td> Flight No </td>
-											<td> Ticket No </td>
-											<td> From </td>
-											<td> To</td>
-											<td> Duration </td>
-											<td> Departure Time</td>
-											<td> Arrival Time</td>
-											<td> Seat</td>
-											<td> Meal</td>
-											<td> Class </td>
-										</tr>
-									</thead>
-									<tr>
-										<td> TK 1111</td>
-										<td> T3468731</td>
-										<td> Ankara(ESB) </td>
-										<td> Istanbul(XXX)</td>
-										<td> 0 hrs 32 mins</td>
-										<td> 11/11/1111 : 88:00</td>
-										<td> 11/11/1111 : 88:35</td>
-										<td> 1A </td>
-										<td> Beef </td>
-										<td> Economy </td>
-									</tr>
-									<tr>
-										<td> AC 2222</td>
-										<td> A22123131</td>
-										<td> Istanbul(XXX)</td>
-										<td> Munich(Much) </td>
-										<td> 3 hrs 25 mins</td>
-										<td> 11/11/1111 : 88:35</td>
-										<td> 11/11/1111 : 88:35</td>
-										<td> 7F </td>
-										<td> Beef </td>
-										<td> Economy </td>
-									</tr>
-								</table>
-							</div>
-
-				</div>
-			</div>
-
-			<!-- Second ticket -->
-			<div class="panel panel-success">
-				<div class="panel-heading">Bought Flight - X days X hrs left to flight
-					<button type ="button" class="btn btn-danger pull-right btn-xs" >RETURN</button>
-					<button type ="button" class="btn btn-warning pull-right btn-xs" >Cancel Extra Luggage</button>
-
-				</div>
-				<div class="panel-body">
-
-					<table class="table">
-						<thead>
-							<tr>
-								<td> From </td>
-								<td> To</td>
-								<td> Total Duration </td>
-								<td> Departure Time</td>
-								<td> Arrival Time</td>
-								<td> Luggage </td>
-								<td> Class </td>
-							</tr>
-						</thead>
-						<tr>
-							<td> Ankara(ESB) </td>
-							<td> Munich(MUC)</td>
-							<td> 4 hrs 32 mins</td>
-							<td> 11/11/1111 : 88:88</td>
-							<td> 11/11/1111 : 88:88</td>
-							<td> 15 kg extra luggage</td>
-							<td> Economy </td>
-						</tr>
-					</table>
-
-							<button class="btn btn-default" data-toggle="collapse" data-target="#f2"> Details </button>
-
-							<div id="f2" class="collapse">
-								<table class="table">
-									<thead>
-										<tr>
-											<td> Flight No </td>
-											<td> Ticket No </td>
-											<td> From </td>
-											<td> To</td>
-											<td> Duration </td>
-											<td> Departure Time</td>
-											<td> Arrival Time</td>
-											<td> Seat</td>
-											<td> Meal</td>
-											<td> Class </td>
-										</tr>
-									</thead>
-									<tr>
-										<td> TK 1111</td>
-										<td> T3468731</td>
-										<td> Ankara(ESB) </td>
-										<td> Istanbul(XXX)</td>
-										<td> 0 hrs 32 mins</td>
-										<td> 11/11/1111 : 88:00</td>
-										<td> 11/11/1111 : 88:35</td>
-										<td> 1A </td>
-										<td> Beef </td>
-										<td> Economy </td>
-									</tr>
-									<tr>
-										<td> AC 2222</td>
-										<td> A22123131</td>
-										<td> Istanbul(XXX)</td>
-										<td> Munich(Much) </td>
-										<td> 3 hrs 25 mins</td>
-										<td> 11/11/1111 : 88:35</td>
-										<td> 11/11/1111 : 88:35</td>
-										<td> 7F </td>
-										<td> Beef </td>
-										<td> Economy </td>
-									</tr>
-								</table>
-							</div>
-
-				</div>
-			</div>
-
-			<!-- Third ticket -->
-			<div class="panel panel-danger">
-				<div class="panel-heading">Reserved Flight - X hrs left to cancellation
-					<button type ="button" class="btn btn-warning pull-right btn-xs" >CANCEL </button>
-
-				</div>
-				<div class="panel-body">
-
-					<table class="table">
-						<thead>
-							<tr>
-								<td> From </td>
-								<td> To</td>
-								<td> Total Duration </td>
-								<td> Departure Time</td>
-								<td> Arrival Time</td>
-								<td> Class </td>
-							</tr>
-						</thead>
-						<tr>
-							<td> Ankara(ESB) </td>
-							<td> Munich(MUC)</td>
-							<td> 4 hrs 32 mins</td>
-							<td> 11/11/1111 : 88:88</td>
-							<td> 11/11/1111 : 88:88</td>
-							<td> Economy </td>
-						</tr>
-					</table>
-
-							<button class="btn btn-default" data-toggle="collapse" data-target="#f3"> Details </button>
-
-							<div id="f3" class="collapse">
-								<table class="table">
-									<thead>
-										<tr>
-											<td> Flight No </td>
-											<td> From </td>
-											<td> To</td>
-											<td> Total Duration </td>
-											<td> Departure Time</td>
-											<td> Arrival Time</td>
-											<td> Class </td>
-										</tr>
-									</thead>
-									<tr>
-										<td> TK 1111</td>
-										<td> Ankara(ESB) </td>
-										<td> Istanbul(XXX)</td>
-										<td> 0 hrs 32 mins</td>
-										<td> 11/11/1111 : 88:00</td>
-										<td> 11/11/1111 : 88:00</td>
-										<td> Economy </td>
-									</tr>
-									<tr>
-										<td> AC 2222</td>
-										<td> Istanbul(XXX)</td>
-										<td> Munich(Much) </td>
-										<td> 3 hrs 25 mins</td>
-										<td> 11/11/1111 : 88:35</td>
-										<td> 11/11/1111 : 88:35</td>
-										<td> Economy </td>
-									</tr>
-								</table>
-							</div>
-
-				</div>
-			</div>
-
-			<!-- Fourth ticket -->
-			<div class="panel panel-warning">
-				<div class="panel-heading">Reserved Flight - X days X hrs left to cancellation
-					<button type ="button" class="btn btn-warning pull-right btn-xs" >CANCEL </button>
-
-				</div>
-				<div class="panel-body">
-
-					<table class="table">
-						<thead>
-							<tr>
-								<td> From </td>
-								<td> To</td>
-								<td> Total Duration </td>
-								<td> Departure Time</td>
-								<td> Arrival Time</td>
-								<td> Class </td>
-							</tr>
-						</thead>
-						<tr>
-							<td> Ankara(ESB) </td>
-							<td> Munich(MUC)</td>
-							<td> 4 hrs 32 mins</td>
-							<td> 11/11/1111 : 88:88</td>
-							<td> 11/11/1111 : 88:88</td>
-							<td> Economy </td>
-						</tr>
-					</table>
-
-							<button class="btn btn-default" data-toggle="collapse" data-target="#f4"> Details </button>
-
-							<div id="f4" class="collapse">
-								<table class="table">
-									<thead>
-										<tr>
-											<td> Flight No </td>
-											<td> From </td>
-											<td> To</td>
-											<td> Total Duration </td>
-											<td> Departure Time</td>
-											<td> Arrival Time</td>
-											<td> Class </td>
-										</tr>
-									</thead>
-									<tr>
-										<td> TK 1111</td>
-										<td> Ankara(ESB) </td>
-										<td> Istanbul(XXX)</td>
-										<td> 0 hrs 32 mins</td>
-										<td> 11/11/1111 : 88:00</td>
-										<td> 11/11/1111 : 88:00</td>
-										<td> Economy </td>
-									</tr>
-									<tr>
-										<td> AC 2222</td>
-										<td> Istanbul(XXX)</td>
-										<td> Munich(Much) </td>
-										<td> 3 hrs 25 mins</td>
-										<td> 11/11/1111 : 88:35</td>
-										<td> 11/11/1111 : 88:35</td>
-										<td> Economy </td>
-									</tr>
-								</table>
-							</div>
-
-				</div>
-			</div>
-
-			<!-- fifth ticket -->
-			<div class="panel panel-default">
-				<div class="panel-heading">Past Flight</div>
-				<div class="panel-body">
-
-					<table class="table">
-						<thead>
-							<tr>
-								<td> From </td>
-								<td> To</td>
-								<td> Total Duration </td>
-								<td> Departure Time</td>
-								<td> Arrival Time</td>
-								<td> Class </td>
-							</tr>
-						</thead>
-						<tr>
-							<td> Ankara(ESB) </td>
-							<td> Munich(MUC)</td>
-							<td> 4 hrs 32 mins</td>
-							<td> 11/11/1111 : 88:88</td>
-							<td> 11/11/1111 : 88:88</td>
-							<td> Economy </td>
-						</tr>
-					</table>
-
-							<button class="btn btn-default" data-toggle="collapse" data-target="#f5"> Details </button>
-
-							<div id="f5" class="collapse">
-								<table class="table">
-									<thead>
-										<tr>
-											<td> Flight No </td>
-											<td> TicketNo </td>
-											<td> From </td>
-											<td> To</td>
-											<td> Total Duration </td>
-											<td> Departure Time</td>
-											<td> Arrival Time</td>
-											<td> Class </td>
-										</tr>
-									</thead>
-									<tr>
-										<td> TK1233 </td>
-										<td> T3468731</td>
-										<td> Ankara(ESB) </td>
-										<td> Munich(MUC)</td>
-										<td> 4 hrs 32 mins</td>
-										<td> 11/11/1111 : 88:88</td>
-										<td> 11/11/1111 : 88:88</td>
-										<td> Economy </td>
-									</tr>
-									<tr>
-										<td> AC1300 </td>
-										<td> A22123131</td>
-										<td> Ankara(ESB) </td>
-										<td> Munich(MUC)</td>
-										<td> 4 hrs 32 mins</td>
-										<td> 11/11/1111 : 88:88</td>
-										<td> 11/11/1111 : 88:88</td>
-										<td> Economy </td>
-									</tr>
-								</table>
-							</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
-
-</body>
-</html>
