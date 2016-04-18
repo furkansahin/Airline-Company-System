@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="countdown.js"></script>
-	
+
 	<link href='https://fonts.googleapis.com/css?family=New+Rocker' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -27,16 +27,16 @@
 
 <!-- Openning modal on delete application -->
 <?PHP
-	
+
 	if(isset($_GET['function']))
-	{		
+	{
 		if($_GET['function'] == 1 )
 		{
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
 				$('#editModal').modal('show');
 				});
-				</script>";		
+				</script>";
 		}
 		if($_GET['function'] == 2 )
 		{
@@ -44,7 +44,7 @@
 				$(document).ready(function(){
 				$('#editSuccess').modal('show');
 				});
-				</script>";		
+				</script>";
 			header('Refresh: 2; URL=index.php');
 		}
 		if($_GET['function'] == 3 )
@@ -53,16 +53,16 @@
 				$(document).ready(function(){
 				$('#deleteSuccess').modal('show');
 				});
-				</script>";		
+				</script>";
 			header('Refresh: 2; URL=index.php');
-		}	
+		}
 		if($_GET['function'] == 4 )
 		{
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
 				$('#deleteFail').modal('show');
 				});
-				</script>";		
+				</script>";
 			header('Refresh: 2; URL=index.php');
 		}
 		if($_GET['function'] == 5 )
@@ -71,7 +71,7 @@
 				$(document).ready(function(){
 				$('#createSuccess').modal('show');
 				});
-				</script>";		
+				</script>";
 			header('Refresh: 2; URL=index.php');
 		}
 		if($_GET['function'] == 6  )
@@ -80,29 +80,31 @@
 				$(document).ready(function(){
 				$('#createFail').modal('show');
 				});
-				</script>";		
+				</script>";
 			header('Refresh: 2; URL=index.php');
-		}			
+		}
 	}
-	
+
 ?>
 <body>
-	
+
 	<div class = "wrapper">
 		<header>
-		
+
 			<ul>
 				<li>Welcome Manager</li>
-				<li><button type="button" class="btn btn-primary">LOG OUT</button></li>
+				<li><form class="form-signin" action='../logout.php' method='POST'>
+					<input type='submit' name='Submit' value='Logout' class='btn btn-primary'/>
+				</form></li>
 			</ul>
-	
-		</header>		
-		
+
+		</header>
+
 		<div id = "breaksection2">
 		</div>
 		<div class="row">
 			<div class="col-sm-2">
-			
+
 				<nav class="navbar navbar-default" role="navigation">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
@@ -121,7 +123,7 @@
 							<li class="active"><a href="index.php">Flights</a></li>
 							<li><a href="routes.html">Routes</a></li>
 							<li><a href="crews.html">Crews</a></li>
-							<li><a href="airports.php">Airports</a></li>	
+							<li><a href="airports.php">Airports</a></li>
 							<li><a href="customers.html">Customers</a></li>
 							<li><a href="flights.html">Flight Information</a></li>
 							<li><a href="planes.html">Planes</a></li>
@@ -129,50 +131,50 @@
 					</div><!-- /.navbar-collapse -->
 				</nav>
 			</div>
-			
+
 			<div class="col-sm-10">
-				
+
 					<h2>FLIGHTS</h2>
 					<h3><button class="btn btn-lg btn-primary " data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-plus"></i>Add Flight </button></h2>
-					
+
 					<div id="demo" class="collapse">
 					<form class="form-signin" action='index_add.php' method='POST'>
-					
+
 						<label for="flightNo" >Flight ID </label>
 						<input type="text" id="flightNo" class="form-control" placeholder="FXXX" required="">
-						
+
 						<label for="routeID" >Route ID </label>
 						<input type="text" id="routeID" class="form-control" placeholder="RXXXXXXX" required="">
-						
+
 						<label for="planeName">PlaneName</label>
 						<input type="text" id="planeName" class="form-control" placeholder="The Spirit" required="">
-						
-						
+
+
 						<label for="meals" >Meals </label>
 						<input type="text" id="meals" class="form-control" placeholder="Beef" required="">
-						
+
 						<label for="flightdate" >Date </label>
 						<input type="datetime" id="flightdate" class="form-control" placeholder="2016-01-01" required="">
-						
+
 						<label for="flighttime" >Time </label>
 						<input type="text" id="flighttime" class="form-control" placeholder="12:00:00" required="">
 
 						<label for="flightluggage" >Luggage </label>
 						<input type="text" id="flightluggage" class="form-control" placeholder="10000" required="">
-						
+
 						<label for="priceecon" >Price For Economy </label>
 						<input type="text" id="priceecon" class="form-control" placeholder="750" required="">
 
 						<label for="pricebusi" >Price For Business </label>
-						<input type="text" id="pricebusi" class="form-control" placeholder="1500" required="">		
-						
+						<input type="text" id="pricebusi" class="form-control" placeholder="1500" required="">
+
 						<label for="delay" >Delay </label>
 						<input type="text" id="delay" class="form-control" placeholder="0" required="">
-						<br/>						
+						<br/>
 						<button class="btn btn-lg" type="submit">Add</button>
-					</form>	
+					</form>
 					</div>
-					<br/>          
+					<br/>
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -191,28 +193,28 @@
 							</tr>
 						</thead>
 						<tbody>
-						
+
 						<?PHP
-					
-							$servername = 'localhost';
+
+							$servername = '127.0.0.1';
 							$user = 'root';
 							$pass = 'mfs12';
 							$dbname = 'airline';
-							
+
 							$con = mysqli_connect($servername, $user, $pass, $dbname);
-	
+
 							if (mysqli_connect_errno())
 							{
 								echo "Failed to connect to MySQL: " . mysqli_connect_error();
 							}
-							
+
 							$sql = "SELECT * FROM flight";
 							$result = mysqli_query($con,$sql);
-							
+
 							$html = "";
 							if($result)
 							{
-								if ($result->num_rows > 0) 
+								if ($result->num_rows > 0)
 								{
 									// output data of each row
 									while($row = $result->fetch_assoc()) {
@@ -238,15 +240,15 @@
 							}
 							echo $html;
 						?>
-		
+
 						</tbody>
 					</table>
-				
+
 			</div>
-			
+
 		</div>
 	</div>
-	
+
 	<!-- Modal1 -->
 		<div class="modal fade" id="crewModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 			 <div class="modal-dialog modal-sm">
@@ -258,74 +260,74 @@
 					<div class="modal-body">
 
 						<form class="form-signin">
-						
+
 								<label for="formp1" > Captain </label>
 								<select class="form-control" id="formp1">
 									<option>Pilot1</option>
 									<option>Pilot1</option>
 									<option>Pilot1</option>
 									<option>Pilot1</option>
-								</select> 
-								
+								</select>
+
 								<label for="formp2" > 2nd Pilot </label>
 								<select class="form-control" id="formp2">
 									<option>Pilot1</option>
 									<option>Pilot1</option>
 									<option>Pilot1</option>
 									<option>Pilot1</option>
-								</select> 
-								
+								</select>
+
 								<label for="formp3" > 3nd Pilot</label>
 								<select class="form-control" id="formp3">
 									<option>Pilot1</option>
 									<option>Pilot1</option>
 									<option>Pilot1</option>
 									<option>Pilot1</option>
-								</select> 
-								
+								</select>
+
 								<label for="formc1" > Cabin Chief </label>
 								<select class="form-control" id="formc1">
 									<option>C1</option>
 									<option>C2</option>
 									<option>C3</option>
 									<option>C4</option>
-								</select> 
-								
+								</select>
+
 								<label for="formc2" > Flight attendant </label>
 								<select class="form-control" id="formc2">
 									<option>C1</option>
 									<option>C2</option>
 									<option>C3</option>
 									<option>C4</option>
-								</select> 
-								
+								</select>
+
 								<label for="formc3" > Flight attendant </label>
 								<select class="form-control" id="formc3">
 									<option>C1</option>
 									<option>C2</option>
 									<option>C3</option>
 									<option>C4</option>
-								</select> 
-								
+								</select>
+
 								<label for="formc4" > Flight attendant </label>
 								<select class="form-control" id="formc4">
 									<option>C1</option>
 									<option>C2</option>
 									<option>C3</option>
 									<option>C4</option>
-								</select> 
-						
+								</select>
+
 						<br/>
 						<button type="button" class="btn btn-lg btn-danger" data-dismiss="modal">Close</button>
 						<button class="btn btn-lg btn-success" type="submit">Save</button>
-						
+
 					  </form>
 
 					</div> <!-- /container -->
 				</div>
 			</div>
 		</div>
-		
+
 	<!-- Modal2 -->
 		<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 			 <div class="modal-dialog modal-sm">
@@ -337,21 +339,21 @@
 					<div class="modal-body">
 
 						<form class="form-signin">
-					
+
 						<label for="flightDelay" style = "color:red;" >Give Delay </label>
 						<input type="text" id="flightDelay" class="form-control" placeholder="Delay in mins" required="" >
-						
-						
+
+
 						<label for="flightNo" >Flight No </label>
 						<input type="text" id="flightNo" class="form-control" placeholder="ACXXX" required="">
-						
+
 						<label for="routeID" >Route ID </label>
 						<input type="text" id="routeID" class="form-control" placeholder="RXXXXXXX" required="">
-						
+
 						<label for="planeName">PlaneName</label>
 						<input type="text" id="formto" class="form-control" placeholder="The Spirit" required="">
-						
-						
+
+
 						<label>Meals </label>
 						<br/>
 						<label class="checkbox-inline"><input type="checkbox" value="">Option 1</label>
@@ -365,7 +367,7 @@
 
 						<label for="flightluggage" >Luggage </label>
 						<input type="text" id="flightluggage" class="form-control" placeholder="10000" required="">
-						
+
 						<label for="priceecon" >Price For Economy </label>
 						<input type="text" id="priceecon" class="form-control" placeholder="750" required="">
 
@@ -373,7 +375,7 @@
 						<input type="text" id="pricebusi" class="form-control" placeholder="1500" required="">
 						<br/>
 						<button class="btn btn-lg" type="submit">Save</button>
-						</form>		
+						</form>
 
 					</div> <!-- /container -->
 				</div>
