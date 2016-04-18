@@ -135,10 +135,10 @@
 					<h3><button class="btn btn-lg btn-primary " data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-plus"></i>Add Flight </button></h2>
 					
 					<div id="demo" class="collapse">
-					<form class="form-signin">
+					<form class="form-signin" action='airports_add.php' method='POST'>
 					
-						<label for="flightNo" >Flight No </label>
-						<input type="text" id="flightNo" class="form-control" placeholder="ACXXX" required="">
+						<label for="flightNo" >Flight ID </label>
+						<input type="text" id="flightID" class="form-control" placeholder="FXXX" required="">
 						
 						<label for="routeID" >Route ID </label>
 						<input type="text" id="routeID" class="form-control" placeholder="RXXXXXXX" required="">
@@ -154,9 +154,11 @@
 						<label class="checkbox-inline"><input type="checkbox" value="">Option 3</label>
 						<br/>
 						<br/>
-						<label for="flighttime" >Date&Time </label>
-						<input type="datetime" id="flighttime" class="form-control" placeholder="2016-01-01" required="">
-						<br/>
+						<label for="flightdate" >Date </label>
+						<input type="datetime" id="dateflight" class="form-control" placeholder="2016-01-01" required="">
+						
+						<label for="flighttime" >Time </label>
+						<input type="text" id="timeflight" class="form-control" placeholder="12:00:00" required="">
 
 						<label for="flightluggage" >Luggage </label>
 						<input type="text" id="flightluggage" class="form-control" placeholder="10000" required="">
@@ -166,6 +168,9 @@
 
 						<label for="pricebusi" >Price For Business </label>
 						<input type="text" id="pricebusi" class="form-control" placeholder="1500" required="">		
+						
+						<label for="delay" >Delay </label>
+						<input type="text" id="delay" class="form-control" placeholder="0" required="">
 						<br/>						
 						<button class="btn btn-lg" type="submit">Add</button>
 					</form>	
@@ -224,10 +229,10 @@
 														.	"<td>". $row["luggage"] . "</td>"
 														.	"<td>". $row["economy_price"]  . "</td>"
 														.	"<td>". $row["business_price"]  . "</td>"
-														.	"<td>". $row["minutes"] . "</td>"
-														/*.   "<td>". "<a href='index.php?function=1&flight_id=$flight_id'><button type="button" class="glyphicon glyphicon-user"></button></a>". "</td>"
-														.   "<td>". "<a href='index.php?function=1&flight_id=$flight_id'><button type="button" class="glyphicon glyphicon-edit"></button></a>". "</td>"
-														.   "<td>". "<a href='flight_delete.php?flight_id=$flight_id'><button type="button" class="glyphicon glyphicon-remove"></button></a>". "</td>"*/
+														.	"<td>". $row["delay"] . "</td>"
+														.   "<td>". "<a href='index.php?function=1&flight_id=$flight_id'><button class='glyphicon glyphicon-user'></button></a>". "</td>"
+														.   "<td>". "<a href='index.php?function=1&flight_id=$flight_id'><button class='glyphicon glyphicon-edit'></button></a>". "</td>"
+														.   "<td>". "<a href='flight_delete.php?flight_id=$flight_id'><button class='glyphicon glyphicon-remove'></button></a>". "</td>"
 														.	"</tr>";
 									}
 								} else {

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="countdown.js"></script>
-	
+
 	<link href='https://fonts.googleapis.com/css?family=New+Rocker' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -24,22 +24,26 @@
 	<title> SalesPerson </title>
 </head>
 <body>
-	
+
 	<div class = "wrapper">
 		<header>
-		
+
 			<ul>
 				<li>Welcome Salesperson</li>
-				<li><button type="button" class="btn btn-primary">LOG OUT</button></li>
+				<li>
+					<form class="form-signin" action='../logout.php' method='POST'>
+						<input type='submit' name='Submit' value='Logout' class='btn btn-primary'/>
+					</form>
+				</li>
 			</ul>
-	
-		</header>		
-		
+
+		</header>
+
 		<div id = "breaksection2">
 		</div>
 		<div class="row">
 			<div class="col-sm-2">
-			
+
 				<nav class="navbar navbar-default" role="navigation">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
@@ -58,7 +62,7 @@
 							<li class="active"><a href="index.html">Flights</a></li>
 							<li><a href="routes.html" class="not-active">Routes</a></li>
 							<li><a href="crews.html" class="not-active">Crews</a></li>
-							<li><a href="airports.html" class="not-active">Airports</a></li>	
+							<li><a href="airports.html" class="not-active">Airports</a></li>
 							<li><a href="customers.html">Customers</a></li>
 							<li><a href="flights.html">Flight Information</a></li>
 							<li><a href="planes.html" class="not-active">Planes</a></li>
@@ -66,25 +70,25 @@
 					</div><!-- /.navbar-collapse -->
 				</nav>
 			</div>
-			
+
 			<div class="col-sm-10">
-				
+
 					<h2>FLIGHTS</h2>
 					<h3><button class="btn btn-lg btn-primary " data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-plus"></i>Add Flight </button></h2>
-					
+
 					<div id="demo" class="collapse">
 					<form class="form-signin">
-					
+
 						<label for="flightNo" >Flight No </label>
 						<input type="text" id="flightNo" class="form-control" placeholder="ACXXX" required="">
-						
+
 						<label for="routeID" >Route ID </label>
 						<input type="text" id="routeID" class="form-control" placeholder="RXXXXXXX" required="">
-						
+
 						<label for="planeName">PlaneName</label>
 						<input type="text" id="formto" class="form-control" placeholder="The Spirit" required="">
-						
-						
+
+
 						<label>Meals </label>
 						<br/>
 						<label class="checkbox-inline"><input type="checkbox" value="">Option 1</label>
@@ -98,17 +102,17 @@
 
 						<label for="flightluggage" >Luggage </label>
 						<input type="text" id="flightluggage" class="form-control" placeholder="10000" required="">
-						
+
 						<label for="priceecon" >Price For Economy </label>
 						<input type="text" id="priceecon" class="form-control" placeholder="750" required="">
 
 						<label for="pricebusi" >Price For Business </label>
-						<input type="text" id="pricebusi" class="form-control" placeholder="1500" required="">		
-						<br/>						
+						<input type="text" id="pricebusi" class="form-control" placeholder="1500" required="">
+						<br/>
 						<button class="btn btn-lg" type="submit">Add</button>
-					</form>	
+					</form>
 					</div>
-					<br/>          
+					<br/>
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -139,7 +143,7 @@
 								<td><button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#editModal"></button></td>
 								<td><button type="button" class="glyphicon glyphicon-remove"></button></td>
 							</tr>
-							
+
 							<tr>
 								<td>AC130</td>
 								<td>R1111 <br/>ESB-MUC</td>
@@ -153,7 +157,7 @@
 								<td><button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#editModal"></button></td>
 								<td><button type="button" class="glyphicon glyphicon-remove"></button></td>
 							</tr>
-							
+
 							<tr>
 								<td>AC130</td>
 								<td>R1111 <br/>ESB-MUC</td>
@@ -167,7 +171,7 @@
 								<td><button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#editModal"></button></td>
 								<td><button type="button" class="glyphicon glyphicon-remove"></button></td>
 							</tr>
-							
+
 							<tr>
 								<td>AC130</td>
 								<td>R1111 <br/>ESB-MUC</td>
@@ -181,7 +185,7 @@
 								<td><button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#editModal"></button></td>
 								<td><button type="button" class="glyphicon glyphicon-remove"></button></td>
 							</tr>
-							
+
 							<tr>
 								<td>AC130</td>
 								<td>R1111 <br/>ESB-MUC</td>
@@ -195,17 +199,17 @@
 								<td><button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#editModal"></button></td>
 								<td><button type="button" class="glyphicon glyphicon-remove"></button></td>
 							</tr>
-							
-						
-							
+
+
+
 						</tbody>
 					</table>
-				
+
 			</div>
-			
+
 		</div>
 	</div>
-	
+
 	<!-- Modal1 -->
 		<div class="modal fade" id="crewModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 			 <div class="modal-dialog modal-sm">
@@ -217,74 +221,74 @@
 					<div class="modal-body">
 
 						<form class="form-signin">
-						
+
 								<label for="formp1" > Captain </label>
 								<select class="form-control" id="formp1">
 									<option>Pilot1</option>
 									<option>Pilot1</option>
 									<option>Pilot1</option>
 									<option>Pilot1</option>
-								</select> 
-								
+								</select>
+
 								<label for="formp2" > 2nd Pilot </label>
 								<select class="form-control" id="formp2">
 									<option>Pilot1</option>
 									<option>Pilot1</option>
 									<option>Pilot1</option>
 									<option>Pilot1</option>
-								</select> 
-								
+								</select>
+
 								<label for="formp3" > 3nd Pilot</label>
 								<select class="form-control" id="formp3">
 									<option>Pilot1</option>
 									<option>Pilot1</option>
 									<option>Pilot1</option>
 									<option>Pilot1</option>
-								</select> 
-								
+								</select>
+
 								<label for="formc1" > Cabin Chief </label>
 								<select class="form-control" id="formc1">
 									<option>C1</option>
 									<option>C2</option>
 									<option>C3</option>
 									<option>C4</option>
-								</select> 
-								
+								</select>
+
 								<label for="formc2" > Flight attendant </label>
 								<select class="form-control" id="formc2">
 									<option>C1</option>
 									<option>C2</option>
 									<option>C3</option>
 									<option>C4</option>
-								</select> 
-								
+								</select>
+
 								<label for="formc3" > Flight attendant </label>
 								<select class="form-control" id="formc3">
 									<option>C1</option>
 									<option>C2</option>
 									<option>C3</option>
 									<option>C4</option>
-								</select> 
-								
+								</select>
+
 								<label for="formc4" > Flight attendant </label>
 								<select class="form-control" id="formc4">
 									<option>C1</option>
 									<option>C2</option>
 									<option>C3</option>
 									<option>C4</option>
-								</select> 
-						
+								</select>
+
 						<br/>
 						<button type="button" class="btn btn-lg btn-danger" data-dismiss="modal">Close</button>
 						<button class="btn btn-lg btn-success" type="submit">Save</button>
-						
+
 					  </form>
 
 					</div> <!-- /container -->
 				</div>
 			</div>
 		</div>
-		
+
 	<!-- Modal2 -->
 		<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 			 <div class="modal-dialog modal-sm">
@@ -296,21 +300,21 @@
 					<div class="modal-body">
 
 						<form class="form-signin">
-					
+
 						<label for="flightDelay" style = "color:red;" >Give Delay </label>
 						<input type="text" id="flightDelay" class="form-control" placeholder="Delay in mins" required="" >
-						
-						
+
+
 						<label for="flightNo" >Flight No </label>
 						<input type="text" id="flightNo" class="form-control" placeholder="ACXXX" required="">
-						
+
 						<label for="routeID" >Route ID </label>
 						<input type="text" id="routeID" class="form-control" placeholder="RXXXXXXX" required="">
-						
+
 						<label for="planeName">PlaneName</label>
 						<input type="text" id="formto" class="form-control" placeholder="The Spirit" required="">
-						
-						
+
+
 						<label>Meals </label>
 						<br/>
 						<label class="checkbox-inline"><input type="checkbox" value="">Option 1</label>
@@ -324,7 +328,7 @@
 
 						<label for="flightluggage" >Luggage </label>
 						<input type="text" id="flightluggage" class="form-control" placeholder="10000" required="">
-						
+
 						<label for="priceecon" >Price For Economy </label>
 						<input type="text" id="priceecon" class="form-control" placeholder="750" required="">
 
@@ -332,7 +336,7 @@
 						<input type="text" id="pricebusi" class="form-control" placeholder="1500" required="">
 						<br/>
 						<button class="btn btn-lg" type="submit">Save</button>
-						</form>		
+						</form>
 
 					</div> <!-- /container -->
 				</div>
