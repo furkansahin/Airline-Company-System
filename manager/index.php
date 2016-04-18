@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -135,30 +136,26 @@
 					<h3><button class="btn btn-lg btn-primary " data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-plus"></i>Add Flight </button></h2>
 					
 					<div id="demo" class="collapse">
-					<form class="form-signin" action='airports_add.php' method='POST'>
+					<form class="form-signin" action='index_add.php' method='POST'>
 					
 						<label for="flightNo" >Flight ID </label>
-						<input type="text" id="flightID" class="form-control" placeholder="FXXX" required="">
+						<input type="text" id="flightNo" class="form-control" placeholder="FXXX" required="">
 						
 						<label for="routeID" >Route ID </label>
 						<input type="text" id="routeID" class="form-control" placeholder="RXXXXXXX" required="">
 						
 						<label for="planeName">PlaneName</label>
-						<input type="text" id="formto" class="form-control" placeholder="The Spirit" required="">
+						<input type="text" id="planeName" class="form-control" placeholder="The Spirit" required="">
 						
 						
-						<label>Meals </label>
-						<br/>
-						<label class="checkbox-inline"><input type="checkbox" value="">Option 1</label>
-						<label class="checkbox-inline"><input type="checkbox" value="">Option 2</label>
-						<label class="checkbox-inline"><input type="checkbox" value="">Option 3</label>
-						<br/>
-						<br/>
+						<label for="meals" >Meals </label>
+						<input type="text" id="meals" class="form-control" placeholder="Beef" required="">
+						
 						<label for="flightdate" >Date </label>
-						<input type="datetime" id="dateflight" class="form-control" placeholder="2016-01-01" required="">
+						<input type="datetime" id="flightdate" class="form-control" placeholder="2016-01-01" required="">
 						
 						<label for="flighttime" >Time </label>
-						<input type="text" id="timeflight" class="form-control" placeholder="12:00:00" required="">
+						<input type="text" id="flighttime" class="form-control" placeholder="12:00:00" required="">
 
 						<label for="flightluggage" >Luggage </label>
 						<input type="text" id="flightluggage" class="form-control" placeholder="10000" required="">
