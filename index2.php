@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta charset="UTF-8">
 
-	<title> Customer Page </title>
+	<title> AirLine Corp </title>
 	
 	
 	<!-- CSS Files -->
@@ -19,9 +18,9 @@
 	
 	
 	<!-- Datetime pickler -->
-	<script type="text/javascript" src="../bower_components/moment/min/moment.min.js"></script>
-	<script type="text/javascript" src="../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-	<link rel="stylesheet" href="../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+	<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+	<script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+	<link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 	
 	<!-- Collapsing header with scroll down -->
 	
@@ -35,17 +34,15 @@
 				}
 			});
 	</script>
+	
 </head>
-
 <body>
 	<div class = "wrapper">
 					
 		<header class="large">
 				<ul>
-					<li><a class="active" href="index.html">Home</a></li>
-					<li><a href="reservations.html">Reservations</a></li>
-					<li><a href="myprofile.html">My Profile</a></li>
-					<li><a href="../index.html">Log Out</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#basicModal" >Log In</a></li>
+					<li><a href="register.html">Register</a></li>
 				</ul>
 		</header>
 				
@@ -75,32 +72,67 @@
 					
 					<!-- First tab -->
 					<div id="home" class="tab-pane fade in active">
+						<form class="form-signin" action='searchflights1.php' method='POST'>
 						<!-- To and from row -->
 						<div class="row">
-						
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label for="sel1">To:</label>
-									<select class="form-control" id="sel1">
-									<option>Ankara ESB</option>
-									<option>İstanbul</option>
-									<option>Münih</option>
-									<option>Kars</option>
-									 </select>
-								</div>
-							</div>
+	
+							<?PHP
+								
+
+								$servername = "localhost";
+								$user = "root";
+								$pass = "mfs12";
+								$dbname = "airline";
+								
+								$con = mysqli_connect($servername, $user, $pass, $dbname);
+		
+								if (mysqli_connect_errno())
+								{
+									echo "Failed to connect to MySQL: " . mysqli_connect_error();
+								}
 							
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label for="sel2">From:</label>
-									<select class="form-control" id="sel2">
-									<option>İstanbul</option>
-									<option>Ankara ESB</option>
-									<option>Münih</option>
-									<option>Kars</option>
-									</select>
-								</div>
-							</div>	  
+								$sql = "SELECT * FROM airport";
+								$result = mysqli_query($con,$sql);
+								
+								$selection1 = "";
+								$selection2 = "";
+								
+								if($result)
+								{
+									if ($result->num_rows > 0) 
+									{
+										// output data of each row
+										while($row = $result->fetch_assoc()) {
+											$selection1 = $selection1 	.	"<option>"
+															.	$row["airport_id"]
+															.	"("
+															.	$row["city_name"]
+															.	" )"
+															.	"</option>";
+											$selection2 = $selection2 	.	"<option>"
+															.	$row["airport_id"]
+															.	"("
+															.	$row["city_name"]
+															.	" )"
+															.	"</option>";
+										}
+									} else {
+										echo "";
+									}
+								}
+								$html = "<div class='col-sm-6'><label for='searchdepart' >Departure Airport </label>"
+									."<select name='searchdepart' id='searchdepart'  class='form-control' placeholder='Please Select'>"
+									."<option value='' selected disabled>Please select</option>"
+									.$selection1
+									."</select></div><div class='col-sm-6'>"
+									."<label for='searcharrive' >Arrival Airport </label>"
+									."<select name='searcharrive' id='searcharrive'  class='form-control' placeholder='Please Select'>"
+									."<option value='' selected disabled>Please select</option>"
+									.$selection2
+									."</select></div>";
+								
+								echo $html;
+							?>
 						</div>
 							
 						<!-- Row of dates -->
@@ -108,32 +140,31 @@
 						
 							<div class='col-md-6'>
 								<label for="datetimepicker6">Departure Date:</label>
-								<div class="form-group">
 									<div class='input-group date' id='datetimepicker6'>
-										<input type='text' class="form-control" />
+										<input type='text' name='searchdate1' id='searchdate1' class="form-control"/>
 										<span class="input-group-addon">
 										<span class="glyphicon glyphicon-calendar"></span>
 										</span>
 									</div>
-								</div>
 							</div>
 							
 							<div class='col-md-6'>
 								<label for="datetimepicker7">Return Date:</label>
-								<div class="form-group">
 									<div class='input-group date' id='datetimepicker7'>
-										<input type='text' class="form-control" />
+										<input type='text' name='searchdate2' id='searchdate2' class="form-control"/>
 										<span class="input-group-addon">
 										<span class="glyphicon glyphicon-calendar"></span>
 										</span>
 									</div>
-								</div>
 							</div>
 							
 							<script type="text/javascript">
 									$(function () {
-										$('#datetimepicker6').datetimepicker();
+										$('#datetimepicker6').datetimepicker({
+											format: 'YYYY-MM-DD /HH:mm'
+										});
 										$('#datetimepicker7').datetimepicker({
+											format: 'YYYY-MM-DD /HH:mm',
 											useCurrent: false //Important! See issue #1075
 										});
 										$("#datetimepicker6").on("dp.change", function (e) {
@@ -147,8 +178,9 @@
 						</div>
 						<div class="row">
 							<div class="col-md-4 col-md-offset-4">
-								<label for="formClass" > Class </label>
-									<select class="form-control" id="formClass">
+								<label for="searchClass" > Class </label>
+									<select name='searchClass' id='searchClass'  class="form-control" placeholder="Please Select">
+										<option value="" selected disabled>Please select</option>
 										<option>Economy</option>
 										<option>Business</option>
 								</select> 
@@ -157,9 +189,11 @@
 						<br/>
 						<div class="row">
 							<div class="col-md-10 col-md-offset-1">
-								<a href="searchflights.html" class="btn btn-lg btn-primary btn-block" >Search</a>
+								<input type='submit' name='Submit' value='Submit' class='btn btn-primary'/>
 							</div>	
-						</div>		
+						</div>	
+						
+						</form>
 					</div>	<!-- End of first tab -->
 					
 					<!-- Second tab -->
@@ -235,7 +269,7 @@
 							</script>			
 						</div>
 						<div class="row">
-							<div class="col-md-4 col-md-offset-4">
+							<div class="col-md-8 col-md-offset-2">
 								<label for="formClass" > Class </label>
 									<select class="form-control" id="formClass">
 										<option>Economy</option>
@@ -256,7 +290,7 @@
 			<!-- Right ad -->
 			<div class='col-md-6'>
 			
-				<img src= "../img/sample1.jpg" class="img-responsive">
+				<img src= "img/sample1.jpg" class="img-responsive">
 			
 			</div>
 			
@@ -270,13 +304,13 @@
 		<div class = "row">
 			<div class='col-md-6'>
 			
-				<img src= "../img/sample2.jpg" class="img-responsive">
+				<img src= "img/sample2.jpg" class="img-responsive">
 			
 			</div>
 
 			<div class='col-md-6'>
 			
-				<img src= "../img/sample2.jpg" class="img-responsive">
+				<img src= "img/sample2.jpg" class="img-responsive">
 			
 			</div>
 		</div>
@@ -292,5 +326,37 @@
 		</div>
 
 	</div><!-- End of wrapper -->
+	
+	
+	<!-- Modal for login -->
+	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		 <div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">User Login</h4>
+				</div>
+				<div class="modal-body">
+
+					<form class="form-signin">
+					<label for="inputEmail" class="sr-only">Email address</label>
+					<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+					<label for="inputPassword" class="sr-only">Password</label>
+					<input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" value="remember-me"> Remember me
+					  </label>
+					</div>
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button><!-- 
+					<a href="manager/index.html" class="btn btn-lg btn-primary btn-block" >Manager</a>
+					<a href="salesperson/index.html" class="btn btn-lg btn-primary btn-block" >Salesperson</a>
+					<a href="customer/index.html" class="btn btn-lg btn-primary btn-block" >Customer</a> -->
+				  </form>
+
+				</div> <!-- /container -->
+			</div>
+		</div>
+	</div>
 </body>
 </html>
