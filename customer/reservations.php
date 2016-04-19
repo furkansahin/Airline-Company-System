@@ -99,6 +99,22 @@
 				</script>";
 			header('Refresh: 2; URL=reservations.php');
 		}
+		if($_GET['function'] == 10){
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#extraLuggageS').modal('show');
+				});
+				</script>";
+			header('Refresh: 2; URL=reservations.php');
+		}
+		if($_GET['function'] == 11){
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#extraLuggageF').modal('show');
+				});
+				</script>";
+			header('Refresh: 2; URL=reservations.php');
+		}
 	}
 ?>
 <body>
@@ -172,10 +188,6 @@
 
 												.	"<a style=\"margin-top: -20px;\" href=\"reservations.php?function=4&val=".$row['reservation_no']."&type=t\""
 												.	" class=\"btn btn-warning pull-right btn-xs\">Change Seat</a>"
-
-												.	"<a style=\"margin-top: -20px;\" href=\"reservations.php?function=5&val=".$row['reservation_no']."&type=t\""
-												.	" class=\"btn btn-warning pull-right btn-xs\">Buy Extra Luggage</a>"
-
 
 												.	"<a style=\"margin-top: -20px;\" href=\"href=\"reservations.php?function=7&val=".$row['reservation_no']."&type=t\""
 												.	" class=\"btn btn-success pull-right btn-xs\">Apply Promotion</a>"
@@ -366,18 +378,20 @@
 																<td> Departure Time</td>
 																<td> Date </td>
 																<td> Meal</td>
+																<td> Extra Luggage </td>
 																<td> Class </td>
 															</tr>
 														</thead>
 														<tr>";
 							$html = $html	.	"<td>"	.	$row['flight_id']		.	"</td>"
-											.	"<td>"	.	$row['ticket_no']	.	"</td>"
+											.	"<td>"	.	$row['ticket_no']		.	"</td>"
 											.	"<td>"	.	$row['departs']			.	"</td>"
 											.	"<td>"	.	$row['arrives']			.	"</td>"
 											.	"<td>"	.	$row['flight_duration']	.	"</td>"
 											.	"<td>"	.	$row['departure_time']	.	"</td>"
 											.	"<td>"	.	$row['date']			.	"</td>"
 											.	"<td>"	.	$row['meal']			.	"</td>"
+											.	"<td>"	.	$row['extra_luggage']	.	"</td>"
 											.	"<td>"	.	$row['class']			.	"</td>"
 											.	"</tr></table></div></div></div>";
 							$count++;
@@ -388,6 +402,45 @@
 				$html = $html	.	"</div>";
 				echo $html;
 			?>
+			<!-- Buy Extra Luggage -->
+			<div class="modal fade" id="buyExtraLuggage" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				 <div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel"> Buy Extra Luggage</h4>
+						</div>
+						<div class="modal-body">
+
+							<form class="form-signin" action='extraLuggageAdd.php' method='POST'>
+								<?PHP
+									$tr_id = $_GET['val'];
+									$type = $_GET['type'];
+									echo "<input name=\"id\" type=\"hidden\" value=\"".$tr_id."\">";
+									echo "<input name=\"type\" type=\"hidden\" value=\"".$type."\">";
+								?>
+								<div class='col-sm-6'>
+									<label for='extraLuggage' >Extra Luggage </label>
+									<select name='extraLuggage' id='extraLuggage'  class='form-control' placeholder='Please Select' required=''>
+										<option value='' selected disabled>Please select</option>
+										<option value='5'>5</option>
+										<option value='10'>10</option>
+										<option value='15'>15</option>
+										<option value='20'>20</option>
+									</select>
+								</div>
+								<br/>
+								<br/>
+								<br/>
+								<br/>
+								<input type='submit' name='Submit' value='Add' class='btn btn-primary center-block'/>
+						  	</form>
+
+						</div> <!-- /container -->
+					</div>
+				</div>
+			</div>
+
 			<!-- Choose Meal -->
 			<div class="modal fade" id="changeMeal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 				 <div class="modal-dialog modal-sm">
@@ -471,6 +524,26 @@
 					<div class="modal-content">
 						<div class="modal-body">
 							<p> The meal cannot be chosen.</p>
+						</div> <!-- /content -->
+					</div>
+				</div>
+			</div>
+			<!-- ExtraLuggage Success -->
+			<div class="modal fade" id="extraLuggageS" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				 <div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-body">
+							<p>Extra Luggage is added successfully.</p>
+						</div> <!-- /content -->
+					</div>
+				</div>
+			</div>
+			<!-- Cancellation Fail -->
+			<div class="modal fade" id="extraLuggageF" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				 <div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-body">
+							<p> Extra Luggage cannot be added.</p>
 						</div> <!-- /content -->
 					</div>
 				</div>
