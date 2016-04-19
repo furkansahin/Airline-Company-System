@@ -24,44 +24,43 @@
 
 <body>
 
+	
 	<div class = "wrapper">
-
+		
 		<header class="small">
 				<ul>
 					<li><a href="index.php">Home</a></li>
-					<li><a href="reservations.html">Reservations</a></li>
-					<li><a class="active" href="myprofile.html">My Profile</a></li>
-					<li><a href="../index.php">Log Out</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#basicModal" >Login</a></li>
+							
 				</ul>
-		</header>
-
+		</header>		
+		
 		<div id = "breaksection2" style="height:50px;">
 		</div>
-
+		
+		<form class="form-signin" action='makereservation.php' method='POST'>
 		<div class="row">
-
-				<form class="form-signin" action='makereservation.php' method='POST'>
-
-					<?PHP
+				
+					
+					<?PHP  
 
 						if(isset ($_POST ['Submit']))
 						{
-
-
+				
+							
 							$departs = $_POST['searchdepart'];
 							$arrives = $_POST['searcharrive'];
 							$date1 = $_POST['searchdate1'];
 							$date2 = $_POST['searchdate2'];
 							$class = $_POST['searchClass'];
-
+							
 							$departs = substr($departs, 0,3);
 							$arrives = substr($arrives, 0,3);
-
+							
 							$day1 = substr($date1, 0,10);
 							$day2 = substr($date2, 0,10);
-
-							echo $departs, $arrives, $day1, $day2;
-							$servername = "127.0.0.1";
+							
+							$servername = "localhost";
 							$user = "root";
 							$pass = "mfs12";
 							$dbname = "airline";
@@ -77,20 +76,19 @@
 								$sql = "SELECT flight_id,date,economy_price as price From flight NATURAL JOIN route WHERE departs = '$departs' and arrives = '$arrives' and date BETWEEN DATE_SUB('$day1', INTERVAL 2 DAY) and DATE_ADD('$day1', INTERVAL 2 DAY) ";
 							}
 							else
-							{
+							{	
 								$sql = "SELECT flight_id,date,business_price as price From flight NATURAL JOIN route WHERE departs = '$departs' and arrives = '$arrives' and date BETWEEN DATE_SUB('$day1', INTERVAL 2 DAY) and DATE_ADD('$day1', INTERVAL 2 DAY) ";
-
+							
 							}
-							echo "\n". $sql;
 							$result = mysqli_query($con,$sql);
-
+							
 							$selection1= "";
 							$selection2= "";
 							$selection3= "";
-
+							
 							if($result)
 							{
-								if ($result->num_rows > 0)
+								if ($result->num_rows > 0) 
 								{
 									// output data of each row
 									while($row = $result->fetch_assoc()) {
@@ -100,13 +98,13 @@
 														.	"</th>	";
 										$selection2 = $selection2 	.	"<td>"
 														.	$row["price"]
-														.	"</td>	";
+														.	"$</td>	";
 										$selection3 = $selection3 	.	"<td>"
 														.	"<input type='radio' name='radio1' value='$id' data-toggle='collapse' data-target='#t1'>"
 														.	"</td>";
-									}
+									}	
 								} else {
-									echo "";
+									$selection1= "<td> NO FLIGHTS AVAILABLE <a href = 'index.php' class='btn btn-primary'> GO BACK</a></td>";
 								}
 							}
 
@@ -116,31 +114,31 @@
 												<h3> OUTBOUND FROM : $departs </h3>
 												<table class='table table-sm'>
 												<thead class='thead-inverse'>";
-
+								
 							$html = $html. "<tr>"  .$selection1 . "</tr></thead><tbody>";
 							$html = $html. "<tr>"  .$selection2 . "</tr>";
 							$html = $html. "<tr>"  .$selection3 . "</tr></tbody></table>";
 							$html = $html.  "<div id='t1' class='collapse'>	<h3> INBOUND  FROM $arrives </h3><table class='table table-sm'>
 									 <thead class='thead-inverse'>";
-
+							
 							if($class == 'Economy')
 							{
 								$sql = "SELECT flight_id,date,economy_price as price From flight NATURAL JOIN route WHERE departs = '$arrives' and arrives = '$departs' and date > '$day1' and date BETWEEN DATE_SUB('$day2', INTERVAL 2 DAY) and DATE_ADD('$day2', INTERVAL 2 DAY)  ";
 							}
 							else
-							{
+							{	
 								$sql = "SELECT flight_id,date,business_price as price From flight NATURAL JOIN route WHERE departs = '$arrives' and arrives = '$departs' and date > '$day1' and date BETWEEN DATE_SUB('$day2', INTERVAL 2 DAY) and DATE_ADD('$day2', INTERVAL 2 DAY) ";
-
+							
 							}
-
+							
 							$result = mysqli_query($con,$sql);
 							$selection1= "";
 							$selection2= "";
 							$selection3= "";
-
+							
 							if($result)
 							{
-								if ($result->num_rows > 0)
+								if ($result->num_rows > 0) 
 								{
 									// output data of each row
 									while($row = $result->fetch_assoc()) {
@@ -150,45 +148,50 @@
 														.	"</th>	";
 										$selection2 = $selection2 	.	"<td>"
 														.	$row["price"]
-														.	"</td>	";
+														.	"$</td>	";
 										$selection3 = $selection3 	.	"<td>"
 														.	"<input type='radio' name='radio2' value='$id' data-toggle='collapse' data-target='#t2'>"
 														.	"</td>";
-									}
+									}	
 								} else {
-									echo "";
+									$selection1= "<td> NO FLIGHTS AVAILABLE <a href = 'index.php' class='btn btn-primary'> GO BACK</a></td>";
 								}
 							}
-
+							
 							$con->close();
-
+							
 							$html = $html. "<tr>"  .$selection1 . "</tr></thead><tbody>";
 							$html = $html. "<tr>"  .$selection2 . "</tr>";
 							$html = $html. "<tr>"  .$selection3 . "</tr></tbody></table></div></div></div>";
-
 							echo $html;
 						}
 					?>
-					</div>
-			</form>
+			</div>
 		</div>
 		<div class='row'>
 			<div id='t2' class='collapse'>
-
-				<div class='col-md-10 col-md-offset-1'>
-					<div class='panel panel-success'>
-						<div class='panel-heading'> Choose action </button></div>
-						<div class='panel-body'>
-							<div class='col-md-8 col-md-offset-2' >
-								<a href='reservations.html' class='btn btn-lg btn-warning btn-block' data-toggle="modal" data-target="#basicModal"> You need to login before reserve or buy tickets</a>
+			
+				<div class="col-md-12">
+					<div class="panel panel-success">
+						<div class="panel-heading"> Choose action </button></div>
+						<div class="panel-body">
+							<div class="col-md-4">
+							</div>
+							<div class="col-md-4">
+								<a href="#" data-toggle="modal" data-target="#basicModal" class='btn btn-warning'>You need to login before making reservations or buying tickets</a>
+							</div>
+							<div class="col-md-4">
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
+		
+	
+		</form>
 	</div>
+
 
 	<!-- Modal for login -->
 	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -200,18 +203,13 @@
 				</div>
 				<div class="modal-body">
 
-					<form class="form-signin" action="login.php" method="POST">
+					<form class="form-signin" action='login.php' method='POST'>
 						<label for="user_name" class="sr-only">User Name</label>
 						<input type="text" name='user_name' id='user_name' class="form-control" placeholder="User Name" required="" autofocus="">
 						<label for="inputPassword" class="sr-only">Password</label>
 						<input type="password" name='inputPassword' id='inputPassword' class="form-control" placeholder="Password" required="">
-						<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button><!--
-					<a href="manager/index.html" class="btn btn-lg btn-primary btn-block" >Manager</a>
-					<a href="salesperson/index.html" class="btn btn-lg btn-primary btn-block" >Salesperson</a>
-					<a href="customer/index.html" class="btn btn-lg btn-primary btn-block" >Customer</a> -->
-				  </form>
-
-				</div> <!-- /container -->
+						<input type='submit' name='Submit' value='Sign In' class='btn btn-primary'/>
+					</form>
 			</div>
 		</div>
 	</div>

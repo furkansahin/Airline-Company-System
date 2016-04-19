@@ -37,6 +37,28 @@
 
 </head>
 <?PHP
+	session_start();
+	if(isset($_SESSION['is_logged_in']))
+	{
+		if($_SESSION['is_logged_in'] == 1)
+		{
+			header("Location:manager/index.php");
+		}
+		else if($_SESSION['is_logged_in'] == 2)
+		{
+			header("Location:salesperson/index.php");
+		}
+		else if($_SESSION['is_logged_in'] == 3)
+		{
+			header("Location:customer/index.php");
+		}
+		else
+		{
+			header('Location: index.php?r=1');
+		}
+	}
+?>
+<?PHP
 	if (isset($_GET['r'])){
 		if($_GET['r'] == 1){
 			echo "<script type='text/javascript'>
@@ -69,10 +91,10 @@
 
 		<!-- Search and right adv -->
 		<div class="row">
-
-
+		
+			
 			<div class="col-sm-6">
-
+					
 				<!-- Start of tabs -->
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#home">Round Trip</a></li>
@@ -80,37 +102,37 @@
 				</ul>
 				<div class="tab-content">
 					<h3>Please Choose</h3>
-
+					
 					<!-- First tab -->
 					<div id="home" class="tab-pane fade in active">
 						<form class="form-signin" action='searchflights1.php' method='POST'>
 						<!-- To and from row -->
 						<div class="row">
-
+	
 							<?PHP
+								
 
-
-								$servername = "127.0.0.1";
+								$servername = "localhost";
 								$user = "root";
 								$pass = "mfs12";
 								$dbname = "airline";
-
+								
 								$con = mysqli_connect($servername, $user, $pass, $dbname);
-
+		
 								if (mysqli_connect_errno())
 								{
 									echo "Failed to connect to MySQL: " . mysqli_connect_error();
 								}
-
+							
 								$sql = "SELECT * FROM airport";
 								$result = mysqli_query($con,$sql);
-
+								$con->close();
 								$selection1 = "";
 								$selection2 = "";
-
+								
 								if($result)
 								{
-									if ($result->num_rows > 0)
+									if ($result->num_rows > 0) 
 									{
 										// output data of each row
 										while($row = $result->fetch_assoc()) {
@@ -132,43 +154,43 @@
 									}
 								}
 								$html = "<div class='col-sm-6'><label for='searchdepart' >Departure Airport </label>"
-									."<select name='searchdepart' id='searchdepart'  class='form-control' placeholder='Please Select'>"
+									."<select name='searchdepart' id='searchdepart'  class='form-control' placeholder='Please Select' required=''>"
 									."<option value='' selected disabled>Please select</option>"
 									.$selection1
 									."</select></div><div class='col-sm-6'>"
 									."<label for='searcharrive' >Arrival Airport </label>"
-									."<select name='searcharrive' id='searcharrive'  class='form-control' placeholder='Please Select'>"
+									."<select name='searcharrive' id='searcharrive'  class='form-control' placeholder='Please Select' required=''>"
 									."<option value='' selected disabled>Please select</option>"
 									.$selection2
 									."</select></div>";
-
+								
 								echo $html;
 							?>
 						</div>
-
+							
 						<!-- Row of dates -->
 						<div class="row">
-
+						
 							<div class='col-md-6'>
 								<label for="datetimepicker6">Departure Date:</label>
 									<div class='input-group date' id='datetimepicker6'>
-										<input type='text' name='searchdate1' id='searchdate1' class="form-control"/>
+										<input type='text' name='searchdate1' id='searchdate1' class="form-control"/ required=''>
 										<span class="input-group-addon">
 										<span class="glyphicon glyphicon-calendar"></span>
 										</span>
 									</div>
 							</div>
-
+							
 							<div class='col-md-6'>
 								<label for="datetimepicker7">Return Date:</label>
 									<div class='input-group date' id='datetimepicker7'>
-										<input type='text' name='searchdate2' id='searchdate2' class="form-control"/>
+										<input type='text' name='searchdate2' id='searchdate2' class="form-control"/ required=''>
 										<span class="input-group-addon">
 										<span class="glyphicon glyphicon-calendar"></span>
 										</span>
 									</div>
 							</div>
-
+							
 							<script type="text/javascript">
 									$(function () {
 										$('#datetimepicker6').datetimepicker({
@@ -185,126 +207,163 @@
 											$('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
 										});
 									});
-							</script>
+							</script>			
 						</div>
 						<div class="row">
 							<div class="col-md-4 col-md-offset-4">
 								<label for="searchClass" > Class </label>
-									<select name='searchClass' id='searchClass'  class="form-control" placeholder="Please Select">
+									<select name='searchClass' id='searchClass'  class="form-control" placeholder="Please Select" required=''>
 										<option value="" selected disabled>Please select</option>
 										<option>Economy</option>
 										<option>Business</option>
-								</select>
-							</div>
+								</select> 
+							</div>						
 						</div>
 						<br/>
 						<div class="row">
 							<div class="col-md-10 col-md-offset-1">
 								<input type='submit' name='Submit' value='Submit' class='btn btn-primary'/>
-							</div>
-						</div>
-
+							</div>	
+						</div>	
+						
 						</form>
 					</div>	<!-- End of first tab -->
-
+					
 					<!-- Second tab -->
 					<div id="menu1" class="tab-pane fade">
+					<form class="form-signin" action='searchflights2.php' method='POST'>
 						<!-- To and from row -->
 						<div class="row">
+	
+							<?PHP
+								
 
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label for="sel1">To:</label>
-									<select class="form-control" id="sel1">
-									<option>Ankara ESB</option>
-									<option>İstanbul</option>
-									<option>Münih</option>
-									<option>Kars</option>
-									 </select>
-								</div>
-							</div>
-
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label for="sel2">From:</label>
-									<select class="form-control" id="sel2">
-									<option>İstanbul</option>
-									<option>Ankara ESB</option>
-									<option>Münih</option>
-									<option>Kars</option>
-									</select>
-								</div>
-							</div>
+								$servername = "localhost";
+								$user = "root";
+								$pass = "mfs12";
+								$dbname = "airline";
+								
+								$con = mysqli_connect($servername, $user, $pass, $dbname);
+		
+								if (mysqli_connect_errno())
+								{
+									echo "Failed to connect to MySQL: " . mysqli_connect_error();
+								}
+							
+								$sql = "SELECT * FROM airport";
+								$result = mysqli_query($con,$sql);
+								$con->close();
+								$selection1 = "";
+								$selection2 = "";
+								
+								if($result)
+								{
+									if ($result->num_rows > 0) 
+									{
+										// output data of each row
+										while($row = $result->fetch_assoc()) {
+											$selection1 = $selection1 	.	"<option>"
+															.	$row["airport_id"]
+															.	"("
+															.	$row["city_name"]
+															.	" )"
+															.	"</option>";
+											$selection2 = $selection2 	.	"<option>"
+															.	$row["airport_id"]
+															.	"("
+															.	$row["city_name"]
+															.	" )"
+															.	"</option>";
+										}
+									} else {
+										echo "";
+									}
+								}
+								$html = "<div class='col-sm-6'><label for='searchdepart2' >Departure Airport </label>"
+									."<select name='searchdepart2' id='searchdepart2'  class='form-control' placeholder='Please Select' required=''>"
+									."<option value='' selected disabled>Please select</option>"
+									.$selection1
+									."</select></div><div class='col-sm-6'>"
+									."<label for='searcharrive2' >Arrival Airport </label>"
+									."<select name='searcharrive2' id='searcharrive2'  class='form-control' placeholder='Please Select' required=''>"
+									."<option value='' selected disabled>Please select</option>"
+									.$selection2
+									."</select></div>";
+								
+								echo $html;
+							?>
 						</div>
-
+							
 						<!-- Row of dates -->
 						<div class="row">
-
+						
 							<div class='col-md-6'>
-								<label for="datetimepicker6">Departure Date:</label>
-								<div class="form-group">
-									<div class='input-group date' id='datetimepicker6'>
-										<input type='text' class="form-control" />
+								<label for="datetimepicker9">Departure Date:</label>
+									<div class='input-group date' id='datetimepicker9'>
+										<input type='text' name='searchdate3' id='searchdate3' class="form-control" required=''/>
 										<span class="input-group-addon">
 										<span class="glyphicon glyphicon-calendar"></span>
 										</span>
 									</div>
-								</div>
 							</div>
-
+							
 							<div class='col-md-6'>
-								<label for="datetimepicker7">Return Date:</label>
-								<div class="form-group">
-									<div class='input-group date' id='datetimepicker7'>
-										<input type='text' class="form-control" disabled />
+								<label for="datetimepicker10">Return Date:</label>
+									<div class='input-group date' id='datetimepicker10' >
+										<input type='text' name='searchdate4' id='searchdate4' class="form-control" readonly='readonly' />
 										<span class="input-group-addon">
 										<span class="glyphicon glyphicon-calendar"></span>
 										</span>
 									</div>
-								</div>
 							</div>
-
+							
 							<script type="text/javascript">
 									$(function () {
-										$('#datetimepicker6').datetimepicker();
-										$('#datetimepicker7').datetimepicker({
+										$('#datetimepicker9').datetimepicker({
+											format: 'YYYY-MM-DD /HH:mm'
+										});
+										$('#datetimepicker10').datetimepicker({
+											format: 'YYYY-MM-DD /HH:mm',
 											useCurrent: false //Important! See issue #1075
 										});
-										$("#datetimepicker6").on("dp.change", function (e) {
-											$('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+										$("#datetimepicker9").on("dp.change", function (e) {
+											$('#datetimepicker10').data("DateTimePicker").minDate(e.date);
 										});
-										$("#datetimepicker7").on("dp.change", function (e) {
-											$('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+										$("#datetimepicker10").on("dp.change", function (e) {
+											$('#datetimepicker9').data("DateTimePicker").maxDate(e.date);
 										});
 									});
-							</script>
+							</script>			
 						</div>
 						<div class="row">
-							<div class="col-md-8 col-md-offset-2">
-								<label for="formClass" > Class </label>
-									<select class="form-control" id="formClass">
+							<div class="col-md-4 col-md-offset-4">
+								<label for="searchClass2" > Class </label>
+									<select name='searchClass2' id='searchClass2'  class="form-control" placeholder="Please Select" required=''>
+										<option value="" selected disabled>Please select</option>
 										<option>Economy</option>
 										<option>Business</option>
-								</select>
-							</div>
+								</select> 
+							</div>						
 						</div>
 						<br/>
 						<div class="row">
 							<div class="col-md-10 col-md-offset-1">
-								<a href="searchflights.php" class="btn btn-lg btn-primary btn-block" >Search</a>
-							</div>
-						</div>
+								<input type='submit' name='Submit' value='Submit' class='btn btn-primary'/>
+							</div>	
+						</div>	
+						
+						</form>			
 					</div>
-				</div>
+				</div>	
 			</div>
-
+		
 			<!-- Right ad -->
 			<div class='col-md-6'>
-
+			
 				<img src= "img/sample1.jpg" class="img-responsive">
-
+			
 			</div>
-
+			
 		</div> <!-- End of first row -->
 
 		<div id = "breaksection2">
@@ -354,10 +413,7 @@
 					<input type="text" name='user_name' id='user_name' class="form-control" placeholder="User Name" required="" autofocus="">
 					<label for="inputPassword" class="sr-only">Password</label>
 					<input type="password" name='inputPassword' id='inputPassword' class="form-control" placeholder="Password" required="">
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button><!--
-					<a href="manager/index.html" class="btn btn-lg btn-primary btn-block" >Manager</a>
-					<a href="salesperson/index.html" class="btn btn-lg btn-primary btn-block" >Salesperson</a>
-					<a href="customer/index.html" class="btn btn-lg btn-primary btn-block" >Customer</a> -->
+					<input type='submit' name='Submit' value='Sign In' class='btn btn-primary'/>
 				  </form>
 
 				</div> <!-- /container -->
