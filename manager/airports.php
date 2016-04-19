@@ -283,7 +283,7 @@
 
 						$sql = "SELECT * FROM airport WHERE '$id' = airport_id";
 						$result = mysqli_query($con,$sql);
-
+						$con->close();
 						if ($result->num_rows > 0)
 						{
 							while($row = $result->fetch_assoc()) {

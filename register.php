@@ -9,7 +9,7 @@
 				$('#addSuccess').modal('show');
 				});
 				</script>";
-				header('Refresh: 2; URL=index.html');
+				header('Refresh: 2; URL=index.php');
 			
 		}
 		if($_GET['function'] == 2 )

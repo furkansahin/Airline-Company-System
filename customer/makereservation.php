@@ -2,9 +2,11 @@
 
 	if(isset ($_POST ['Submit2']))
 	{
+		session_start();
 		
-		$id1 = $_POST['radio1'];
-		$id2 = $_POST['radio2'];
+		$uid = $_SESSION['id'];
+		$fid1 = $_POST['radio1'];
+		$fid2 = $_POST['radio2'];
 		
 		echo $id1;
 		echo "\n" . $id2;

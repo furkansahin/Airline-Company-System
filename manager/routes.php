@@ -244,6 +244,8 @@
 							$sql = "SELECT * FROM route";
 							$result = mysqli_query($con,$sql);
 
+							$con->close();
+							
 							$html = "";
 							if($result)
 							{
