@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="countdown.js"></script>
-	
+
 	<link href='https://fonts.googleapis.com/css?family=New+Rocker' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -24,27 +24,29 @@
 	<title> User Profile </title>
 </head>
 <body>
-	
+
 	<div class = "wrapper">
 		<header style ="position: relative">
-		
+
 			<ul>
 				<li>Welcome Manager</li>
-				<li><button type="button" class="btn btn-primary">LOG OUT</button></li>
+				<li><form class="form-signin" action='../logout.php' method='POST'>
+					<input type='submit' name='Submit' value='Logout' class='btn btn-primary'/>
+				</form></li>
 			</ul>
-	
-		</header>		
-		
+
+		</header>
+
 
 		<h1> Info of User xxx with name xxx</h1>
-		
-		
+
+
 		<div class="row">
-			
+
 			<div class="panel panel-success">
 				<div class="panel-heading">Bought Flight - X days X hrs left to flight      <button type ="button" class="btn btn-danger pull-right btn-xs" >RETURN </button></div>
 				<div class="panel-body">
-				
+
 					<table class="table">
 						<tr>
 							<td> Ankara(ESB) </td>
@@ -55,9 +57,9 @@
 							<td> Economy </td>
 						</tr>
 					</table>
-							
+
 							<a href="#" data-toggle="collapse" data-target="#f1">Details </a></h2>
-						
+
 							<div id="f1" class="collapse">
 								<table class="table">
 									<tr>
@@ -82,15 +84,15 @@
 										<td> Beef </td>
 										<td> Economy </td>
 									</tr>
-								</table>	
+								</table>
 							</div>
-					
+
 				</div>
 			</div>
 			<div class="panel panel-warning">
 				<div class="panel-heading">Reserved Flight <button type ="button" class="btn btn-warning pull-right btn-xs" >CANCEL </button></div>
 				<div class="panel-body">
-				
+
 					<table class="table">
 						<tr>
 							<td> Ankara(ESB) </td>
@@ -101,9 +103,9 @@
 							<td> Economy </td>
 						</tr>
 					</table>
-							
+
 							<a href="#" data-toggle="collapse" data-target="#f1">Details </a></h2>
-						
+
 							<div id="f1" class="collapse">
 								<table class="table">
 									<tr>
@@ -128,15 +130,15 @@
 										<td> Beef </td>
 										<td> Economy </td>
 									</tr>
-								</table>	
+								</table>
 							</div>
-					
+
 				</div>
 			</div>
 			<div class="panel panel-danger">
 				<div class="panel-heading">Reserved Flight - TAKE ACTION!  <button type ="button" class="btn btn-warning pull-right btn-xs" >CANCEL </button></div>
 				<div class="panel-body">
-				
+
 					<table class="table">
 						<tr>
 							<td> Ankara(ESB) </td>
@@ -147,9 +149,9 @@
 							<td> Economy </td>
 						</tr>
 					</table>
-							
+
 							<a href="#" data-toggle="collapse" data-target="#f1">Details </a></h2>
-						
+
 							<div id="f1" class="collapse">
 								<table class="table">
 									<tr>
@@ -174,15 +176,15 @@
 										<td> Beef </td>
 										<td> Economy </td>
 									</tr>
-								</table>	
+								</table>
 							</div>
-					
+
 				</div>
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-heading">Past Flight</div>
 				<div class="panel-body">
-				
+
 					<table class="table">
 						<tr>
 							<td> Ankara(ESB) </td>
@@ -193,9 +195,9 @@
 							<td> Economy </td>
 						</tr>
 					</table>
-							
+
 							<a href="#" data-toggle="collapse" data-target="#f1">Details </a></h2>
-						
+
 							<div id="f1" class="collapse">
 								<table class="table">
 									<tr>
@@ -220,13 +222,13 @@
 										<td> Beef </td>
 										<td> Economy </td>
 									</tr>
-								</table>	
+								</table>
 							</div>
-					
+
 				</div>
 			</div>
 		</div>
 	</div>
-			
+
 </body>
 </html>

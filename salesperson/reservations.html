@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="countdown.js"></script>
-	
+
 	<link href='https://fonts.googleapis.com/css?family=New+Rocker' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -24,26 +24,28 @@
 	<title> SalesPerson </title>
 </head>
 <body>
-	
+
 	<div class = "wrapper">
 		<header style ="position: relative">
-		
+
 			<ul>
 				<li>Welcome Salesperson</li>
-				<li><button type="button" class="btn btn-primary">LOG OUT</button></li>
+				<li><form class="form-signin" action='../logout.php' method='POST'>
+					<input type='submit' name='Submit' value='Logout' class='btn btn-primary'/>
+				</form></li>
 			</ul>
-	
-		</header>		
-		
+
+		</header>
+
 
 		<h1> Current Sold and Reserved Tickets for Flight AC1111 </h1>
-		
+
 		<div class="row">
-		
+
 			<div class="panel panel-warning">
 				<div class="panel-heading">Reserved Tickets </div>
 				<div class="panel-body">
-				
+
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -62,7 +64,7 @@
 							<td> Economy</td>
 							<td> <button type="button" class="glyphicon glyphicon-user"></button></td>
 							<td> <button type="button" class="glyphicon glyphicon-trash"></button> </td>
-							
+
 						</tr>
 						<tr>
 							<td> C3546512151 </td>
@@ -71,7 +73,7 @@
 							<td> Economy</td>
 							<td> <button type="button" class="glyphicon glyphicon-user"></button></td>
 							<td> <button type="button" class="glyphicon glyphicon-trash"></button> </td>
-							
+
 						</tr>
 						<tr>
 							<td> C3546512151 </td>
@@ -80,7 +82,7 @@
 							<td> Economy</td>
 							<td> <button type="button" class="glyphicon glyphicon-user"></button></td>
 							<td> <button type="button" class="glyphicon glyphicon-trash"></button> </td>
-							
+
 						</tr>
 						<tr>
 							<td> C3546512151 </td>
@@ -89,17 +91,17 @@
 							<td> Economy</td>
 							<td> <button type="button" class="glyphicon glyphicon-user"></button></td>
 							<td> <button type="button" class="glyphicon glyphicon-trash"></button> </td>
-							
+
 						</tr>
 					</table>
-							
-						
-				</div>	
+
+
+				</div>
 			</div>
 			<div class="panel panel-success">
 				<div class="panel-heading">Sold Tickets </div>
-				<div class="panel-body">	
-				
+				<div class="panel-body">
+
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -118,7 +120,7 @@
 							<td> Economy</td>
 							<td> <button type="button" class="glyphicon glyphicon-user"></button></td>
 							<td> <button type="button" class="glyphicon glyphicon-trash"></button> </td>
-							
+
 						</tr>
 						<tr>
 							<td> C3546512151 </td>
@@ -127,7 +129,7 @@
 							<td> Economy</td>
 							<td> <button type="button" class="glyphicon glyphicon-user"></button></td>
 							<td> <button type="button" class="glyphicon glyphicon-trash"></button> </td>
-							
+
 						</tr>
 						<tr>
 							<td> C3546512151 </td>
@@ -136,7 +138,7 @@
 							<td> Economy</td>
 							<td> <button type="button" class="glyphicon glyphicon-user"></button></td>
 							<td> <button type="button" class="glyphicon glyphicon-trash"></button> </td>
-							
+
 						</tr>
 						<tr>
 							<td> C3546512151 </td>
@@ -145,16 +147,16 @@
 							<td> Economy</td>
 							<td> <button type="button" class="glyphicon glyphicon-user"></button></td>
 							<td> <button type="button" class="glyphicon glyphicon-trash"></button> </td>
-							
+
 						</tr>
 					</table>
-							
-						
-				</div>	
+
+
+				</div>
 			</div>
 		</div>
-		
+
 	</div>
-			
+
 </body>
 </html>

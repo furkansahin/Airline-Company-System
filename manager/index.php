@@ -124,7 +124,7 @@
 							<li><a href="routes.html">Routes</a></li>
 							<li><a href="crews.html">Crews</a></li>
 							<li><a href="airports.php">Airports</a></li>
-							<li><a href="customers.html">Customers</a></li>
+							<li><a href="customers.php">Customers</a></li>
 							<li><a href="flights.html">Flight Information</a></li>
 							<li><a href="planes.html">Planes</a></li>
 						</ul>

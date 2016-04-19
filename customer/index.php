@@ -57,7 +57,7 @@
 		<header class="large">
 				<ul>
 					<li><a class="active" href="index.html">Home</a></li>
-					<li><a href="reservations.html">Reservations</a></li>
+					<li><a href="reservations.php">Reservations</a></li>
 					<li><a href="myprofile.html">My Profile</a></li>
 					<li><a href="../logout.php">Log Out</a></li>
 				</ul>
