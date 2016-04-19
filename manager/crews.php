@@ -467,6 +467,7 @@
 					<br/>
 						<button class="btn btn-default" data-dismiss="modal">Close</button>
 						<input type='submit' name='Submit' value='Submit' class='btn btn-primary'/>
+					</form>
 				</div> <!-- /container -->
 			</div>
 		</div>
@@ -550,6 +551,7 @@
 					<br/>
 						<button class="btn btn-default" data-dismiss="modal">Close</button>
 						<input type='submit' name='Submit' value='Submit' class='btn btn-primary'/>
+					</form>
 				</div> <!-- /container -->
 			</div>
 		</div>
