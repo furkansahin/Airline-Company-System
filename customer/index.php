@@ -67,7 +67,7 @@
 				<ul>
 
 					<li><a class="active" href="index.php">Home</a></li>
-					<li><a href="reservations.html">Reservations</a></li>
+					<li><a href="reservations.php">Reservations</a></li>
 					<li><a href="myprofile.php"><?PHP echo $_SESSION['name']; ?></a></li>
 					<li><a href="../logout.php">Log Out</a></li>
 				</ul>
@@ -107,7 +107,7 @@
 							<?PHP
 
 
-								$servername = "localhost";
+								$servername = "127.0.0.1";
 								$user = "root";
 								$pass = "mfs12";
 								$dbname = "airline";
@@ -233,7 +233,7 @@
 							<?PHP
 
 
-								$servername = "localhost";
+								$servername = "127.0.0.1";
 								$user = "root";
 								$pass = "mfs12";
 								$dbname = "airline";

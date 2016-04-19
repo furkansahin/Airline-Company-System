@@ -121,7 +121,7 @@
 					<div class="collapse navbar-collapse navbar-ex1-collapse">
 						<ul class="nav navbar-nav">
 							<li class="active"><a href="index.php">Flights</a></li>
-							<li><a href="routes.html">Routes</a></li>
+							<li><a href="routes.php">Routes</a></li>
 							<li><a href="crews.html">Crews</a></li>
 							<li><a href="airports.php">Airports</a></li>
 							<li><a href="customers.php">Customers</a></li>

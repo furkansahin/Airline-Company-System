@@ -31,6 +31,7 @@
 				$('#removeR').modal('show');
 				});
 				</script>";
+			header('Refresh: 2; URL=reservations.php');
 		}
 		if($_GET['function'] == 2 )
 		{
@@ -39,7 +40,7 @@
 				$('#removeT').modal('show');
 				});
 				</script>";
-			header('Refresh: 2; URL=index.php');
+			header('Refresh: 2; URL=reservations.php');
 		}
 		if($_GET['function'] == 3 )
 		{
@@ -48,7 +49,55 @@
 				$('#removeFail').modal('show');
 				});
 				</script>";
-			header('Refresh: 2; URL=index.php');
+			header('Refresh: 2; URL=reservations.php');
+		}
+		if($_GET['function'] == 4 )
+		{
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#changeSeat').modal('show');
+				});
+				</script>";
+		}
+		if($_GET['function'] == 5 )
+		{
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#buyExtraLuggage').modal('show');
+				});
+				</script>";
+		}
+		if($_GET['function'] == 6 )
+		{
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#changeMeal').modal('show');
+				});
+				</script>";
+		}
+		if($_GET['function'] == 7 )
+		{
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#applyPromotion').modal('show');
+				});
+				</script>";
+		}
+		if($_GET['function'] == 8){
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#chooseMealS').modal('show');
+				});
+				</script>";
+			header('Refresh: 2; URL=reservations.php');
+		}
+		if($_GET['function'] == 9){
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#chooseMealF').modal('show');
+				});
+				</script>";
+			header('Refresh: 2; URL=reservations.php');
 		}
 	}
 ?>
@@ -61,7 +110,7 @@
 					<li><a href="index.html">Home</a></li>
 					<li><a class="active" href="reservations.html">Reservations</a></li>
 					<li><a href="myprofile.html">My Profile</a></li>
-					<li><a href="../index.html">Log Out</a></li>
+					<li><a href="../logout.php">Log Out</a></li>
 				</ul>
 		</header>
 
@@ -113,24 +162,22 @@
 								$html = $html 	.	"<div class=\"panel panel-success\">"
 												.	"<div class=\"panel-heading\">Reserved Flight"
 
-												.	"<form action=\"remove.php?type=r&"
-												.	"user_name=".$name."&id=".$row['reservation_no']
-												.	"\"><input style=\"margin-top: -20px;\" type =\"submit\" value=\"RETURN\" "
+												.	"<form action=\"remove.php?\">"
+												.	"<input name=\"type\" type=\"hidden\" value=\"r\">"
+												.	"<input name=\"user_name\" type=\"hidden\" value=\"".$name."\">"
+												.	"<input name=\"id\" type=\"hidden\" value=\"".$row['reservation_no']."\">"
+												.	"<input style=\"margin-top: -20px;\" type =\"submit\" value=\"RETURN\" "
 												.	"class=\"btn btn-danger pull-right btn-xs\" >"
 												.	"</form>"
 
-												.	"<a style=\"margin-top: -20px;\" href=\"#\" data-toggle=\"modal\" data-target=\"#changeSeat\""
+												.	"<a style=\"margin-top: -20px;\" href=\"reservations.php?function=4&val=".$row['reservation_no']."&type=t\""
 												.	" class=\"btn btn-warning pull-right btn-xs\">Change Seat</a>"
 
-												.	"<a style=\"margin-top: -20px;\" href=\"#\" data-toggle=\"modal\" data-target=\"#changeSeat\""
+												.	"<a style=\"margin-top: -20px;\" href=\"reservations.php?function=5&val=".$row['reservation_no']."&type=t\""
 												.	" class=\"btn btn-warning pull-right btn-xs\">Buy Extra Luggage</a>"
 
 
-												.	"<a style=\"margin-top: -20px;\" href=\"#\" data-toggle=\"modal\" data-target=\"#changeSeat\""
-												.	" class=\"btn btn-warning pull-right btn-xs\">Change Meal</a>"
-
-
-												.	"<a style=\"margin-top: -20px;\" href=\"#\" data-toggle=\"modal\" data-target=\"#changeSeat\""
+												.	"<a style=\"margin-top: -20px;\" href=\"href=\"reservations.php?function=7&val=".$row['reservation_no']."&type=t\""
 												.	" class=\"btn btn-success pull-right btn-xs\">Apply Promotion</a>"
 
 												.	"</div>";
@@ -142,9 +189,11 @@
 												.	"<a href='remove.php?user_name=".$name."&type=r&id=".$row['reservation_no']
 												.	"' class=\"glyphicon glyphicon-trash pull-right\">CANCEL</a></div"
 
-												.	"<form action=\"reservation_buy.php?type=r&"
-												.	"user_name=".$name."&id=".$row['reservation_no']
-												.	"\"><input style=\"margin-top: -20px;\" type =\"submit\" value=\"BUY\" "
+												.	"<form action=\"remove.php?\">"
+												.	"<input name=\"type\" type=\"hidden\" value=\"r\">"
+												.	"<input name=\"user_name\" type=\"hidden\" value=\"".$name."\">"
+												.	"<input name=\"id\" type=\"hidden\" value=\"".$row['reservation_no']."\">"
+												.	"<input style=\"margin-top: -20px;\" type =\"submit\" value=\"RETURN\" "
 												.	"class=\"btn btn-danger pull-right btn-xs\" >"
 												.	"</form>";
 							}
@@ -195,7 +244,7 @@
 																<td> Duration </td>
 																<td> Departure Time</td>
 																<td> Date </td>
-																<td> Meal</td>
+																<td> Meals </td>
 																<td> Class </td>
 															</tr>
 														</thead>
@@ -230,25 +279,26 @@
 								$html = $html 	.	"<div class=\"panel panel-success\">"
 												.	"<div class=\"panel-heading\">Bought Flight"
 
-												.	"<form action=\"remove.php?type=t&"
-												.	"user_name=".$name."&id=".$row['reservation_no']
-												.	"\"><input style=\"margin-top: -20px;\" type =\"submit\" value=\"RETURN\" "
+												.	"<form action=\"remove.php?\">"
+												.	"<input name=\"type\" type=\"hidden\" value=\"t\">"
+												.	"<input name=\"user_name\" type=\"hidden\" value=\"".$name."\">"
+												.	"<input name=\"id\" type=\"hidden\" value=\"".$row['ticket_no']."\">"
+												.	"<input style=\"margin-top: -20px;\" type =\"submit\" value=\"RETURN\" "
 												.	"class=\"btn btn-danger pull-right btn-xs\" >"
 												.	"</form>"
 
-												.	"<a style=\"margin-top: -20px;\" href=\"#\" data-toggle=\"modal\" data-target=\"#changeSeat\""
+												.	"<a style=\"margin-top: -20px;\" href=\"reservations.php?function=4&val=".$row['ticket_no']."&type=t\""
 												.	" class=\"btn btn-warning pull-right btn-xs\">Change Seat</a>"
 
-
-												.	"<a style=\"margin-top: -20px;\" href=\"#\" data-toggle=\"modal\" data-target=\"#changeSeat\""
+												.	"<a style=\"margin-top: -20px;\" href=\"reservations.php?function=5&val=".$row['ticket_no']."&type=t\""
 												.	" class=\"btn btn-warning pull-right btn-xs\">Buy Extra Luggage</a>"
 
 
-												.	"<a style=\"margin-top: -20px;\" href=\"#\" data-toggle=\"modal\" data-target=\"#changeSeat\""
+												.	"<a style=\"margin-top: -20px;\" href=\"reservations.php?function=6&val=".$row['ticket_no']."&type=t\""
 												.	" class=\"btn btn-warning pull-right btn-xs\">Change Meal</a>"
 
 
-												.	"<a style=\"margin-top: -20px;\" href=\"#\" data-toggle=\"modal\" data-target=\"#changeSeat\""
+												.	"<a style=\"margin-top: -20px;\" href=\"href=\"reservations.php?function=7&val=".$row['ticket_no']."&type=t\""
 												.	" class=\"btn btn-success pull-right btn-xs\">Apply Promotion</a>"
 
 												.	"</div>";
@@ -260,9 +310,11 @@
 												.	"<a style=\"margin-top: -20px;\" href='remove.php?user_name=".$name."&type=r&id=".$row['reservation_no']
 												.	"' class=\"glyphicon glyphicon-trash pull-right\">CANCEL</a></div"
 
-												.	"<form action=\"reservation_buy.php?type=r&"
-												.	"user_name=".$name."&id=".$row['reservation_no']
-												.	"\"><input style=\"margin-top: -20px;\" type =\"submit\" value=\"BUY\" "
+												.	"<form action=\"remove.php?\">"
+												.	"<input name=\"type\" type=\"hidden\" value=\"t\">"
+												.	"<input name=\"user_name\" type=\"hidden\" value=\"".$name."\">"
+												.	"<input name=\"id\" type=\"hidden\" value=\"".$row['ticket_no']."\">"
+												.	"<input style=\"margin-top: -20px;\" type =\"submit\" value=\"RETURN\" "
 												.	"class=\"btn btn-danger pull-right btn-xs\" >"
 												.	"</form>";
 							}
@@ -325,7 +377,7 @@
 											.	"<td>"	.	$row['flight_duration']	.	"</td>"
 											.	"<td>"	.	$row['departure_time']	.	"</td>"
 											.	"<td>"	.	$row['date']			.	"</td>"
-											.	"<td>"	.	$row['meals']			.	"</td>"
+											.	"<td>"	.	$row['meal']			.	"</td>"
 											.	"<td>"	.	$row['class']			.	"</td>"
 											.	"</tr></table></div></div></div>";
 							$count++;
@@ -336,7 +388,43 @@
 				$html = $html	.	"</div>";
 				echo $html;
 			?>
-			<!-- Airport Create -->
+			<!-- Choose Meal -->
+			<div class="modal fade" id="changeMeal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				 <div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">Choose Meal</h4>
+						</div>
+						<div class="modal-body">
+
+							<form class="form-signin" action='chooseMeal.php' method='POST'>
+								<label>Meals </label>
+								<br/>
+								<?PHP
+									$tr_id = $_GET['val'];
+									$type = $_GET['type'];
+									echo "<input name=\"id\" type=\"hidden\" value=\"".$tr_id."\">";
+									echo "<input name=\"type\" type=\"hidden\" value=\"".$type."\">";
+								?>
+								<label class="checkbox-inline"><input name="meal" type="radio" value="Beef">Beef</label>
+								<br/>
+								<label class="checkbox-inline"><input name="meal" type="radio" value="Salad">Salad</label>
+								<br/>
+								<label class="checkbox-inline"><input name="meal" type="radio" value="Pasta">Pasta</label>
+								<br/>
+								<label class="checkbox-inline"><input name="meal" type="radio" value="Chicken">Chicken</label>
+								<br/>
+								<br/>
+								<input type='submit' name='Submit' value='Add' class='btn btn-primary'/>
+						  	</form>
+
+						</div> <!-- /container -->
+					</div>
+				</div>
+			</div>
+
+			<!-- Reservation Cancel -->
 			<div class="modal fade" id="removeR" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 				 <div class="modal-dialog modal-sm">
 					<div class="modal-content">
@@ -347,7 +435,7 @@
 				</div>
 			</div>
 
-			<!-- Airport Create -->
+			<!-- Ticket Cancel -->
 			<div class="modal fade" id="removeT" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 				 <div class="modal-dialog modal-sm">
 					<div class="modal-content">
@@ -357,12 +445,32 @@
 					</div>
 				</div>
 			</div>
-			<!-- Airport Delete -->
+			<!-- Cancellation Fail -->
 			<div class="modal fade" id="removeFail" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 				 <div class="modal-dialog modal-sm">
 					<div class="modal-content">
 						<div class="modal-body">
 							<p> Return process is failed.</p>
+						</div> <!-- /content -->
+					</div>
+				</div>
+			</div>
+			<!-- ChooseMeal Success -->
+			<div class="modal fade" id="chooseMealS" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				 <div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-body">
+							<p>The meal is chosen successfully.</p>
+						</div> <!-- /content -->
+					</div>
+				</div>
+			</div>
+			<!-- Cancellation Fail -->
+			<div class="modal fade" id="chooseMealF" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				 <div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-body">
+							<p> The meal cannot be chosen.</p>
 						</div> <!-- /content -->
 					</div>
 				</div>

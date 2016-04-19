@@ -21,15 +21,16 @@
     if (strcmp($_GET['type'], 'r') == 0){
         $sql = "DELETE FROM reservation WHERE reservation_no='$id'";
     }
+
     $res = mysqli_query($con,$sql);
 
     if ($res && strcmp($_GET['type'], 'r') == 0){
-        header("Location: reservations.php?funtion=1");
+        header("Location: reservations.php?function=1");
     }
     if ($res && strcmp($_GET['type'], 't') == 0){
-        header("Location: reservations.php?funtion=2");
+        header("Location: reservations.php?function=2");
     }
     if (!$res){
-        header("Location: reservations.php?funtion=3");
+        header("Location: reservations.php?function=3");
     }
  ?>
