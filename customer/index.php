@@ -46,8 +46,6 @@
 			header("Location:../index.php");
 		}
 	}
-?>
-<?PHP
 
 	if(isset($_GET['function']))
 	{
@@ -67,8 +65,9 @@
 
 		<header class="large">
 				<ul>
+
 					<li><a class="active" href="index.php">Home</a></li>
-					<li><a href="reservations.html">Reservations</a></li>
+					<li><a href="reservations.php">Reservations</a></li>
 					<li><a href="myprofile.php"><?PHP echo $_SESSION['name']; ?></a></li>
 					<li><a href="../logout.php">Log Out</a></li>
 				</ul>
@@ -87,10 +86,10 @@
 
 		<!-- Search and right adv -->
 		<div class="row">
-		
-			
+
+
 			<div class="col-sm-6">
-					
+
 				<!-- Start of tabs -->
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#home">Round Trip</a></li>
@@ -98,37 +97,37 @@
 				</ul>
 				<div class="tab-content">
 					<h3>Please Choose</h3>
-					
+
 					<!-- First tab -->
 					<div id="home" class="tab-pane fade in active">
 						<form class="form-signin" action='searchflights1.php' method='POST'>
 						<!-- To and from row -->
 						<div class="row">
-	
-							<?PHP
-								
 
-								$servername = "localhost";
+							<?PHP
+
+
+								$servername = "127.0.0.1";
 								$user = "root";
 								$pass = "mfs12";
 								$dbname = "airline";
-								
+
 								$con = mysqli_connect($servername, $user, $pass, $dbname);
-		
+
 								if (mysqli_connect_errno())
 								{
 									echo "Failed to connect to MySQL: " . mysqli_connect_error();
 								}
-							
+
 								$sql = "SELECT * FROM airport";
 								$result = mysqli_query($con,$sql);
 								$con->close();
 								$selection1 = "";
 								$selection2 = "";
-								
+
 								if($result)
 								{
-									if ($result->num_rows > 0) 
+									if ($result->num_rows > 0)
 									{
 										// output data of each row
 										while($row = $result->fetch_assoc()) {
@@ -159,14 +158,14 @@
 									."<option value='' selected disabled>Please select</option>"
 									.$selection2
 									."</select></div>";
-								
+
 								echo $html;
 							?>
 						</div>
-							
+
 						<!-- Row of dates -->
 						<div class="row">
-						
+
 							<div class='col-md-6'>
 								<label for="datetimepicker6">Departure Date:</label>
 									<div class='input-group date' id='datetimepicker6'>
@@ -176,7 +175,7 @@
 										</span>
 									</div>
 							</div>
-							
+
 							<div class='col-md-6'>
 								<label for="datetimepicker7">Return Date:</label>
 									<div class='input-group date' id='datetimepicker7'>
@@ -186,7 +185,7 @@
 										</span>
 									</div>
 							</div>
-							
+
 							<script type="text/javascript">
 									$(function () {
 										$('#datetimepicker6').datetimepicker({
@@ -203,7 +202,7 @@
 											$('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
 										});
 									});
-							</script>			
+							</script>
 						</div>
 						<div class="row">
 							<div class="col-md-4 col-md-offset-4">
@@ -212,49 +211,49 @@
 										<option value="" selected disabled>Please select</option>
 										<option>Economy</option>
 										<option>Business</option>
-								</select> 
-							</div>						
+								</select>
+							</div>
 						</div>
 						<br/>
 						<div class="row">
 							<div class="col-md-10 col-md-offset-1">
 								<input type='submit' name='Submit' value='Submit' class='btn btn-primary'/>
-							</div>	
-						</div>	
-						
+							</div>
+						</div>
+
 						</form>
 					</div>	<!-- End of first tab -->
-					
+
 					<!-- Second tab -->
 					<div id="menu1" class="tab-pane fade">
 					<form class="form-signin" action='searchflights2.php' method='POST'>
 						<!-- To and from row -->
 						<div class="row">
-	
-							<?PHP
-								
 
-								$servername = "localhost";
+							<?PHP
+
+
+								$servername = "127.0.0.1";
 								$user = "root";
 								$pass = "mfs12";
 								$dbname = "airline";
-								
+
 								$con = mysqli_connect($servername, $user, $pass, $dbname);
-		
+
 								if (mysqli_connect_errno())
 								{
 									echo "Failed to connect to MySQL: " . mysqli_connect_error();
 								}
-							
+
 								$sql = "SELECT * FROM airport";
 								$result = mysqli_query($con,$sql);
 								$con->close();
 								$selection1 = "";
 								$selection2 = "";
-								
+
 								if($result)
 								{
-									if ($result->num_rows > 0) 
+									if ($result->num_rows > 0)
 									{
 										// output data of each row
 										while($row = $result->fetch_assoc()) {
@@ -285,14 +284,14 @@
 									."<option value='' selected disabled>Please select</option>"
 									.$selection2
 									."</select></div>";
-								
+
 								echo $html;
 							?>
 						</div>
-							
+
 						<!-- Row of dates -->
 						<div class="row">
-						
+
 							<div class='col-md-6'>
 								<label for="datetimepicker9">Departure Date:</label>
 									<div class='input-group date' id='datetimepicker9'>
@@ -302,7 +301,7 @@
 										</span>
 									</div>
 							</div>
-							
+
 							<div class='col-md-6'>
 								<label for="datetimepicker10">Return Date:</label>
 									<div class='input-group date' id='datetimepicker10' >
@@ -312,7 +311,7 @@
 										</span>
 									</div>
 							</div>
-							
+
 							<script type="text/javascript">
 									$(function () {
 										$('#datetimepicker9').datetimepicker({
@@ -329,7 +328,7 @@
 											$('#datetimepicker9').data("DateTimePicker").maxDate(e.date);
 										});
 									});
-							</script>			
+							</script>
 						</div>
 						<div class="row">
 							<div class="col-md-4 col-md-offset-4">
@@ -338,28 +337,28 @@
 										<option value="" selected disabled>Please select</option>
 										<option>Economy</option>
 										<option>Business</option>
-								</select> 
-							</div>						
+								</select>
+							</div>
 						</div>
 						<br/>
 						<div class="row">
 							<div class="col-md-10 col-md-offset-1">
 								<input type='submit' name='Submit' value='Submit' class='btn btn-primary'/>
-							</div>	
-						</div>	
-						
-						</form>			
+							</div>
+						</div>
+
+						</form>
 					</div>
-				</div>	
+				</div>
 			</div>
-		
+
 			<!-- Right ad -->
 			<div class='col-md-6'>
-			
+
 				<img src= "../img/sample1.jpg" class="img-responsive">
-			
+
 			</div>
-			
+
 		</div> <!-- End of first row -->
 		<div id = "breaksection" style ='height:50px;'>
 

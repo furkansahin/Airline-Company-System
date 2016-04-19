@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="countdown.js"></script>
-	
+
 	<link href='https://fonts.googleapis.com/css?family=New+Rocker' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -26,16 +26,16 @@
 <!-- Openning modal on delete application -->
 
 <?PHP
-	
+
 	if(isset($_GET['function']))
-	{		
+	{
 		if($_GET['function'] == 1 )
 		{
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
 				$('#editModal').modal('show');
 				});
-				</script>";		
+				</script>";
 		}
 		if($_GET['function'] == 2 )
 		{
@@ -43,7 +43,7 @@
 				$(document).ready(function(){
 				$('#editSuccess').modal('show');
 				});
-				</script>";		
+				</script>";
 			header('Refresh: 2; URL=customers.php');
 		}
 		if($_GET['function'] == 3 )
@@ -52,16 +52,16 @@
 				$(document).ready(function(){
 				$('#deleteSuccess').modal('show');
 				});
-				</script>";		
+				</script>";
 			header('Refresh: 2; URL=customers.php');
-		}	
+		}
 		if($_GET['function'] == 4 )
 		{
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
 				$('#deleteFail').modal('show');
 				});
-				</script>";		
+				</script>";
 			header('Refresh: 2; URL=customers.php');
 		}
 		if($_GET['function'] == 5 )
@@ -70,7 +70,7 @@
 				$(document).ready(function(){
 				$('#createSuccess').modal('show');
 				});
-				</script>";		
+				</script>";
 			header('Refresh: 2; URL=customers.php');
 		}
 		if($_GET['function'] == 6  )
@@ -79,30 +79,32 @@
 				$(document).ready(function(){
 				$('#createFail').modal('show');
 				});
-				</script>";		
+				</script>";
 			header('Refresh: 2; URL=customers.php');
-		}			
+		}
 	}
-	
+
 ?>
 
 <body>
-	
+
 	<div class = "wrapper">
 		<header>
-		
+
 			<ul>
 				<li>Welcome Manager</li>
-				<li><button type="button" class="btn btn-primary">LOG OUT</button></li>
+				<li><form class="form-signin" action='../logout.php' method='POST'>
+					<input type='submit' name='Submit' value='Logout' class='btn btn-primary'/>
+				</form></li>
 			</ul>
-	
-		</header>		
-		
+
+		</header>
+
 		<div id = "breaksection2">
 		</div>
 		<div class="row">
 			<div class="col-sm-3">
-			
+
 				<nav class="navbar navbar-default" role="navigation">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
@@ -121,7 +123,7 @@
 							<li><a href="index.html">Flights</a></li>
 							<li><a href="routes.html">Routes</a></li>
 							<li><a href="crews.html">Crews</a></li>
-							<li><a href="airports.php">Airports</a></li>	
+							<li><a href="airports.php">Airports</a></li>
 							<li class="active"><a href="customers.php">Customers</a></li>
 							<li><a href="flights.html">Flight Information</a></li>
 							<li><a href="planes.html">Planes</a></li>
@@ -129,13 +131,13 @@
 					 </div><!-- /.navbar-collapse -->
 				</nav>
 			</div>
-			
+
 			<div class="col-sm-8">
-				
+
 					<h2>CUSTOMERS</h2>
-					<br/>          
+					<br/>
 					<h3><button class="btn btn-lg btn-default "><i class="glyphicon glyphicon-filter"></i>Show Customers with + 10.000 miles </button></h3>
-					
+
 					<div id="demo" class="collapse">
 					<table class="table table-striped">
 						<thead>
@@ -148,26 +150,26 @@
 						</thead>
 						<tbody>
 							<?PHP
-					
+
 								$servername = "localhost";
 								$user = "root";
 								$pass = "mfs12";
 								$dbname = "airline";
-								
+
 								$con = mysqli_connect($servername, $user, $pass, $dbname);
-		
+
 								if (mysqli_connect_errno())
 								{
 									echo "Failed to connect to MySQL: " . mysqli_connect_error();
 								}
-								
+
 								$sql = "SELECT * FROM customer WHERE mile_sum > 10000";
 								$result = mysqli_query($con,$sql);
-								
+
 								$html = "";
 								if($result)
 								{
-									if ($result->num_rows > 0) 
+									if ($result->num_rows > 0)
 									{
 										// output data of each row
 										while($row = $result->fetch_assoc()) {
@@ -200,26 +202,26 @@
 						</thead>
 						<tbody>
 							<?PHP
-					
-							$servername = 'localhost';
+
+							$servername = '127.0.0.1';
 							$user = 'root';
 							$pass = 'mfs12';
 							$dbname = 'airline';
-							
+
 							$con = mysqli_connect($servername, $user, $pass, $dbname);
-	
+
 							if (mysqli_connect_errno())
 							{
 								echo "Failed to connect to MySQL: " . mysqli_connect_error();
 							}
-							
+
 							$sql = "SELECT * FROM customer";
 							$result = mysqli_query($con,$sql);
-							
+
 							$html = "";
 							if($result)
 							{
-								if ($result->num_rows > 0) 
+								if ($result->num_rows > 0)
 								{
 									// output data of each row
 									while($row = $result->fetch_assoc()) {
@@ -241,9 +243,9 @@
 							?>
 						</tbody>
 					</table>
-				
+
 			</div>
-			
+
 		</div>
 	</div>
 	<!-- Customer Delete -->

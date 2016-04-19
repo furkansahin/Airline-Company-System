@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="countdown.js"></script>
-	
+
 	<link href='https://fonts.googleapis.com/css?family=New+Rocker' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -24,22 +24,24 @@
 	<title> SalesPerson </title>
 </head>
 <body>
-	
+
 	<div class = "wrapper">
 		<header>
-		
+
 			<ul>
 				<li>Welcome Salesperson</li>
-				<li><button type="button" class="btn btn-primary">LOG OUT</button></li>
+				<li><form class="form-signin" action='../logout.php' method='POST'>
+					<input type='submit' name='Submit' value='Logout' class='btn btn-primary'/>
+				</form></li>
 			</ul>
-	
-		</header>		
-		
+
+		</header>
+
 		<div id = "breaksection2">
 		</div>
 		<div class="row">
 			<div class="col-sm-3">
-			
+
 				<nav class="navbar navbar-default" role="navigation">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
@@ -58,7 +60,7 @@
 							<li><a href="index.html">Flights</a></li>
 							<li><a href="routes.html" class="not-active">Routes</a></li>
 							<li><a href="crews.html"class="not-active">Crews</a></li>
-							<li><a href="airports.html"class="not-active">Airports</a></li>	
+							<li><a href="airports.html"class="not-active">Airports</a></li>
 							<li class="active"><a href="customers.html">Customers</a></li>
 							<li><a href="flights.html">Flight Information</a></li>
 							<li><a href="planes.html"class="not-active">Planes</a></li>
@@ -66,13 +68,13 @@
 					 </div><!-- /.navbar-collapse -->
 				</nav>
 			</div>
-			
+
 			<div class="col-sm-8">
-				
+
 					<h2>CUSTOMERS</h2>
-					<br/>          
+					<br/>
 					<h3><button class="btn btn-lg btn-default "><i class="glyphicon glyphicon-filter"></i>Show Customers with + 10.000 miles </button></h3>
-					
+
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -92,7 +94,7 @@
 								<td><a href="customer_reservation.html" class="glyphicon glyphicon-list-alt"></a></td>
 								<td><button type="button" class="glyphicon glyphicon-trash"></button></td>
 							</tr>
-							
+
 							<tr>
 								<td>ogzdemr</td>
 								<td>Oguz</td>
@@ -125,12 +127,12 @@
 								<td><a href="customer_reservation.html" class="glyphicon glyphicon-list-alt"></a></td>
 								<td><button type="button" class="glyphicon glyphicon-trash"></button></td>
 							</tr>
-							
+
 						</tbody>
 					</table>
-				
+
 			</div>
-			
+
 		</div>
 	</div>
 

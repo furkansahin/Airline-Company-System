@@ -30,7 +30,9 @@
 
 			<ul>
 				<li>Welcome Manager</li>
-				<li><button type="button" class="btn btn-primary">LOG OUT</button></li>
+				<li><form class="form-signin" action='../logout.php' method='POST'>
+					<input type='submit' name='Submit' value='Logout' class='btn btn-primary'/>
+				</form></li>
 			</ul>
 
 		</header>
