@@ -24,6 +24,7 @@
 	}
 	
 ?>
+	<div class = "wrapper">
 
 <!DOCTYPE html>
 <html>
@@ -51,7 +52,6 @@
 
 <body>
 	
-	<div class = "wrapper">
 		
 		<header class="small">
 				<ul>
@@ -59,32 +59,50 @@
 				</ul>
 		</header>		
 		
-		<div id = "breaksection2" style="height:50px;">
+		<div id = "breaksection" style="height:50px;">
 		</div>
 		<div class="row">
 			<div class="col-sm-6">
-		
+					
+			<div class="modal fade" id="addSuccess" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				 <div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-body">
+							<p> Account is added. </p>
+						</div> <!-- /content -->
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="addFail" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="false">
+				 <div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-body">
+							<p> Account cannot be created, there may be duplication or missing data in dependent tables. </p>
+						</div> <!-- /content -->
+					</div>
+				</div>
+			</div>
 		
 					<form class="form-signin" action='register_add.php' method='POST'>
 
 						<label for="formuname" >UserName </label>
-						<input type="text" name = "username" id="formuname" class="form-control" placeholder="Username" required="">
+						<input type="text" name = "username" id="formuname" class="form-control" placeholder="Username" required >
 						
 						<label for="formupass" >Name </label>
-						<input type="text" name = "name" id="formupass" class="form-control" placeholder= "Your Name" required="">
+						<input type="text" name = "name" id="formupass" class="form-control" placeholder= "Your Name" required >
 						
 						<label for="formrepas1" >Password </label>
-						<input type="password" name = "psw" id="formrepas1" class="form-control" placeholder="New Password" required="">
+						<input type="password" name = "psw" id="formrepas1" class="form-control" placeholder="New Password" required >
 						
 						<label for="formrepas2" >Repeat Password </label>
-						<input type="password" name = "psw2" id="formrepas2" class="form-control" placeholder="New Password" required="" >
+						<input type="password" name = "psw2" id="formrepas2" class="form-control" placeholder="New Password" required >
 						
 						
 						<label for="formbirth" >Birthdate </label>
-						<input type="date" name = "bdate" id="formbirth" class="form-control" placeholder ="1111-11-11" required="">
+						<input type="date" name = "bdate" id="formbirth" class="form-control" placeholder ="1111-11-11" required >
 						
 						<label for="formpassport" >Passport Number </label>
-						<input type="text" name = "passport" id="formpassport" class="form-control" placeholder ="A0000000" required="">
+						<input type="text" name = "passport" id="formpassport" class="form-control" placeholder ="A0000000" required >
 						
 						<br/>
 						<input type='submit' name='Submit' value='Submit' onclick="submitform()" class='btn btn-primary'/> 
@@ -92,24 +110,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal fade" id="addSuccess" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-		 <div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-body">
-					<p> Account is added. </p>
-				</div> <!-- /content -->
-			</div>
-		</div>
-	</div>
-	<div class="modal fade" id="addFail" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="false">
-		 <div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-body">
-					<p> Account cannot be created, there may be duplication or missing data in dependent tables. </p>
-				</div> <!-- /content -->
-			</div>
-		</div>
-	</div>
+
 	
 	
 

@@ -1,5 +1,5 @@
 <?PHP  
-	if(isset ($_POST ['Submit2']))
+	if(isset ($_POST ['Submit']))
 	{
 
 		$id = $_POST['attendantid'];
