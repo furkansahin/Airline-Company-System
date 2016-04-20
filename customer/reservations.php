@@ -205,8 +205,6 @@
 												.	"<a style=\"margin-top: -20px;\" href=\"reservations.php?function=4&val=".$row['reservation_no']."&type=t\""
 												.	" class=\"btn btn-warning pull-right btn-xs\">Change Seat</a>"
 
-												.	"<a style=\"margin-top: -20px;\" href=\"reservations.php?function=7&val=".$row['reservation_no']."&type=t\""
-												.	" class=\"btn btn-success pull-right btn-xs\">Apply Promotion</a>"
 
 												.	"</div>";
 
