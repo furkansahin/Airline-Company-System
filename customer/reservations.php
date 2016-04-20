@@ -115,6 +115,22 @@
 				</script>";
 			header('Refresh: 2; URL=reservations.php');
 		}
+		if($_GET['function'] == 12){
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#applyPromotionS').modal('show');
+				});
+				</script>";
+			header('Refresh: 2; URL=reservations.php');
+		}
+		if($_GET['function'] == 13){
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#applyPromotionF').modal('show');
+				});
+				</script>";
+			header('Refresh: 2; URL=reservations.php');
+		}
 	}
 ?>
 <body>
@@ -189,7 +205,7 @@
 												.	"<a style=\"margin-top: -20px;\" href=\"reservations.php?function=4&val=".$row['reservation_no']."&type=t\""
 												.	" class=\"btn btn-warning pull-right btn-xs\">Change Seat</a>"
 
-												.	"<a style=\"margin-top: -20px;\" href=\"href=\"reservations.php?function=7&val=".$row['reservation_no']."&type=t\""
+												.	"<a style=\"margin-top: -20px;\" href=\"reservations.php?function=7&val=".$row['reservation_no']."&type=t\""
 												.	" class=\"btn btn-success pull-right btn-xs\">Apply Promotion</a>"
 
 												.	"</div>";
@@ -310,7 +326,7 @@
 												.	" class=\"btn btn-warning pull-right btn-xs\">Change Meal</a>"
 
 
-												.	"<a style=\"margin-top: -20px;\" href=\"href=\"reservations.php?function=7&val=".$row['ticket_no']."&type=t\""
+												.	"<a style=\"margin-top: -20px;\" href=\"reservations.php?function=7&val=".$row['ticket_no']."&type=t\""
 												.	" class=\"btn btn-success pull-right btn-xs\">Apply Promotion</a>"
 
 												.	"</div>";
@@ -477,6 +493,90 @@
 				</div>
 			</div>
 
+			<!-- Apply Promotion -->
+			<div class="modal fade" id="applyPromotion" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				 <div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">Apply Promotion</h4>
+						</div>
+						<div class="modal-body">
+
+							<form class="form-signin" action='applyPromotion.php' method='POST'>
+								<?PHP
+									session_start();
+									$t_id = $_GET['val'];
+									$type = $_GET['type'];
+									$u_name= $_SESSION["id"];
+									$servername = "127.0.0.1";
+									$user = "root";
+									$pass = "mfs12";
+									$dbname = "airline";
+
+									$con = mysqli_connect($servername, $user, $pass, $dbname);
+
+									if (mysqli_connect_errno())
+									{
+										echo "Failed to connect to MySQL: " . mysqli_connect_error();
+									}
+
+									$sql = "SELECT * FROM sale WHERE user_name='$u_name'";
+
+									$result = mysqli_query($con, $sql);
+									$html = "";
+
+									if (mysqli_num_rows($result) > 0){
+										$html = $html 	.	"<label> Sales </label><br/>";
+									}
+									while ($row = mysqli_fetch_assoc($result)){
+										$html = $html	.	"<label class=\"checkbox-inline\">"
+														.	"<input name=\"promotion\" type=\"radio\" value=\""
+														.	$row['promotion_id']
+														.	"\"> ".$row['sale_amount']."% Discount! Last "
+														.	$row['sale_period']." days!</label>"
+														.	"<br/><br/>";
+
+									}
+									$sql = "SELECT * FROM campaign WHERE user_name='$u_name'";
+
+									$result = mysqli_query($con, $sql);
+									if (mysqli_num_rows($result) > 0){
+										$html = $html 	.	"<label> Free Tickets </label><br/>";
+									}
+									while ($row = mysqli_fetch_assoc($result)){
+										if (strcmp($row['campaign_type'], "Free1") == 0){
+											$html = $html	.	"<label class=\"checkbox-inline\">"
+															.	"<input name=\"promotion\" type=\"radio\" value=\""
+															.	$row['promotion_id']
+															.	"\"> Free ticket to Europe!</label>"
+															.	"<br/><br/>";
+										}
+										if (strcmp($row['campaign_type'], "Free2") == 0){
+											$html = $html	.	"<label class=\"checkbox-inline\">"
+															.	"<input name=\"promotion\" type=\"radio\" value=\""
+															.	$row['promotion_id']
+															.	"\"> Free ticket for domestic flights!</label>"
+															.	"<br/><br/>";
+										}
+									}
+
+									echo "<input name=\"id\" type=\"hidden\" value=\"".$t_id."\">";
+									echo "<input name=\"type\" type=\"hidden\" value=\"".$type."\">";
+									echo $html;
+
+								?>
+
+								<br/>
+
+								<input type='submit' name='Submit' value='Add' class='btn btn-primary'/>
+						  	</form>
+
+						</div> <!-- /container -->
+					</div>
+				</div>
+			</div>
+
 			<!-- Reservation Cancel -->
 			<div class="modal fade" id="removeR" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 				 <div class="modal-dialog modal-sm">
@@ -544,6 +644,26 @@
 					<div class="modal-content">
 						<div class="modal-body">
 							<p> Extra Luggage cannot be added.</p>
+						</div> <!-- /content -->
+					</div>
+				</div>
+			</div>
+			<!-- ApplyPromotion Success -->
+			<div class="modal fade" id="applyPromotionS" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				 <div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-body">
+							<p>Promotion is applied successfully.</p>
+						</div> <!-- /content -->
+					</div>
+				</div>
+			</div>
+			<!-- ApplyPromotion Fail -->
+			<div class="modal fade" id="applyPromotionF" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				 <div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-body">
+							<p> Promotion cannot be applied.</p>
 						</div> <!-- /content -->
 					</div>
 				</div>
