@@ -206,7 +206,7 @@
 							<input type="text" name = "attendantsalary" id="attendantsalary" class="form-control" placeholder="4000$" required="">
 							
 							<label for="attendantbirthdate"> Birthdate </label>
-							<input type="date" name = "attendantbirthdate" d="attendantbirthdate" class="form-control" placeholder="XX/XX/XXXX" required="">
+							<input type="date" name = "attendantbirthdate" id="attendantbirthdate" class="form-control" placeholder="XX/XX/XXXX" required="">
 							
 							<label for="attendantgender"> Gender </label>
 							<input type="text" name = "attendantgender" id="attendantgender" class="form-control" placeholder="M/F" required="">
