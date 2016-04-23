@@ -139,9 +139,9 @@
 
 		<header class="small">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a class="active" href="reservations.html">Reservations</a></li>
-					<li><a href="myprofile.html">My Profile</a></li>
+					<li><a href="index.php">Home</a></li>
+					<li><a class="active" href="reservations.php">Reservations</a></li>
+					<li><a href="myprofile.php">My Profile</a></li>
 					<li><a href="../logout.php">Log Out</a></li>
 				</ul>
 		</header>

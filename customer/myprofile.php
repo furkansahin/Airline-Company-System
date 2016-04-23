@@ -148,9 +148,9 @@
 						<label for='formpassport' >Passport Number </label>
 						<input type='text' id='formpassport' name='formpassport' class='form-control' value ='$passport_no' required=''>
 						<br/>
-						<label >Current Mil Sum : $mile_sum </label>
+						<label >Current Mile Sum : $mile_sum </label>
 						<br/>
-						<label >Total Credits: $total_money </label>
+						<label >Current Balance: $total_money </label>
 						<br/><br/>
 
 						<a href='index.php' class='btn btn-warning'>Exit without Changes</a>	  
