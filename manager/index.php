@@ -138,38 +138,40 @@
 					<h3><button class="btn btn-lg btn-primary " data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-plus"></i>Add Flight </button></h2>
 
 					<div id="demo" class="collapse">
-					<form class="form-signin" action='index_add.php' method='POST'>
+					<form class="form-signin" action='index_update.php' method='POST'>
 
 						<label for="flightNo" >Flight ID </label>
-						<input type="text" id="flightNo" class="form-control" placeholder="FXXX" required="">
+						<input type="text" name="flightNo" id="flightNo" class="form-control" placeholder="FXXX" required="">
 
 						<label for="routeID" >Route ID </label>
-						<input type="text" id="routeID" class="form-control" placeholder="RXXXXXXX" required="">
+						<input type="text" name="routeID" id="routeID" class="form-control" placeholder="RXXXXXXX" required="">
 
 						<label for="planeName">PlaneName</label>
-						<input type="text" id="planeName" class="form-control" placeholder="The Spirit" required="">
-
+						<input type="text" name="planeName" id="planeName" class="form-control" placeholder="The Spirit" required="">
 
 						<label for="meals" >Meals </label>
-						<input type="text" id="meals" class="form-control" placeholder="Beef" required="">
+						<input type="text" name="meals" id="meals" class="form-control" placeholder="Beef" required="">
 
 						<label for="flightdate" >Date </label>
-						<input type="datetime" id="flightdate" class="form-control" placeholder="2016-01-01" required="">
+						<input type="datetime" name="flightdate" id="flightdate" class="form-control" placeholder="2016-01-01" required="">
 
 						<label for="flighttime" >Time </label>
-						<input type="text" id="flighttime" class="form-control" placeholder="12:00:00" required="">
+						<input type="text" name="flighttime" id="flighttime" class="form-control" placeholder="12:00:00" required="">
 
 						<label for="flightluggage" >Luggage </label>
-						<input type="text" id="flightluggage" class="form-control" placeholder="10000" required="">
+						<input type="text" name="flightluggage" id="flightluggage" class="form-control" placeholder="10000" required="">
 
 						<label for="priceecon" >Price For Economy </label>
-						<input type="text" id="priceecon" class="form-control" placeholder="750" required="">
+						<input type="text" name="priceecon" id="priceecon" class="form-control" placeholder="750" required="">
 
 						<label for="pricebusi" >Price For Business </label>
-						<input type="text" id="pricebusi" class="form-control" placeholder="1500" required="">
+						<input type="text" name="pricebusi" id="pricebusi" class="form-control" placeholder="1500" required="">
 
 						<label for="delay" >Delay </label>
-						<input type="text" id="delay" class="form-control" placeholder="0" required="">
+						<input type="text" name="delay" id="delay" class="form-control" placeholder="0" required="">
+
+						<label for="seatmap" >Seatmap </label>
+						<input type="text" name="seatmap" id="seatmap" class="form-control" placeholder="0" required="">
 						<br/>
 						<button class="btn btn-lg" type="submit">Add</button>
 					</form>
@@ -229,9 +231,9 @@
 														.	"<td>". $row["economy_price"]  . "</td>"
 														.	"<td>". $row["business_price"]  . "</td>"
 														.	"<td>". $row["delay"] . "</td>"
-														.   "<td>". "<a href='index.php?function=1&flight_id=$flight_id'><button class='glyphicon glyphicon-user'></button></a>". "</td>"
+														.   "<td>". "<a href='index.php?&flight_id=$flight_id'><button class='glyphicon glyphicon-user'></button></a>". "</td>"
 														.   "<td>". "<a href='index.php?function=1&flight_id=$flight_id'><button class='glyphicon glyphicon-edit'></button></a>". "</td>"
-														.   "<td>". "<a href='flight_delete.php?flight_id=$flight_id'><button class='glyphicon glyphicon-remove'></button></a>". "</td>"
+														.   "<td>". "<a href='index_delete.php?flight_id=$flight_id'><button class='glyphicon glyphicon-remove'></button></a>". "</td>"
 														.	"</tr>";
 									}
 								} else {
@@ -300,7 +302,7 @@
 									<option>C3</option>
 									<option>C4</option>
 								</select>
-
+'
 								<label for="formc3" > Flight attendant </label>
 								<select class="form-control" id="formc3">
 									<option>C1</option>
@@ -337,47 +339,138 @@
 						<h4 class="modal-title" id="myModalLabel">Edit Flight</h4>
 					</div>
 					<div class="modal-body">
+						<form class="form-signin" action='index_update.php' method='POST'>
+						<?PHP
+							$fid = $_GET['flight_id'];
 
-						<form class="form-signin">
+							$servername = "localhost";
+							$user = "root";
+							$pass = "mfs12";
+							$dbname = "airline";
 
-						<label for="flightDelay" style = "color:red;" >Give Delay </label>
-						<input type="text" id="flightDelay" class="form-control" placeholder="Delay in mins" required="" >
+							$con = mysqli_connect($servername, $user, $pass, $dbname);
 
+							if (mysqli_connect_errno())
+							{
+								echo "Failed to connect to MySQL: " . mysqli_connect_error();
+							}
 
-						<label for="flightNo" >Flight No </label>
-						<input type="text" id="flightNo" class="form-control" placeholder="ACXXX" required="">
+							$sql = "SELECT * FROM flight WHERE '$fid' = flight_id";
+							$result = mysqli_query($con,$sql);
+							$con->close();
+							if ($result->num_rows > 0)
+							{
+									while($row = $result->fetch_assoc()) {
+													$rid = $row['route_id'];
+													$planeName = $row['plane_name'];
+													$date = $row['date'];
+													$time = $row['departure_time'];
+													$luggage = $row['luggage'];
+													$econ = $row['economy_price'];
+													$busi = $row['business_price'];
+													$meal = $row['meals'];
+													$delay = $row['delay'];
+													$seats = $row['seatmap'];
+										}
+							}
+							$html = "
+							<label for='delay' style = 'color:red;' >Give Delay </label>
+							<input type='text' name='delay' id='delay' class='form-control' value='$delay' required=''>
 
-						<label for="routeID" >Route ID </label>
-						<input type="text" id="routeID" class="form-control" placeholder="RXXXXXXX" required="">
+							<label for='flightNo' >Flight ID </label>
+							<input type='text' name='flightNo' id='flightNo' class='form-control' value='$fid' required=''>
 
-						<label for="planeName">PlaneName</label>
-						<input type="text" id="formto" class="form-control" placeholder="The Spirit" required="">
+							<label for='routeID' >Route ID </label>
+							<input type='text' name='routeID' id='routeID' class='form-control' value='$rid' required=''>
 
+							<label for='planeName'>PlaneName</label>
+							<input type='text' name='planeName' id='planeName' class='form-control' value='$planeName' required=''>
 
-						<label>Meals </label>
-						<br/>
-						<label class="checkbox-inline"><input type="checkbox" value="">Option 1</label>
-						<label class="checkbox-inline"><input type="checkbox" value="">Option 2</label>
-						<label class="checkbox-inline"><input type="checkbox" value="">Option 3</label>
-						<br/>
-						<br/>
-						<label for="flighttime" >Date&Time </label>
-						<input type="datetime" id="flighttime" class="form-control" placeholder="2016-01-01" required="">
-						<br/>
+							<label for='meals' >Meals </label>
+							<input type='text' name='meals' id='meals' class='form-control' value='$meal' required=''>
 
-						<label for="flightluggage" >Luggage </label>
-						<input type="text" id="flightluggage" class="form-control" placeholder="10000" required="">
+							<label for='flightdate' >Date </label>
+							<input type='datetime' name='flightdate' id='flightdate' class='form-control' value='$date' required=''>
 
-						<label for="priceecon" >Price For Economy </label>
-						<input type="text" id="priceecon" class="form-control" placeholder="750" required="">
+							<label for='flighttime' >Time </label>
+							<input type='text' name='flighttime' id='flighttime' class='form-control' value='$time' required=''>
+							<br/>
 
-						<label for="pricebusi" >Price For Business </label>
-						<input type="text" id="pricebusi" class="form-control" placeholder="1500" required="">
-						<br/>
-						<button class="btn btn-lg" type="submit">Save</button>
+							<label for='flightluggage' >Luggage </label>
+							<input type='text' name='flightluggage' id='flightluggage' class='form-control' value='$luggage' required=''>
+
+							<label for='priceecon' >Price For Economy </label>
+							<input type='text' name='priceecon' id='priceecon' class='form-control' value='$econ' required=''>
+
+							<label for='pricebusi' >Price For Business </label>
+							<input type='text' name='pricebusi' id='pricebusi' class='form-control' value='$busi' required=''>
+
+							<label for='seatmap' >Seatmap </label>
+							<input type='text' name='seatmap' id='seatmap' class='form-control' value='$seats' required=''>
+
+							";
+							echo $html;
+						?>
+
+						<button class="btn btn-default" data-dismiss="modal">Close</button>
+						<input type='submit' name='Submit' value='Submit' class='btn btn-primary'/>
 						</form>
 
 					</div> <!-- /container -->
+				</div>
+			</div>
+		</div>
+
+		<!-- Flight Delete -->
+		<div class="modal fade" id="editSuccess" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			 <div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p>Your changes have been saved.  </p>
+					</div> <!-- /content -->
+				</div>
+			</div>
+		</div>
+
+		<!-- Flight Create -->
+		<div class="modal fade" id="createSuccess" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			 <div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p>Flight is added. </p>
+					</div> <!-- /content -->
+				</div>
+			</div>
+		</div>
+
+		<!-- Flight Create -->
+		<div class="modal fade" id="createFail" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			 <div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p>Flight cannot be added/changed, there may be duplication or missing data in dependent tables.</p>
+					</div> <!-- /content -->
+				</div>
+			</div>
+		</div>
+		<!-- Flight Delete -->
+		<div class="modal fade" id="deleteSuccess" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			 <div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p> Flight has been deleted successfully, you will be redirected </p>
+					</div> <!-- /content -->
+				</div>
+			</div>
+		</div>
+
+		<!-- Flight Delete -->
+		<div class="modal fade" id="deleteFail" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			 <div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p> Flight cannot be deleted, there may be assigned routes. You will be redirected </p>
+					</div> <!-- /content -->
 				</div>
 			</div>
 		</div>

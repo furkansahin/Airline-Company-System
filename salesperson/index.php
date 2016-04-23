@@ -20,8 +20,8 @@
 	  <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
 	  <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 	  <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
-	  <link rel="stylesheet" type="text/css" href="manager_style.css">
-	<title> Manager </title>
+	  <link rel="stylesheet" type="text/css" href="sales_style.css">
+	<title> Salesperson </title>
 </head>
 <!-- Openning modal on delete application -->
 
@@ -44,7 +44,7 @@
 				$('#editSuccess').modal('show');
 				});
 				</script>";
-			header('Refresh: 2; URL=customers.php');
+			header('Refresh: 2; URL=index.php');
 		}
 		if($_GET['function'] == 3 )
 		{
@@ -53,7 +53,7 @@
 				$('#deleteSuccess').modal('show');
 				});
 				</script>";
-			header('Refresh: 2; URL=customers.php');
+			header('Refresh: 2; URL=index.php');
 		}
 		if($_GET['function'] == 4 )
 		{
@@ -62,7 +62,7 @@
 				$('#deleteFail').modal('show');
 				});
 				</script>";
-			header('Refresh: 2; URL=customers.php');
+			header('Refresh: 2; URL=index.php');
 		}
 		if($_GET['function'] == 5 )
 		{
@@ -71,7 +71,7 @@
 				$('#createSuccess').modal('show');
 				});
 				</script>";
-			header('Refresh: 2; URL=customers.php');
+			header('Refresh: 2; URL=index.php');
 		}
 		if($_GET['function'] == 6  )
 		{
@@ -80,7 +80,7 @@
 				$('#createFail').modal('show');
 				});
 				</script>";
-			header('Refresh: 2; URL=customers.php');
+			header('Refresh: 2; URL=index.php');
 		}
 	}
 
@@ -92,7 +92,7 @@
 		<header>
 
 			<ul>
-				<li>Welcome Manager</li>
+				<li>Welcome Salesperson </li>
 				<li><form class="form-signin" action='../logout.php' method='POST'>
 					<input type='submit' name='Submit' value='Logout' class='btn btn-primary'/>
 				</form></li>
@@ -120,13 +120,13 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse navbar-ex1-collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="index.html">Flights</a></li>
-							<li><a href="routes.html">Routes</a></li>
-							<li><a href="crews.html">Crews</a></li>
-							<li><a href="airports.php">Airports</a></li>
-							<li class="active"><a href="customers.php">Customers</a></li>
+							<li><a href="index.html" class="not-active">Flights</a></li>
+							<li><a href="routes.html" class="not-active">Routes</a></li>
+							<li><a href="crews.html" class="not-active">Crews</a></li>
+							<li><a href="airports.php" class="not-active">Airports</a></li>
+							<li class="active"><a href="index.php">Customers</a></li>
 							<li><a href="flights.html">Flight Information</a></li>
-							<li><a href="planes.html">Planes</a></li>
+							<li><a href="planes.html" class="not-active">Planes</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
 				</nav>
