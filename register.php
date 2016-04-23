@@ -1,29 +1,4 @@
-<?PHP
-	
-	if(isset($_GET['function']))
-	{		
-		if($_GET['function'] == 1 )
-		{
-			echo "<script type='text/javascript'>
-				$(document).ready(function(){
-				$('#addSuccess').modal('show');
-				});
-				</script>";
-				header('Refresh: 2; URL=index.php');
-			
-		}
-		if($_GET['function'] == 2 )
-		{
-			echo "<script type='text/javascript'>
-				$(document).ready(function(){
-				$('#addFail').modal('show');
-				});
-				</script>";	
-				header('Refresh: 2; URL=register.php');
-		}			
-	}
-	
-?>
+
 	<div class = "wrapper">
 
 <!DOCTYPE html>
@@ -115,3 +90,30 @@
 
 </body>
 </html>
+
+<?PHP
+	
+	if(isset($_GET['function']))
+	{		
+		if($_GET['function'] == 1 )
+		{
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#addSuccess').modal('show');
+				});
+				</script>";
+				header('Refresh: 2; URL=index.php');
+			
+		}
+		if($_GET['function'] == 2 )
+		{
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#addFail').modal('show');
+				});
+				</script>";	
+				header('Refresh: 2; URL=register.php');
+		}			
+	}
+	
+?>

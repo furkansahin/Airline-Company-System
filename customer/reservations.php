@@ -482,6 +482,8 @@
 								<br/>
 								<label class="checkbox-inline"><input name="meal" type="radio" value="Chicken">Chicken</label>
 								<br/>
+								<label class="checkbox-inline"><input name="meal" type="radio" value="">No meal</label>
+								<br/>
 								<br/>
 								<input type='submit' name='Submit' value='Add' class='btn btn-primary'/>
 						  	</form>
