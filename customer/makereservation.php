@@ -83,7 +83,7 @@
 					$sql = "INSERT INTO ticket select '$uid', plane_name, route_id, date, departure_time, NULL, 0, '', 'E', economy_price / 4, 'A1', economy_price from flight where flight_id = '$fid2'"; 
 					$result2 = mysqli_query($con,$sql);
 				}else{
-					$sql = "INSERT INTO ticket select '$uid', plane_name, route_id, date, departure_time, NULL, 0, '', 'B', business_price / 4, 'A1', business_price from flight where flight_id = '$fid1'"; 
+					$sql = "INSERT INTO ticket select '$uid', plane_name, route_id, date, departure_time, NULL, 0, '', 'B', business_price / 4, 'A1', business_price from flight where flight_id = '$fid1' "; 
 					$result = mysqli_query($con,$sql);
 					$sql = "INSERT INTO ticket select '$uid', plane_name, route_id, date, departure_time, NULL, 0, '', 'B', business_price / 4, 'A1', business_price from flight where flight_id = '$fid2'"; 
 					$result2 = mysqli_query($con,$sql);
@@ -91,7 +91,7 @@
 		
 		}else{
 			if( $class == 'Economy'  ){
-				$sql = "INSERT INTO ticket select '$uid', plane_name, route_id, date, departure_time, NULL, 0, '', 'E', economy_price / 4, 'A1', economy_price from flight where flight_id = '$fid1'"; 
+				$sql = "INSERT INTO ticket select '$uid', plane_name, route_id, date, departure_time, NULL, 0, '', 'E', economy_price / 4, 'A1', economy_price from flight where flight_id = '$fid1' "; 
 					$result = mysqli_query($con,$sql);
 			}else{
 				$sql = "INSERT INTO ticket select '$uid', plane_name, route_id, date, departure_time, NULL, 0, '', 'B', business_price / 4, 'A1', business_price from flight where flight_id = '$fid1'"; 
