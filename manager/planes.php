@@ -192,11 +192,13 @@
 								<th>Name</th>
 								<th>Year</th>
 								<th>Type</th>
-								<th>Capacity (E,B)</th>
+								<th>Economy Capacity</th>
+								<th>Business Capacity</th>
 								<th>Max Flight Time</th>
 								<th>Storage Capacity</th>
 								<th>Status</th>
 								<th>Send to Repair / Return</th>
+								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</thead>
@@ -228,11 +230,13 @@
     														.	"<td>". $row["plane_name"] . "</td>"
     														.	"<td>". $row["production_year"] . "</td>"
     														.	"<td>". $row["plane_type_id"] . "</td>"
-    														.	"<td>". $row["capacity"] . "</td>"
+    														.	"<td>". $row["economy_capacity"] . "</td>"
+    														.	"<td>". $row["business_capacity"] . "</td>"
                                                             .   "<td>". $row["max_flight_time"] . "</td>"
     														.	"<td>". $row["storage_capacity"] . "</td>"
     														.	"<td>". $row["available"] . "</td>"
     														.   "<td>". "<a href='planes_set_repair.php?id=$id' class=\"glyphicon glyphicon-wrench\"></a>". "</td>"
+    														.   "<td>". "<a href='planes_set_repair.php?id=$id' class=\"glyphicon glyphicon-edit\"></a>". "</td>"
     														.   "<td>". "<a href='planes_remove.php?id=$id' class=\"glyphicon glyphicon-trash\"></a>". "</td>"
     														.	"</tr>";
     									}
