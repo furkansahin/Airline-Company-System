@@ -168,12 +168,12 @@
 				}
 
 
-				$sql = "SELECT * FROM ticket NATURAL JOIN route NATURAL JOIN flight WHERE user_name='".$name."';";
+				$sql = "SELECT * FROM customer_ticket_view NATURAL JOIN route NATURAL JOIN flight WHERE user_name='".$name."';";
 
 				$tickets = mysqli_query($con, $sql);
 
 
-				$sql = "SELECT * FROM reservation NATURAL JOIN route NATURAL JOIN flight WHERE user_name='".$name."';";
+				$sql = "SELECT * FROM customer_reservation_view WHERE user_name='".$name."';";
 
 				$reservations = mysqli_query($con, $sql);
 

@@ -73,11 +73,11 @@
 							}
 							if($class == 'Economy')
 							{
-								$sql = "SELECT flight_id,date,economy_price as price From flight NATURAL JOIN route WHERE departs = '$departs' and arrives = '$arrives' and date BETWEEN DATE_SUB('$day1', INTERVAL 2 DAY) and DATE_ADD('$day1', INTERVAL 2 DAY) ";
+								$sql = "SELECT flight_id,date,economy_price as price From customer_flight_view WHERE departs = '$departs' and arrives = '$arrives' and date BETWEEN DATE_SUB('$day1', INTERVAL 2 DAY) and DATE_ADD('$day1', INTERVAL 2 DAY) ";
 							}
 							else
 							{	
-								$sql = "SELECT flight_id,date,business_price as price From flight NATURAL JOIN route WHERE departs = '$departs' and arrives = '$arrives' and date BETWEEN DATE_SUB('$day1', INTERVAL 2 DAY) and DATE_ADD('$day1', INTERVAL 2 DAY) ";
+								$sql = "SELECT flight_id,date,business_price as price From customer_flight_view WHERE departs = '$departs' and arrives = '$arrives' and date BETWEEN DATE_SUB('$day1', INTERVAL 2 DAY) and DATE_ADD('$day1', INTERVAL 2 DAY) ";
 							
 							}
 							$result = mysqli_query($con,$sql);

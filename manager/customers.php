@@ -162,7 +162,7 @@
 									echo "Failed to connect to MySQL: " . mysqli_connect_error();
 								}
 
-								$sql = "SELECT * FROM customer WHERE mile_sum >= 10000";
+								$sql = "SELECT * FROM customer_promotion_view";
 								$result = mysqli_query($con,$sql);
 
 								$html = "";
@@ -214,7 +214,7 @@
 								echo "Failed to connect to MySQL: " . mysqli_connect_error();
 							}
 
-							$sql = "SELECT * FROM customer";
+							$sql = "SELECT * FROM manager_customer_view";
 							$result = mysqli_query($con,$sql);
 
 							$html = "";
