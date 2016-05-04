@@ -75,7 +75,7 @@
 		<header class="small">
 				<ul>
 					<li><a href="index.php">Home</a></li>
-					<li><a href="reservations.html">Reservations</a></li>
+					<li><a href="reservations.php">Reservations</a></li>
 					<li><a class="active" href="myprofile.php"><?PHP echo $_SESSION['name']; ?></a></li>
 					<li><a href="../logout.php">Log Out</a></li>
 				</ul>

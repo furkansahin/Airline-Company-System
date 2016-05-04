@@ -122,11 +122,11 @@
 						<ul class="nav navbar-nav">
 							<li class="active"><a href="index.php">Flights</a></li>
 							<li><a href="routes.php">Routes</a></li>
-							<li><a href="crews.html">Crews</a></li>
+							<li><a href="crews.php">Crews</a></li>
 							<li><a href="airports.php">Airports</a></li>
 							<li><a href="customers.php">Customers</a></li>
-							<li><a href="flights.html">Flight Information</a></li>
-							<li><a href="planes.html">Planes</a></li>
+							<li><a href="flights.php">Flight Information</a></li>
+							<li><a href="planes.php">Planes</a></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 				</nav>
