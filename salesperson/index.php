@@ -125,7 +125,7 @@
 							<li><a href="crews.html" class="not-active">Crews</a></li>
 							<li><a href="airports.php" class="not-active">Airports</a></li>
 							<li class="active"><a href="index.php">Customers</a></li>
-							<li><a href="flights.html">Flight Information</a></li>
+							<li><a href="flights.php">Flight Information</a></li>
 							<li><a href="planes.html" class="not-active">Planes</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->

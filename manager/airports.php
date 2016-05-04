@@ -202,6 +202,7 @@
 								<th>Airport City</th>
 								<th>Adress</th>
 								<th>Capacity</th>
+								<th>Number of assigned flights</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
@@ -224,19 +225,31 @@
 							$sql = "SELECT * FROM airport";
 							$result = mysqli_query($con,$sql);
 
+							$sql2 = "SELECT count(*) as total FROM flight natural join route group by departs";
+							$result2 = mysqli_query($con,$sql2);
+
+							$sql3 = "SELECT count(*) as total FROM flight natural join route group by arrives";
+							$result3 = mysqli_query($con,$sql3);
+
 							$html = "";
 							if($result)
 							{
 								if ($result->num_rows > 0)
-								{
 									// output data of each row
-									while($row = $result->fetch_assoc()) {
+								{
+
+									while($row = $result->fetch_assoc() ) {
+										
+										$row2 = $result2->fetch_assoc();
+										$row3 = $result3->fetch_assoc();
+										$count = $row2["total"] + $row3["total"];
 										$id = $row['airport_id'];
 										$html = $html 	.	"<tr>"
 														.	"<td>". $row["airport_id"] . "</td>"
 														.	"<td>". $row["city_name"] . "</td>"
 														.	"<td>". $row["address"] . "</td>"
 														.	"<td>". $row["airport_capacity"] . "</td>"
+														.	"<td>".  $count. "</td>"
 														.   "<td>". "<a href='airports.php?function=1&id=$id'>Edit</a>". "</td>"
 														.   "<td>". "<a href='airports_remove.php?id=$id'>Remove</a>". "</td>"
 														.	"</tr>";
