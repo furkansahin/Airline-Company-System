@@ -135,6 +135,78 @@
 			<div class="col-sm-8">
 
 					<h2>CUSTOMERS</h2>
+					<h3>Search  Customers</h3> <p>You  may search either by first or last name</p> 
+					<form  method="post" action="customers.php"  id="searchform"> 
+						<input  type="text" name="name"> 
+						<input  type="submit" name="submitsearch" value="Search"> 
+					</form>
+					<?PHP
+					
+					if(isset ($_POST ['submitsearch']))
+					{
+						$name = $_POST ['name'];
+						$servername = "localhost";
+						$user = "root";
+						$pass = "mfs12";
+						$dbname = "airline";
+
+						$con = mysqli_connect($servername, $user, $pass, $dbname);
+
+						if (mysqli_connect_errno())
+						{
+							echo "Failed to connect to MySQL: " . mysqli_connect_error();
+						}
+
+	
+						$sql = "SELECT * FROM customer WHERE name LIKE '%$name%'";
+						$result = mysqli_query($con,$sql);
+						
+						if($result)
+						{
+							$html = "<h2>Search Results</h2>";
+							$html = $html. "<table class='table table-striped'>"
+										. "<thead><tr>"
+										."<th>Username</th>
+									<th>Name</th>
+									<th>Birthdate</th>
+									<th>Total Miles</th>
+									</tr>
+									</thead>
+									<tbody>";
+							if ($result->num_rows > 0)
+							{
+								// output data of each row
+								while($row = $result->fetch_assoc()) {
+								$user_name = $row['user_name'];
+								$html = $html 	.	"<tr>"
+												.	"<td>". $row['user_name'] . "</td>"
+												.	"<td>". $row['name'] . "</td>"
+												.	"<td>". $row['birthdate'] . "</td>"
+												.	"<td>". $row['mile_sum'] . "</td>"
+												. "<td>". "<a href='customer_reservation.php?user_name=$user_name'><span class='glyphicon glyphicon-list-alt'></span></a>". "</td>"
+												. "<td>". "<a href='customer_remove.php?function=3&user_name=$user_name'>Remove</a>". "</td>"
+												.	"</tr>";
+								}
+								$html = $html . "</tbody></table>";
+							}
+							else
+							{
+								$html = "<h2>No matching customer is found.</h2>";
+							}
+					
+						}
+						else
+						{
+							$html = "<h2>No matching customer is found.</h2>";
+						}
+						echo $html;
+						
+						
+						
+						
+					}
+	
+					?>
 					<br/>
 					<h3><button class="btn btn-lg btn-default " data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-filter"></i>Show Customers with + 10.000 miles </button></h3>
 					<div id="demo" class="collapse">
