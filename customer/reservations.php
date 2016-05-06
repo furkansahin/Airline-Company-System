@@ -139,9 +139,9 @@
 
 		<header class="small">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a class="active" href="reservations.html">Reservations</a></li>
-					<li><a href="myprofile.html">My Profile</a></li>
+					<li><a href="index.php">Home</a></li>
+					<li><a class="active" href="reservations.php">Reservations</a></li>
+					<li><a href="myprofile.php">My Profile</a></li>
 					<li><a href="../logout.php">Log Out</a></li>
 				</ul>
 		</header>
@@ -168,12 +168,12 @@
 				}
 
 
-				$sql = "SELECT * FROM ticket NATURAL JOIN route NATURAL JOIN flight WHERE user_name='".$name."';";
+				$sql = "SELECT * FROM customer_ticket_view NATURAL JOIN route NATURAL JOIN flight WHERE user_name='".$name."';";
 
 				$tickets = mysqli_query($con, $sql);
 
 
-				$sql = "SELECT * FROM reservation NATURAL JOIN route NATURAL JOIN flight WHERE user_name='".$name."';";
+				$sql = "SELECT * FROM customer_reservation_view WHERE user_name='".$name."';";
 
 				$reservations = mysqli_query($con, $sql);
 
@@ -437,10 +437,10 @@
 									<label for='extraLuggage' >Extra Luggage </label>
 									<select name='extraLuggage' id='extraLuggage'  class='form-control' placeholder='Please Select' required=''>
 										<option value='' selected disabled>Please select</option>
-										<option value='5'>5</option>
-										<option value='10'>10</option>
-										<option value='15'>15</option>
-										<option value='20'>20</option>
+										<option value='0'>0</option>
+										<option value='1'>1</option>
+										<option value='2'>2</option>
+										<option value='3'>3</option>
 									</select>
 								</div>
 								<br/>
@@ -481,6 +481,8 @@
 								<label class="checkbox-inline"><input name="meal" type="radio" value="Pasta">Pasta</label>
 								<br/>
 								<label class="checkbox-inline"><input name="meal" type="radio" value="Chicken">Chicken</label>
+								<br/>
+								<label class="checkbox-inline"><input name="meal" type="radio" value="">No meal</label>
 								<br/>
 								<br/>
 								<input type='submit' name='Submit' value='Add' class='btn btn-primary'/>

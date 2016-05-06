@@ -20,7 +20,7 @@
 	  <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
 	  <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 	  <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
-	  <link rel="stylesheet" type="text/css" href="manager_style.css">
+	  <link rel="stylesheet" type="text/css" href="sales_style.css">
 	<title> User Profile </title>
 </head>
 <body>
@@ -145,7 +145,7 @@
 													</thead>
 													<tr>";
 						$html = $html	.	"<td>"	.	$row['flight_id']		.	"</td>"
-										.	"<td>"	.	$row['reservation_no']	.	"</td>"
+										.	"<td>"	.	$row['ticket_no']	.	"</td>"
 										.	"<td>"	.	$row['departs']			.	"</td>"
 										.	"<td>"	.	$row['arrives']			.	"</td>"
 										.	"<td>"	.	$row['flight_duration']	.	"</td>"
@@ -236,7 +236,7 @@
 													</thead>
 													<tr>";
 						$html = $html	.	"<td>"	.	$row['flight_id']		.	"</td>"
-										.	"<td>"	.	$row['ticket_no']	.	"</td>"
+										.	"<td>"	.	$row['reservation_no']	.	"</td>"
 										.	"<td>"	.	$row['departs']			.	"</td>"
 										.	"<td>"	.	$row['arrives']			.	"</td>"
 										.	"<td>"	.	$row['flight_duration']	.	"</td>"

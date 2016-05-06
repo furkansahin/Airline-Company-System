@@ -20,8 +20,8 @@
 	  <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
 	  <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 	  <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
-	  <link rel="stylesheet" type="text/css" href="manager_style.css">
-	<title> Manager </title>
+	  <link rel="stylesheet" type="text/css" href="sales_style.css">
+	<title> Salesperson </title>
 </head>
 <!-- Openning modal on delete application -->
 
@@ -44,7 +44,7 @@
 				$('#editSuccess').modal('show');
 				});
 				</script>";
-			header('Refresh: 2; URL=customers.php');
+			header('Refresh: 2; URL=index.php');
 		}
 		if($_GET['function'] == 3 )
 		{
@@ -53,7 +53,7 @@
 				$('#deleteSuccess').modal('show');
 				});
 				</script>";
-			header('Refresh: 2; URL=customers.php');
+			header('Refresh: 2; URL=index.php');
 		}
 		if($_GET['function'] == 4 )
 		{
@@ -62,7 +62,7 @@
 				$('#deleteFail').modal('show');
 				});
 				</script>";
-			header('Refresh: 2; URL=customers.php');
+			header('Refresh: 2; URL=index.php');
 		}
 		if($_GET['function'] == 5 )
 		{
@@ -71,7 +71,7 @@
 				$('#createSuccess').modal('show');
 				});
 				</script>";
-			header('Refresh: 2; URL=customers.php');
+			header('Refresh: 2; URL=index.php');
 		}
 		if($_GET['function'] == 6  )
 		{
@@ -80,7 +80,7 @@
 				$('#createFail').modal('show');
 				});
 				</script>";
-			header('Refresh: 2; URL=customers.php');
+			header('Refresh: 2; URL=index.php');
 		}
 	}
 
@@ -92,7 +92,7 @@
 		<header>
 
 			<ul>
-				<li>Welcome Manager</li>
+				<li>Welcome Salesperson </li>
 				<li><form class="form-signin" action='../logout.php' method='POST'>
 					<input type='submit' name='Submit' value='Logout' class='btn btn-primary'/>
 				</form></li>
@@ -120,13 +120,13 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse navbar-ex1-collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="index.php">Flights</a></li>
-							<li><a href="routes.php">Routes</a></li>
-							<li><a href="crews.php">Crews</a></li>
-							<li><a href="airports.php">Airports</a></li>
-							<li class="active"><a href="customers.php">Customers</a></li>
+							<li><a href="index.html" class="not-active">Flights</a></li>
+							<li><a href="routes.html" class="not-active">Routes</a></li>
+							<li><a href="crews.html" class="not-active">Crews</a></li>
+							<li><a href="airports.php" class="not-active">Airports</a></li>
+							<li class="active"><a href="index.php">Customers</a></li>
 							<li><a href="flights.php">Flight Information</a></li>
-							<li><a href="planes.php">Planes</a></li>
+							<li><a href="planes.html" class="not-active">Planes</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
 				</nav>
@@ -135,78 +135,6 @@
 			<div class="col-sm-8">
 
 					<h2>CUSTOMERS</h2>
-					<h3>Search  Customers</h3> <p>You  may search either by first or last name</p> 
-					<form  method="post" action="customers.php"  id="searchform"> 
-						<input  type="text" name="name"> 
-						<input  type="submit" name="submitsearch" value="Search"> 
-					</form>
-					<?PHP
-					
-					if(isset ($_POST ['submitsearch']))
-					{
-						$name = $_POST ['name'];
-						$servername = "localhost";
-						$user = "root";
-						$pass = "mfs12";
-						$dbname = "airline";
-
-						$con = mysqli_connect($servername, $user, $pass, $dbname);
-
-						if (mysqli_connect_errno())
-						{
-							echo "Failed to connect to MySQL: " . mysqli_connect_error();
-						}
-
-	
-						$sql = "SELECT * FROM customer WHERE name LIKE '%$name%'";
-						$result = mysqli_query($con,$sql);
-						
-						if($result)
-						{
-							$html = "<h2>Search Results</h2>";
-							$html = $html. "<table class='table table-striped'>"
-										. "<thead><tr>"
-										."<th>Username</th>
-									<th>Name</th>
-									<th>Birthdate</th>
-									<th>Total Miles</th>
-									</tr>
-									</thead>
-									<tbody>";
-							if ($result->num_rows > 0)
-							{
-								// output data of each row
-								while($row = $result->fetch_assoc()) {
-								$user_name = $row['user_name'];
-								$html = $html 	.	"<tr>"
-												.	"<td>". $row['user_name'] . "</td>"
-												.	"<td>". $row['name'] . "</td>"
-												.	"<td>". $row['birthdate'] . "</td>"
-												.	"<td>". $row['mile_sum'] . "</td>"
-												. "<td>". "<a href='customer_reservation.php?user_name=$user_name'><span class='glyphicon glyphicon-list-alt'></span></a>". "</td>"
-												. "<td>". "<a href='customer_remove.php?function=3&user_name=$user_name'>Remove</a>". "</td>"
-												.	"</tr>";
-								}
-								$html = $html . "</tbody></table>";
-							}
-							else
-							{
-								$html = "<h2>No matching customer is found.</h2>";
-							}
-					
-						}
-						else
-						{
-							$html = "<h2>No matching customer is found.</h2>";
-						}
-						echo $html;
-						
-						
-						
-						
-					}
-	
-					?>
 					<br/>
 					<h3><button class="btn btn-lg btn-default " data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-filter"></i>Show Customers with + 10.000 miles </button></h3>
 					<div id="demo" class="collapse">
@@ -234,7 +162,7 @@
 									echo "Failed to connect to MySQL: " . mysqli_connect_error();
 								}
 
-								$sql = "SELECT * FROM customer_promotion_view";
+								$sql = "SELECT * FROM customer WHERE mile_sum >= 10000";
 								$result = mysqli_query($con,$sql);
 
 								$html = "";
@@ -286,7 +214,7 @@
 								echo "Failed to connect to MySQL: " . mysqli_connect_error();
 							}
 
-							$sql = "SELECT * FROM manager_customer_view";
+							$sql = "SELECT * FROM customer";
 							$result = mysqli_query($con,$sql);
 
 							$html = "";

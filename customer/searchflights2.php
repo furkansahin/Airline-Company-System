@@ -100,6 +100,7 @@
 														.	"$</td>	";
 										$selection3 = $selection3 	.	"<td>"
 														.	"<input type='radio' name='radio1' value='$id' data-toggle='collapse' data-target='#t2'>"
+														.	"<input type='text' name='class' value='$class'>"
 														.	"</td>";
 									}	
 								} else {
@@ -154,6 +155,8 @@
 		</form>
 	</div>
 
+	
 
 </body>
 </html>
+

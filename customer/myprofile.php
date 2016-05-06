@@ -75,7 +75,7 @@
 		<header class="small">
 				<ul>
 					<li><a href="index.php">Home</a></li>
-					<li><a href="reservations.html">Reservations</a></li>
+					<li><a href="reservations.php">Reservations</a></li>
 					<li><a class="active" href="myprofile.php"><?PHP echo $_SESSION['name']; ?></a></li>
 					<li><a href="../logout.php">Log Out</a></li>
 				</ul>
@@ -148,9 +148,9 @@
 						<label for='formpassport' >Passport Number </label>
 						<input type='text' id='formpassport' name='formpassport' class='form-control' value ='$passport_no' required=''>
 						<br/>
-						<label >Current Mil Sum : $mile_sum </label>
+						<label >Current Mile Sum : $mile_sum </label>
 						<br/>
-						<label >Total Credits: $total_money </label>
+						<label >Current Balance: $total_money </label>
 						<br/><br/>
 
 						<a href='index.php' class='btn btn-warning'>Exit without Changes</a>	  

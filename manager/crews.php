@@ -55,13 +55,13 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse navbar-ex1-collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="index.html">Flights</a></li>
-							<li><a href="routes.html">Routes</a></li>
-							<li class="active"><a href="crews.html">Crews</a></li>
+							<li><a href="index.php">Flights</a></li>
+							<li><a href="routes.php">Routes</a></li>
+							<li class="active"><a href="crews.php">Crews</a></li>
 							<li><a href="airports.php">Airports</a></li>	
-							<li><a href="customers.html">Customers</a></li>
-							<li><a href="flights.html">Flight Information</a></li>
-							<li><a href="planes.html">Planes</a></li>
+							<li><a href="customers.php">Customers</a></li>
+							<li><a href="flights.php">Flight Information</a></li>
+							<li><a href="planes.php">Planes</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
 				</nav>
@@ -97,7 +97,7 @@
 							<input type="date" name = "pilotbdate" id="pilotbdate" class="form-control" placeholder="XX/XX/XXXX" required="">
 							
 							<label for="pilotgender"> Gender </label>
-							<input type="text" name = "pilotgender" id="pilotgender" class="form-control" placeholder="Male/Female" required="">
+							<input type="text" name = "pilotgender" id="pilotgender" class="form-control" placeholder="M/F" required="">
 							
 							<label for="pilotphone"> Phone </label>
 							<input type="text" name = "pilotphone" id="pilotphone" class="form-control" placeholder="+90XXXXXXXXXX" required="">
@@ -206,7 +206,7 @@
 							<input type="text" name = "attendantsalary" id="attendantsalary" class="form-control" placeholder="4000$" required="">
 							
 							<label for="attendantbirthdate"> Birthdate </label>
-							<input type="date" name = "attendantbirthdate" d="attendantbirthdate" class="form-control" placeholder="XX/XX/XXXX" required="">
+							<input type="date" name = "attendantbirthdate" id="attendantbirthdate" class="form-control" placeholder="XX/XX/XXXX" required="">
 							
 							<label for="attendantgender"> Gender </label>
 							<input type="text" name = "attendantgender" id="attendantgender" class="form-control" placeholder="M/F" required="">
@@ -302,98 +302,8 @@
 			
 		</div>
 	</div>
-	<!-- Modal1 -->
-	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-		 <div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">Edit Pilot Crew</h4>
-				</div>
-				<div class="modal-body">
 
-					<form class="form-signin">
-								<label for="formCid" > CrewID </label>
-								<input type="text" id="formflno" class="form-control" placeholder="ACXXX" required="">
-								
-								<label for="formp1" > Captain </label>
-								<select class="form-control" id="formp1">
-									<option>Pilot1</option>
-									<option>Pilot1</option>
-									<option>Pilot1</option>
-									<option>Pilot1</option>
-								</select> 
-								
-								<label for="formp2" > 2nd Pilot </label>
-								<select class="form-control" id="formp2">
-									<option>Pilot1</option>
-									<option>Pilot1</option>
-									<option>Pilot1</option>
-									<option>Pilot1</option>
-								</select> 
-								
-								<label for="formp3" > 3nd Pilot</label>
-								<select class="form-control" id="formp3">
-									<option>Pilot1</option>
-									<option>Pilot1</option>
-									<option>Pilot1</option>
-									<option>Pilot1</option>
-								</select>								
-								<br/>
-								<button class="btn btn-lg" type="submit">Add</button>
-							</form>	
-
-				</div> <!-- /container -->
-			</div>
-		</div>
-	</div>
-	
-	<!-- Modal2 -->
-	<div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-		 <div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">Edit Attandents Crew</h4>
-				</div>
-				<div class="modal-body">
-
-					<form class="form-signin">
-								<label for="formCid" > CrewID </label>
-								<input type="text" id="formflno" class="form-control" placeholder="ACXXX" required="">
-								
-								<label for="formc1" > Cabin Chief </label>
-								<select class="form-control" id="formc1">
-									<option>C1</option>
-									<option>C2</option>
-									<option>C3</option>
-									<option>C4</option>
-								</select> 
-								
-								<label for="formc2" > Flight attendant </label>
-								<select class="form-control" id="formc2">
-									<option>C1</option>
-									<option>C2</option>
-									<option>C3</option>
-									<option>C4</option>
-								</select> 
-								
-								<label for="formc3" > Flight attendant </label>
-								<select class="form-control" id="formc3">
-									<option>C1</option>
-									<option>C2</option>
-									<option>C3</option>
-									<option>C4</option>
-								</select> 								
-								<br/>
-								<button class="btn btn-lg" type="submit">Add</button>
-							</form>	
-
-				</div> <!-- /container -->
-			</div>
-		</div>
-	</div>
-	<!-- Modal3 -->
+	<!-- Edit Pilot Modal-->
 	<div class="modal fade" id="editPilot" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		 <div class="modal-dialog modal-sm">
 			<div class="modal-content">

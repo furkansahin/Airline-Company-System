@@ -53,7 +53,31 @@
 		{
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
-				$('#success1').modal('show');
+				$('#addReservationSuccess').modal('show');
+				});
+				</script>";
+		}
+		if($_GET['function'] == 2 )
+		{
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#addReservationFail').modal('show');
+				});
+				</script>";
+		}
+		if($_GET['function'] == 3 )
+		{
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#addTicketSuccess').modal('show');
+				});
+				</script>";
+		}
+		if($_GET['function'] == 4 )
+		{
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#addTicketFail').modal('show');
 				});
 				</script>";
 		}
@@ -391,11 +415,41 @@
 	</div><!-- End of wrapper -->
 
 	<!-- Modal1 -->
-	<div class="modal fade" id="success1" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal fade" id="addReservationSuccess" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		 <div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="modal-body">
-					<p> Your purchase is successful, you can see it from Reservations page </p>
+					<p> Your reservation is successful, you can see it from Reservations page. </p>
+				</div> <!-- /content -->
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="addReservationFail" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		 <div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-body">
+					<p> Your reservation is not successful. </p>
+				</div> <!-- /content -->
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="addTicketSuccess" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		 <div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-body">
+					<p> Your purchase is successful, you can see it from Reservations page. </p>
+				</div> <!-- /content -->
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="addTicketFail" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		 <div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-body">
+					<p> Your purchase is not successful. </p>
 				</div> <!-- /content -->
 			</div>
 		</div>
