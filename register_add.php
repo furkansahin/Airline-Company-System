@@ -1,8 +1,8 @@
-<?PHP  
+<?PHP
 
 	if(isset ($_POST ['Submit']))
 	{
-		
+
 		$username = $_POST['username'];
 		$name = $_POST['name'];
 		$password = $_POST['psw'];
@@ -10,7 +10,7 @@
 		$bdate = $_POST['bdate'];
 		$passport = $_POST['passport'];
 
-		$servername = "localhost";
+		$servername = "127.0.0.1";
 		$user = "root";
 		$pass = "mfs12";
 		$dbname = "airline";
@@ -23,12 +23,12 @@
 		}
 		$result = NULL;
 		if( $password == $passwordagain ){
-			$sql = "INSERT INTO customer VALUES('$username', '$password', '$name', '$bdate', NULL, '$passport', 0, 0);"; 
+			$sql = "INSERT INTO customer VALUES('$username', '$password', '$name', '$bdate', NULL, '$passport', 0, 0);";
 			$result = mysqli_query($con,$sql);
 		}
-		
+
 		$con->close();
-		
+
 		if($result)
 			header('Refresh: 2; URL=register.php?function=1');
 		else
