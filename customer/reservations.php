@@ -33,7 +33,7 @@
 				</script>";
 			header('Refresh: 2; URL=reservations.php');
 		}
-		if($_GET['function'] == 2 )
+		elseif($_GET['function'] == 2 )
 		{
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
@@ -42,7 +42,7 @@
 				</script>";
 			header('Refresh: 2; URL=reservations.php');
 		}
-		if($_GET['function'] == 3 )
+		elseif($_GET['function'] == 3 )
 		{
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
@@ -51,7 +51,7 @@
 				</script>";
 			header('Refresh: 2; URL=reservations.php');
 		}
-		if($_GET['function'] == 4 )
+		elseif($_GET['function'] == 4 )
 		{
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
@@ -59,7 +59,7 @@
 				});
 				</script>";
 		}
-		if($_GET['function'] == 5 )
+		elseif($_GET['function'] == 5 )
 		{
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
@@ -67,7 +67,7 @@
 				});
 				</script>";
 		}
-		if($_GET['function'] == 6 )
+		elseif($_GET['function'] == 6 )
 		{
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
@@ -75,7 +75,7 @@
 				});
 				</script>";
 		}
-		if($_GET['function'] == 7 )
+		elseif($_GET['function'] == 7 )
 		{
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
@@ -83,7 +83,7 @@
 				});
 				</script>";
 		}
-		if($_GET['function'] == 8){
+		elseif($_GET['function'] == 8){
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
 				$('#chooseMealS').modal('show');
@@ -91,7 +91,7 @@
 				</script>";
 			header('Refresh: 2; URL=reservations.php');
 		}
-		if($_GET['function'] == 9){
+		elseif($_GET['function'] == 9){
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
 				$('#chooseMealF').modal('show');
@@ -99,7 +99,7 @@
 				</script>";
 			header('Refresh: 2; URL=reservations.php');
 		}
-		if($_GET['function'] == 10){
+		elseif($_GET['function'] == 10){
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
 				$('#extraLuggageS').modal('show');
@@ -107,7 +107,7 @@
 				</script>";
 			header('Refresh: 2; URL=reservations.php');
 		}
-		if($_GET['function'] == 11){
+		elseif($_GET['function'] == 11){
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
 				$('#extraLuggageF').modal('show');
@@ -115,7 +115,7 @@
 				</script>";
 			header('Refresh: 2; URL=reservations.php');
 		}
-		if($_GET['function'] == 12){
+		elseif($_GET['function'] == 12){
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
 				$('#applyPromotionS').modal('show');
@@ -123,10 +123,26 @@
 				</script>";
 			header('Refresh: 2; URL=reservations.php');
 		}
-		if($_GET['function'] == 13){
+		elseif($_GET['function'] == 13){
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
 				$('#applyPromotionF').modal('show');
+				});
+				</script>";
+			header('Refresh: 2; URL=reservations.php');
+		}
+		elseif($_GET['function'] == 14){
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#buyTicketS').modal('show');
+				});
+				</script>";
+			header('Refresh: 2; URL=reservations.php');
+		}
+		elseif($_GET['function'] == 15){
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#buyTicketF').modal('show');
 				});
 				</script>";
 			header('Refresh: 2; URL=reservations.php');
@@ -200,10 +216,13 @@
 												.	"<input name=\"id\" type=\"hidden\" value=\"".$row['reservation_no']."\">"
 												.	"<input style=\"margin-top: -20px;\" type =\"submit\" value=\"RETURN\" "
 												.	"class=\"btn btn-danger pull-right btn-xs\" >"
-												.	"</form>"
 
-												.	"<a style=\"margin-top: -20px;\" href=\"reservations.php?function=4&val=".$row['reservation_no']."&type=t\""
-												.	" class=\"btn btn-warning pull-right btn-xs\">Change Seat</a>"
+												.	"</form>"
+												.	"<form action=\"buyTicket.php\">"
+												.	"<input name=\"id\" type=\"hidden\" value=\"".$row['reservation_no']."\">"
+												.	"<input style=\"margin-top: -20px;\" type =\"submit\" value=\"BUY\" "
+												.	"class=\"btn btn-success pull-right btn-xs\" >"
+												.	"</form>"
 
 
 												.	"</div>";
@@ -664,6 +683,26 @@
 					<div class="modal-content">
 						<div class="modal-body">
 							<p> Promotion cannot be applied.</p>
+						</div> <!-- /content -->
+					</div>
+				</div>
+			</div>
+			<!-- BuyTicket Success -->
+			<div class="modal fade" id="buyTicketS" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				 <div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-body">
+							<p>Ticket is bought successfully.</p>
+						</div> <!-- /content -->
+					</div>
+				</div>
+			</div>
+			<!-- ApplyPromotion Fail -->
+			<div class="modal fade" id="buyTicketF" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				 <div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-body">
+							<p> Ticket cannot be bought.</p>
 						</div> <!-- /content -->
 					</div>
 				</div>
