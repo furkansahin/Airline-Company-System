@@ -211,7 +211,6 @@
 								<th>Storage Capacity</th>
 								<th>Status</th>
 								<th>Send to Repair / Return</th>
-								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</thead>
@@ -249,7 +248,6 @@
     														.	"<td>". $row["storage_capacity"] . "</td>"
     														.	"<td>". $row["available"] . "</td>"
     														.   "<td>". "<a href='planes_set_repair.php?id=$id' class=\"glyphicon glyphicon-wrench\"></a>". "</td>"
-    														.   "<td>". "<a href='planes_set_repair.php?id=$id' class=\"glyphicon glyphicon-edit\"></a>". "</td>"
     														.   "<td>". "<a href='planes_remove.php?id=$id' class=\"glyphicon glyphicon-trash\"></a>". "</td>"
     														.	"</tr>";
     									}
