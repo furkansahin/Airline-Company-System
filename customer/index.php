@@ -46,6 +46,10 @@
 			header("Location:../index.php");
 		}
 	}
+	else
+	{
+		header("Location:../index.php");
+	}
 
 	if(isset($_GET['function']))
 	{

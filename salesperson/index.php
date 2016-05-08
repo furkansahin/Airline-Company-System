@@ -23,6 +23,21 @@
 	  <link rel="stylesheet" type="text/css" href="sales_style.css">
 	<title> Salesperson </title>
 </head>
+
+<?PHP
+	session_start();
+	if(isset($_SESSION['is_logged_in']))
+	{
+		if($_SESSION['is_logged_in'] != 3)
+		{
+			header("Location:../index.php");
+		}
+	}
+	else
+	{
+		header("Location:../index.php");
+	}
+?>
 <!-- Openning modal on delete application -->
 
 <?PHP

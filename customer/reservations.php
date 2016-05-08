@@ -21,6 +21,22 @@
 
 
 </head>
+<?PHP
+
+	session_start();
+	if(isset($_SESSION['is_logged_in']))
+	{
+		if($_SESSION['is_logged_in'] != 3)
+		{
+			header("Location:../index.php");
+		}
+	}
+	else
+	{
+		header("Location:../index.php");
+	}
+?>
+
 <?php
 	if(isset($_GET['function']))
 	{

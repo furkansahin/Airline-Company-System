@@ -24,6 +24,20 @@
 	<title> Manager </title>
 </head>
 <!-- Openning modal on delete application -->
+<?PHP
+	session_start();
+	if(isset($_SESSION['is_logged_in']))
+	{
+		if($_SESSION['is_logged_in'] != 1)
+		{
+			header("Location:../index.php");
+		}
+	}
+	else
+	{
+		header("Location:../index.php");
+	}
+?>
 
 <?PHP
 

@@ -24,6 +24,21 @@
 	<title> User Profile </title>
 </head>
 <?PHP
+	session_start();
+	if(isset($_SESSION['is_logged_in']))
+	{
+		if($_SESSION['is_logged_in'] != 3)
+		{
+			header("Location:../index.php");
+		}
+	}
+	else
+	{
+		header("Location:../index.php");
+	}
+?>
+
+<?PHP
 	if(isset($_GET['function']))
 	{
 		if($_GET['function'] == 1 )

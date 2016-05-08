@@ -23,6 +23,22 @@
 	  <link rel="stylesheet" type="text/css" href="manager_style.css">
 	<title> Manager </title>
 </head>
+
+<?PHP
+	session_start();
+	if(isset($_SESSION['is_logged_in']))
+	{
+		if($_SESSION['is_logged_in'] != 1)
+		{
+			header("Location:../index.php");
+		}
+	}
+	else
+	{
+		header("Location:../index.php");
+	}
+?>
+
 <body>
 
 	<div class = "wrapper">
