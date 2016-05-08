@@ -28,10 +28,10 @@
 		
 		<header class="small">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="reservations.html">Reservations</a></li>
-					<li><a class="active" href="myprofile.html">My Profile</a></li>
-					<li><a href="../index.html">Log Out</a></li>
+					<li><a href="index.php">Home</a></li>
+					<li><a href="reservations.php">Reservations</a></li>
+					<li><a class="active" href="myprofile.php">My Profile</a></li>
+					<li><a href="../index.php">Log Out</a></li>
 				</ul>
 		</header>		
 		

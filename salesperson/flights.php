@@ -21,7 +21,7 @@
 	  <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
 	  <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 	  <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
-	  <link rel="stylesheet" type="text/css" href="manager_style.css">
+	  <link rel="stylesheet" type="text/css" href="sales_style.css">
 	<title> Manager </title>
 </head>
 <body>
@@ -58,13 +58,13 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse navbar-ex1-collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="index.php">Flights</a></li>
-							<li><a href="routes.php">Routes</a></li>
-							<li><a href="crews.php">Crews</a></li>
-							<li><a href="airports.php">Airports</a></li>
-							<li><a href="customers.php">Customers</a></li>
+							<li><a href="index.html" class="not-active">Flights</a></li>
+							<li><a href="routes.html" class="not-active">Routes</a></li>
+							<li><a href="crews.html" class="not-active">Crews</a></li>
+							<li><a href="airports.php" class="not-active">Airports</a></li>
+							<li><a href="index.php">Customers</a></li>
 							<li class="active"><a href="flights.php">Flight Information</a></li>
-							<li><a href="planes.php">Planes</a></li>
+							<li><a href="planes.html" class="not-active">Planes</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
 				</nav>
