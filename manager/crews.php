@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="countdown.js"></script>
-	
+
 	<link href='https://fonts.googleapis.com/css?family=New+Rocker' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -24,22 +24,24 @@
 	<title> Manager </title>
 </head>
 <body>
-	
+
 	<div class = "wrapper">
 		<header>
-		
+
 			<ul>
 				<li>Welcome Manager</li>
-				<li><button type="button" class="btn btn-primary">LOG OUT</button></li>
+				<li><form class="form-signin" action='../logout.php' method='POST'>
+					<input type='submit' name='Submit' value='Logout' class='btn btn-primary'/>
+				</form></li>
 			</ul>
-	
-		</header>		
-		
+
+		</header>
+
 		<div id = "breaksection2">
 		</div>
 		<div class="row">
 			<div class="col-sm-3">
-			
+
 				<nav class="navbar navbar-default" role="navigation">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
@@ -58,7 +60,7 @@
 							<li><a href="index.php">Flights</a></li>
 							<li><a href="routes.php">Routes</a></li>
 							<li class="active"><a href="crews.php">Crews</a></li>
-							<li><a href="airports.php">Airports</a></li>	
+							<li><a href="airports.php">Airports</a></li>
 							<li><a href="customers.php">Customers</a></li>
 							<li><a href="flights.php">Flight Information</a></li>
 							<li><a href="planes.php">Planes</a></li>
@@ -66,57 +68,57 @@
 					 </div><!-- /.navbar-collapse -->
 				</nav>
 			</div>
-			
+
 			<div class="col-sm-8">
-				
+
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#pilots">Pilots</a></li>
 					<li><a data-toggle="tab" href="#atts">Flight attendants</a></li>
 				</ul>
 
 				<div class="tab-content">
-									
+
 					<div id="pilots" class="tab-pane fade in active">
-						
+
 						<h3>Pilots</h3>
 						<h3><button class="btn btn-lg btn-primary " data-toggle="collapse" data-target="#demo3"><i class="glyphicon glyphicon-plus"></i> Add a pilot </button></h2>
-							
+
 						<div id="demo3" class="collapse">
 							<form class="form-signin" action='pilot_add.php' method='POST'>
-							
+
 							<label for="pilotid"> StaffId </label>
 							<input type="text" name = "pilotid" id="pilotid" class="form-control" placeholder="1111111" required="">
-							
+
 							<label for="pilotname"> Name </label>
 							<input type="text" name = "pilotname" id="pilotname" class="form-control" placeholder="Sample Pilot" required="">
-							
+
 							<label for="pilotsalary"> Salary </label>
 							<input type="text" name = "pilotsalary" id="pilotsalary" class="form-control" placeholder="4000$" required="">
-							
+
 							<label for="pilotbdate"> Birthdate </label>
 							<input type="date" name = "pilotbdate" id="pilotbdate" class="form-control" placeholder="XX/XX/XXXX" required="">
-							
+
 							<label for="pilotgender"> Gender </label>
 							<input type="text" name = "pilotgender" id="pilotgender" class="form-control" placeholder="M/F" required="">
-							
+
 							<label for="pilotphone"> Phone </label>
 							<input type="text" name = "pilotphone" id="pilotphone" class="form-control" placeholder="+90XXXXXXXXXX" required="">
-							
+
 							<label for="pilotlicense"> LicenseNo </label>
 							<input type="text" name = "pilotlicense" id="pilotlicense" class="form-control" placeholder="XXXXXXXXX" required="">
-							
+
 							<label for="pilotrank"> Rank </label>
 							<input type="text" name = "pilotrank" id="pilotrank" class="form-control" placeholder="XXX" required="">
-							
+
 							<label for="pilotmax"> Maximum Flight Distance </label>
 							<input type="text" name = "pilotmax" id="pilotmax" class="form-control" placeholder="XX.XXX" required="">
 
-							
+
 							<br/>
-							<input type='submit' name='AddPilot' value='Submit' onclick="submitform()" class='btn btn-primary'/> 
-							</form>	
+							<input type='submit' name='AddPilot' value='Submit' onclick="submitform()" class='btn btn-primary'/>
+							</form>
 						</div>
-						<br/>          
+						<br/>
 						<table class="table table-striped">
 							<thead>
 								<tr>
@@ -133,27 +135,27 @@
 								</tr>
 							</thead>
 							<?PHP
-					
+
 							$servername = "localhost";
 							$user = "root";
 							$pass = "mfs12";
 							$dbname = "airline";
-							
+
 							$con = mysqli_connect($servername, $user, $pass, $dbname);
-	
+
 							if (mysqli_connect_errno())
 							{
 								echo "Failed to connect to MySQL: " . mysqli_connect_error();
 							}
-							
+
 							$sql = "SELECT  staff.staff_id, name, salary, birthdate, gender, phone, license_no, rank, max_flight_distance FROM (staff natural join crew natural join pilot) left OUTER JOIN staffphones ON staff.staff_id = staffphones.staff_id;";
 							$result = mysqli_query($con,$sql);
-							
+
 
 							$html = "";
 							if($result)
 							{
-								if ($result->num_rows > 0) 
+								if ($result->num_rows > 0)
 								{
 									// output data of each row
 									while($row = $result->fetch_assoc()) {
@@ -183,52 +185,52 @@
 
 							</tbody>
 						</table>
-					
-					
-					
+
+
+
 					</div>
-					
-					
+
+
 					<div id="atts" class="tab-pane fade">
 						<h3>Attendants</h3>
 						<h3><button class="btn btn-lg btn-primary " data-toggle="collapse" data-target="#demo4"><i class="glyphicon glyphicon-plus"></i> Add an attendant </button></h2>
-							
+
 						<div id="demo4" class="collapse">
 							<form class="form-signin" action='flight_attendance_add.php' method='POST'>
 							</select>
 							<label for="attendantid"> StaffId </label>
 							<input type="text"  name = "attendantid" id="attendantid" class="form-control" placeholder="1111111" required="">
-							
+
 							<label for="attendantname"> Name </label>
 							<input type="text" name = "attendantname" id="attendantname" class="form-control" placeholder="Sample Attendant" required="">
-							
+
 							<label for="attendantsalary"> Salary </label>
 							<input type="text" name = "attendantsalary" id="attendantsalary" class="form-control" placeholder="4000$" required="">
-							
+
 							<label for="attendantbirthdate"> Birthdate </label>
 							<input type="date" name = "attendantbirthdate" id="attendantbirthdate" class="form-control" placeholder="XX/XX/XXXX" required="">
-							
+
 							<label for="attendantgender"> Gender </label>
 							<input type="text" name = "attendantgender" id="attendantgender" class="form-control" placeholder="M/F" required="">
-							
+
 							<label for="attendantphone"> Phone </label>
 							<input type="text" name = "attendantphone" id="attendantphone" class="form-control" placeholder="+90XXXXXXXXXX" required="">
-							
+
 							<label for="attendantlicense"> LicanseNo </label>
 							<input type="text" name = "attendantlicense" id="attendantlicense" class="form-control" placeholder="XXXXXXXXX" required="">
-							
+
 							<label for="attendantrank"> Rank </label>
 							<input type="text" id="attendantrank" name = "attendantrank" class="form-control" placeholder="XXX" required="">
-							
+
 							<label for="attendantclass"> Serving Class</label>
 							<input type="text" id="attendantclass" name = "attendantclass" class="form-control" placeholder="E/B" required="">
 
-							
+
 							<br/>
 							<button class="btn btn-lg" name='AddAttendant' type="submit">Add</button>
-							</form>	
+							</form>
 						</div>
-						<br/>          
+						<br/>
 						<table class="table table-striped">
 							<thead>
 								<tr>
@@ -246,27 +248,27 @@
 								</tr>
 							</thead>
 							<?PHP
-					
+
 							$servername = "localhost";
 							$user = "root";
 							$pass = "mfs12";
 							$dbname = "airline";
-							
+
 							$con = mysqli_connect($servername, $user, $pass, $dbname);
-	
+
 							if (mysqli_connect_errno())
 							{
 								echo "Failed to connect to MySQL: " . mysqli_connect_error();
 							}
-							
+
 							$sql = "SELECT  staff.staff_id, name, salary, birthdate, gender, phone, license_no, rank, flight_class_served FROM (staff natural join crew natural join flightattendance) left OUTER JOIN staffphones ON staff.staff_id = staffphones.staff_id;";
 							$result = mysqli_query($con,$sql);
-							
+
 
 							$html = "";
 							if($result)
 							{
-								if ($result->num_rows > 0) 
+								if ($result->num_rows > 0)
 								{
 									// output data of each row
 									while($row = $result->fetch_assoc()) {
@@ -291,15 +293,15 @@
 							}
 							echo $html;
 						?>
-								
+
 							</tbody>
 						</table>
 					</div>
 				</div>
-					
-				
+
+
 			</div>
-			
+
 		</div>
 	</div>
 
@@ -362,10 +364,10 @@
 						<input type='text' name='pilotgender' id='gender' class='form-control' value='$gender' required=''>
 
 						<label for='phone' >Phone </label>
-						<input type='text' name='pilotphone' id='phone' class='form-control' value='$phone' required=''>						
+						<input type='text' name='pilotphone' id='phone' class='form-control' value='$phone' required=''>
 
 						<label for='license' >License </label>
-						<input type='text' name='pilotlicense' id='license' class='form-control' value='$license' required=''>	
+						<input type='text' name='pilotlicense' id='license' class='form-control' value='$license' required=''>
 
 						<label for='rank' >Rank </label>
 						<input type='text' name='pilotrank' id='rank' class='form-control' value='$rank' required=''>
@@ -382,7 +384,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 <div class="modal fade" id="editAttendant" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		 <div class="modal-dialog modal-sm">
 			<div class="modal-content">
@@ -443,11 +445,11 @@
 						<label for='attendantgender' >Gender</label>
 						<input type='text' name='attendantgender' id='attendantgender' class='form-control' value='$agender' required=''>
 
-						<label for='attendantphone' >Phone </label> 
-						<input type='text' name='attendantphone' id='attendantphone' class='form-control' value='$aphone' required=''>						
+						<label for='attendantphone' >Phone </label>
+						<input type='text' name='attendantphone' id='attendantphone' class='form-control' value='$aphone' required=''>
 
 						<label for='attendantlicense' >License </label>
-						<input type='text' name='attendantlicense' id='attendantlicense' class='form-control' value='$alicense' required=''>	
+						<input type='text' name='attendantlicense' id='attendantlicense' class='form-control' value='$alicense' required=''>
 
 						<label for='attendantrank' >Rank </label>
 						<input type='text' name='attendantrank' id='attendantrank' class='form-control' value='$arank' required=''>
@@ -456,7 +458,7 @@
 						<input type='text' name='attendantclass' id='attendantmaxDistance'class='form-control' value='$aclass' required=''>";
 						echo $html;
 					?>
-					
+
 
 					<br/>
 						<button class="btn btn-default" data-dismiss="modal">Close</button>
@@ -467,8 +469,8 @@
 		</div>
 	</div>
 
-	
-	
+
+
 	<!--AddAttendantSuccess-->
 	<div class="modal fade" id="addAttendantSuccess" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		 <div class="modal-dialog modal-sm">
@@ -581,17 +583,17 @@
 
 <!-- Openning modal on delete application -->
 <?PHP
-	
+
 	if(isset($_GET['function']))
-	{		
-		
+	{
+
 		if($_GET['function'] == 1 )
 		{
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
 				$('#addAttendantSuccess').modal('show');
 				});
-				</script>";		
+				</script>";
 			//header('Refresh: 2; URL=crews.php');
 		}
 		if($_GET['function'] == 2  )
@@ -600,7 +602,7 @@
 				$(document).ready(function(){
 				$('#addAttendantFail').modal('show');
 				});
-				</script>";		
+				</script>";
 			//header('Refresh: 2; URL=crews.php');
 		}
 		if($_GET['function'] == 3  )
@@ -609,7 +611,7 @@
 				$(document).ready(function(){
 				$('#addPilotSuccess').modal('show');
 				});
-				</script>";		
+				</script>";
 			//header('Refresh: 2; URL=crews.php');
 		}
 		if($_GET['function'] == 4  )
@@ -618,7 +620,7 @@
 				$(document).ready(function(){
 				$('#addPilotFail').modal('show');
 				});
-				</script>";		
+				</script>";
 			//header('Refresh: 2; URL=crews.php');
 		}
 		if($_GET['function'] == 5  )
@@ -627,7 +629,7 @@
 				$(document).ready(function(){
 				$('#deletePilotSuccess').modal('show');
 				});
-				</script>";		
+				</script>";
 			//header('Refresh: 2; URL=crews.php');
 		}
 		if($_GET['function'] == 6 )
@@ -636,16 +638,16 @@
 				$(document).ready(function(){
 				$('#deletePilotFail').modal('show');
 				});
-				</script>";		
+				</script>";
 			//header('Refresh: 2; URL=crews.php');
-		}	
+		}
 		if($_GET['function'] == 7  )
 		{
 			echo "<script type='text/javascript'>
 				$(document).ready(function(){
 				$('#deleteAttendantSuccess').modal('show');
 				});
-				</script>";		
+				</script>";
 			//header('Refresh: 2; URL=crews.php');
 		}
 		if($_GET['function'] == 8 )
@@ -654,7 +656,7 @@
 				$(document).ready(function(){
 				$('#deleteAttendantFail').modal('show');
 				});
-				</script>";		
+				</script>";
 			//header('Refresh: 2; URL=crews.php');
 		}
 		if($_GET['function'] == 9 )
@@ -663,7 +665,7 @@
 				$(document).ready(function(){
 				$('#editPilot').modal('show');
 				});
-				</script>";		
+				</script>";
 			//header('Refresh: 2; URL=crews.php');
 		}
 		if($_GET['function'] == 10 )
@@ -672,7 +674,7 @@
 				$(document).ready(function(){
 				$('#editPilotSuccess').modal('show');
 				});
-				</script>";		
+				</script>";
 			//header('Refresh: 2; URL=crews.php');
 		}
 		if($_GET['function'] == 11 )
@@ -681,7 +683,7 @@
 				$(document).ready(function(){
 				$('#editAttendant').modal('show');
 				});
-				</script>";		
+				</script>";
 			//header('Refresh: 2; URL=crews.php');
 		}
 		if($_GET['function'] == 12 )
@@ -690,9 +692,9 @@
 				$(document).ready(function(){
 				$('#editAttendantSuccess').modal('show');
 				});
-				</script>";		
+				</script>";
 			//header('Refresh: 2; URL=crews.php');
 		}
 	}
-	
+
 ?>
