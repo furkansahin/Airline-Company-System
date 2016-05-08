@@ -133,7 +133,7 @@
 													<thead>
 														<tr>
 															<td> Flight No </td>
-															<td> Ticket No </td>
+															<td> Reservation No </td>
 															<td> From </td>
 															<td> To</td>
 															<td> Duration </td>
@@ -145,7 +145,7 @@
 													</thead>
 													<tr>";
 						$html = $html	.	"<td>"	.	$row['flight_id']		.	"</td>"
-										.	"<td>"	.	$row['ticket_no']	.	"</td>"
+										.	"<td>"	.	$row['reservation_no']	.	"</td>"
 										.	"<td>"	.	$row['departs']			.	"</td>"
 										.	"<td>"	.	$row['arrives']			.	"</td>"
 										.	"<td>"	.	$row['flight_duration']	.	"</td>"
@@ -236,7 +236,7 @@
 													</thead>
 													<tr>";
 						$html = $html	.	"<td>"	.	$row['flight_id']		.	"</td>"
-										.	"<td>"	.	$row['reservation_no']	.	"</td>"
+										.	"<td>"	.	$row['ticket_no']	.	"</td>"
 										.	"<td>"	.	$row['departs']			.	"</td>"
 										.	"<td>"	.	$row['arrives']			.	"</td>"
 										.	"<td>"	.	$row['flight_duration']	.	"</td>"
