@@ -17,9 +17,9 @@
 		}
 
 		$sql1 = "SELECT * FROM manager NATURAL JOIN reservationauthoritative WHERE username='".$u_id."' AND password='".$u_pass."'";
-		$sql2 = "SELECT * FROM salesperson NATURAL JOIN reservationauthoritative WHERE user_name='".$u_id."' AND password='".$u_pass."'";
+		$sql2 = "SELECT * FROM salesperson NATURAL JOIN reservationauthoritative WHERE username='".$u_id."' AND password='".$u_pass."'";
 		$sql3 = "SELECT * FROM customer WHERE user_name='".$u_id."' AND password='".$u_pass."'";
-		
+
 		$res = mysqli_query($con, $sql1);
 		if($res && mysqli_num_rows($res) > 0)
 		{
@@ -36,7 +36,7 @@
 			session_start();
 			$_SESSION['is_logged_in'] = 2;
 			$_SESSION['id'] = $u_id;
-			header('Location: salesperson/index.php'); 
+			header('Location: salesperson/index.php');
 			$con->close();
 			exit();
 		}
@@ -52,9 +52,9 @@
 			$_SESSION['id'] = $u_id;
 			header('Location: customer/index.php');
 			exit();
-			
+
 		}
-		
+
 		header('Location: index.php?r=1');
 
 	}
@@ -62,6 +62,6 @@
 	{
 		header('Location: index.php');
 	}
-   
+
 
 ?>
