@@ -239,7 +239,7 @@
 								{
 
 									while($row = $result->fetch_assoc() ) {
-										
+
 										$row2 = $result2->fetch_assoc();
 										$row3 = $result3->fetch_assoc();
 										$count = $row2["total"] + $row3["total"];

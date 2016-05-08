@@ -83,6 +83,30 @@
 				</script>";
 			header('Refresh: 2; URL=index.php');
 		}
+		if($_GET['function'] == 7 )
+		{
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#crewModal').modal('show');
+				});
+				</script>";
+		}
+		if($_GET['function'] == 8 )
+		{
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#crewSuccess').modal('show');
+				});
+				</script>";
+		}
+		if($_GET['function'] == 9 )
+		{
+			echo "<script type='text/javascript'>
+				$(document).ready(function(){
+				$('#crewFail').modal('show');
+				});
+				</script>";
+		}
 	}
 
 ?>
@@ -221,6 +245,7 @@
 									// output data of each row
 									while($row = $result->fetch_assoc()) {
 										$flight_id = $row['flight_id'];
+										$route_id = $row['route_id'];
 										$html = $html 	.	"<tr>"
 														.	"<td>". $row['flight_id'] . "</td>"
 														.	"<td>". $row["plane_name"] . "</td>"
@@ -231,7 +256,7 @@
 														.	"<td>". $row["economy_price"]  . "</td>"
 														.	"<td>". $row["business_price"]  . "</td>"
 														.	"<td>". $row["delay"] . "</td>"
-														.   "<td>". "<a href='index.php?&flight_id=$flight_id'><button class='glyphicon glyphicon-user'></button></a>". "</td>"
+														.   "<td>". "<a href='index.php?function=7&flight_id=$flight_id'><button class='glyphicon glyphicon-user'></button></a>". "</td>"
 														.   "<td>". "<a href='index.php?function=1&flight_id=$flight_id'><button class='glyphicon glyphicon-edit'></button></a>". "</td>"
 														.   "<td>". "<a href='index_delete.php?flight_id=$flight_id'><button class='glyphicon glyphicon-remove'></button></a>". "</td>"
 														.	"</tr>";
@@ -261,62 +286,290 @@
 					</div>
 					<div class="modal-body">
 
-						<form class="form-signin">
+						<form class="form-signin" action='add_crew.php' method='POST'>
+							<?PHP
 
+								$servername = "localhost";
+								$user = "root";
+								$pass = "mfs12";
+								$dbname = "airline";
+
+								$fid = $_GET['flight_id'];
+								echo "<label for='flight_id' >Flight ID </label>
+											<input type='text' name='flight_id' id='flight_id' class='not-active' value='$fid'>";
+
+							?>
 								<label for="formp1" > Captain </label>
-								<select class="form-control" id="formp1">
-									<option>Pilot1</option>
-									<option>Pilot1</option>
-									<option>Pilot1</option>
-									<option>Pilot1</option>
+								<select name='formp1' id='formp1'  class="form-control" placeholder="">
+									<option value="" selected disabled></option>
+									<?PHP
+
+										$servername = "localhost";
+										$user = "root";
+										$pass = "mfs12";
+										$dbname = "airline";
+
+										$con = mysqli_connect($servername, $user, $pass, $dbname);
+
+										if (mysqli_connect_errno())
+										{
+											echo "Failed to connect to MySQL: " . mysqli_connect_error();
+										}
+
+										$sql = "SELECT * FROM pilot";
+										$result = mysqli_query($con,$sql);
+
+										$html = "";
+										if($result)
+										{
+											if ($result->num_rows > 0)
+											{
+												// output data of each row
+												while($row = $result->fetch_assoc()) {
+													$html = $html 	.	"<option>"
+																	.	$row["staff_id"]
+																	.	"</option>";
+												}
+											} else {
+												echo "";
+											}
+										}
+										echo $html;
+									?>
 								</select>
 
 								<label for="formp2" > 2nd Pilot </label>
-								<select class="form-control" id="formp2">
-									<option>Pilot1</option>
-									<option>Pilot1</option>
-									<option>Pilot1</option>
-									<option>Pilot1</option>
+								<select name='formp2' id='formp2'  class="form-control" placeholder="">
+									<option value="" selected disabled></option>
+									<?PHP
+
+										$servername = "localhost";
+										$user = "root";
+										$pass = "mfs12";
+										$dbname = "airline";
+
+										$con = mysqli_connect($servername, $user, $pass, $dbname);
+
+										if (mysqli_connect_errno())
+										{
+											echo "Failed to connect to MySQL: " . mysqli_connect_error();
+										}
+
+										$sql = "SELECT * FROM pilot";
+										$result = mysqli_query($con,$sql);
+
+										$html = "";
+										if($result)
+										{
+											if ($result->num_rows > 0)
+											{
+												// output data of each row
+												while($row = $result->fetch_assoc()) {
+													$html = $html 	.	"<option>"
+																	.	$row["staff_id"]
+																	.	"</option>";
+												}
+											} else {
+												echo "";
+											}
+										}
+										echo $html;
+									?>
 								</select>
 
-								<label for="formp3" > 3nd Pilot</label>
-								<select class="form-control" id="formp3">
-									<option>Pilot1</option>
-									<option>Pilot1</option>
-									<option>Pilot1</option>
-									<option>Pilot1</option>
+								<label for="formp3" > 3rd Pilot</label>
+								<select name='formp3' id='formp3'  class="form-control" placeholder="">
+									<option value="" selected disabled></option>
+									<?PHP
+
+										$servername = "localhost";
+										$user = "root";
+										$pass = "mfs12";
+										$dbname = "airline";
+
+										$con = mysqli_connect($servername, $user, $pass, $dbname);
+
+										if (mysqli_connect_errno())
+										{
+											echo "Failed to connect to MySQL: " . mysqli_connect_error();
+										}
+
+										$sql = "SELECT * FROM pilot";
+										$result = mysqli_query($con,$sql);
+
+										$html = "";
+										if($result)
+										{
+											if ($result->num_rows > 0)
+											{
+												// output data of each row
+												while($row = $result->fetch_assoc()) {
+													$html = $html 	.	"<option>"
+																	.	$row["staff_id"]
+																	.	"</option>";
+												}
+											} else {
+												echo "";
+											}
+										}
+										echo $html;
+									?>
 								</select>
 
 								<label for="formc1" > Cabin Chief </label>
-								<select class="form-control" id="formc1">
-									<option>C1</option>
-									<option>C2</option>
-									<option>C3</option>
-									<option>C4</option>
+								<select name='formc1' id='formc1'  class="form-control" placeholder="">
+									<option value="" selected disabled></option>
+									<?PHP
+
+										$servername = "localhost";
+										$user = "root";
+										$pass = "mfs12";
+										$dbname = "airline";
+
+										$con = mysqli_connect($servername, $user, $pass, $dbname);
+
+										if (mysqli_connect_errno())
+										{
+											echo "Failed to connect to MySQL: " . mysqli_connect_error();
+										}
+
+										$sql = "SELECT * FROM crew";
+										$result = mysqli_query($con,$sql);
+
+										$html = "";
+										if($result)
+										{
+											if ($result->num_rows > 0)
+											{
+												// output data of each row
+												while($row = $result->fetch_assoc()) {
+													$html = $html 	.	"<option>"
+																	.	$row["staff_id"]
+																	.	"</option>";
+												}
+											} else {
+												echo "";
+											}
+										}
+										echo $html;
+									?>
 								</select>
 
 								<label for="formc2" > Flight attendant </label>
-								<select class="form-control" id="formc2">
-									<option>C1</option>
-									<option>C2</option>
-									<option>C3</option>
-									<option>C4</option>
+								<select name='formc2' id='formc2'  class="form-control" placeholder="">
+									<option value="" selected disabled></option>
+									<?PHP
+
+										$servername = "localhost";
+										$user = "root";
+										$pass = "mfs12";
+										$dbname = "airline";
+
+										$con = mysqli_connect($servername, $user, $pass, $dbname);
+
+										if (mysqli_connect_errno())
+										{
+											echo "Failed to connect to MySQL: " . mysqli_connect_error();
+										}
+
+										$sql = "SELECT * FROM crew";
+										$result = mysqli_query($con,$sql);
+
+										$html = "";
+										if($result)
+										{
+											if ($result->num_rows > 0)
+											{
+												// output data of each row
+												while($row = $result->fetch_assoc()) {
+													$html = $html 	.	"<option>"
+																	.	$row["staff_id"]
+																	.	"</option>";
+												}
+											} else {
+												echo "";
+											}
+										}
+										echo $html;
+									?>
 								</select>
-'
+
 								<label for="formc3" > Flight attendant </label>
-								<select class="form-control" id="formc3">
-									<option>C1</option>
-									<option>C2</option>
-									<option>C3</option>
-									<option>C4</option>
+								<select name='formc3' id='formc3'  class="form-control" placeholder="">
+									<option value="" selected disabled></option>
+									<?PHP
+
+										$servername = "localhost";
+										$user = "root";
+										$pass = "mfs12";
+										$dbname = "airline";
+
+										$con = mysqli_connect($servername, $user, $pass, $dbname);
+
+										if (mysqli_connect_errno())
+										{
+											echo "Failed to connect to MySQL: " . mysqli_connect_error();
+										}
+
+										$sql = "SELECT * FROM crew";
+										$result = mysqli_query($con,$sql);
+
+										$html = "";
+										if($result)
+										{
+											if ($result->num_rows > 0)
+											{
+												// output data of each row
+												while($row = $result->fetch_assoc()) {
+													$html = $html 	.	"<option>"
+																	.	$row["staff_id"]
+																	.	"</option>";
+												}
+											} else {
+												echo "";
+											}
+										}
+										echo $html;
+									?>
 								</select>
 
 								<label for="formc4" > Flight attendant </label>
-								<select class="form-control" id="formc4">
-									<option>C1</option>
-									<option>C2</option>
-									<option>C3</option>
-									<option>C4</option>
+								<select name='formc4' id='formc4'  class="form-control" placeholder="">
+									<option value="" selected disabled></option>
+									<?PHP
+
+										$servername = "localhost";
+										$user = "root";
+										$pass = "mfs12";
+										$dbname = "airline";
+
+										$con = mysqli_connect($servername, $user, $pass, $dbname);
+
+										if (mysqli_connect_errno())
+										{
+											echo "Failed to connect to MySQL: " . mysqli_connect_error();
+										}
+
+										$sql = "SELECT * FROM crew";
+										$result = mysqli_query($con,$sql);
+
+										$html = "";
+										if($result)
+										{
+											if ($result->num_rows > 0)
+											{
+												// output data of each row
+												while($row = $result->fetch_assoc()) {
+													$html = $html 	.	"<option>"
+																	.	$row["staff_id"]
+																	.	"</option>";
+												}
+											} else {
+												echo "";
+											}
+										}
+										echo $html;
+									?>
 								</select>
 
 						<br/>
@@ -470,6 +723,25 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<p> Flight cannot be deleted, there may be assigned routes. You will be redirected </p>
+					</div> <!-- /content -->
+				</div>
+			</div>
+		</div>
+		<!-- Flight Delete -->
+		<div class="modal fade" id="crewSuccess" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			 <div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p> Crew is successfully added. You will be redirected </p>
+					</div> <!-- /content -->
+				</div>
+			</div>
+		</div><!-- Flight Delete -->
+		<div class="modal fade" id="crewFail" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			 <div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p> Crew cannot be added/changed. You will be redirected </p>
 					</div> <!-- /content -->
 				</div>
 			</div>
